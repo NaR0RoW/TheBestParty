@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E637B61273BD46E0082AB7B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E637B60273BD46E0082AB7B /* NetworkManager.swift */; };
+		4E637B63273BD4D30082AB7B /* CocktailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E637B62273BD4D30082AB7B /* CocktailModel.swift */; };
+		4E637B65273BDD710082AB7B /* IngredientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E637B64273BDD710082AB7B /* IngredientModel.swift */; };
+		4E84DCDF273C1C53000CEB16 /* RandomCocktailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E84DCDE273C1C53000CEB16 /* RandomCocktailTableViewCell.swift */; };
+		4E84DCE2273C1CA4000CEB16 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E84DCE1273C1CA4000CEB16 /* UITableView+Extension.swift */; };
 		4EB3C283273B039200114EC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB3C282273B039200114EC6 /* AppDelegate.swift */; };
 		4EB3C287273B039200114EC6 /* RandomCocktailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB3C286273B039200114EC6 /* RandomCocktailViewController.swift */; };
 		4EB3C28C273B039500114EC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EB3C28B273B039500114EC6 /* Assets.xcassets */; };
@@ -14,6 +19,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E637B60273BD46E0082AB7B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		4E637B62273BD4D30082AB7B /* CocktailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailModel.swift; sourceTree = "<group>"; };
+		4E637B64273BDD710082AB7B /* IngredientModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientModel.swift; sourceTree = "<group>"; };
+		4E84DCDE273C1C53000CEB16 /* RandomCocktailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomCocktailTableViewCell.swift; sourceTree = "<group>"; };
+		4E84DCE1273C1CA4000CEB16 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		4EB3C27F273B039200114EC6 /* TheBestParty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheBestParty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EB3C282273B039200114EC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EB3C286273B039200114EC6 /* RandomCocktailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomCocktailViewController.swift; sourceTree = "<group>"; };
@@ -33,6 +43,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E84DCDD273C1C35000CEB16 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4E84DCDE273C1C53000CEB16 /* RandomCocktailTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		4E84DCE0273C1C88000CEB16 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4E84DCE1273C1CA4000CEB16 /* UITableView+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		4EB3C276273B039200114EC6 = {
 			isa = PBXGroup;
 			children = (
@@ -52,6 +78,7 @@
 		4EB3C281273B039200114EC6 /* TheBestParty */ = {
 			isa = PBXGroup;
 			children = (
+				4E84DCE0273C1C88000CEB16 /* Extensions */,
 				4EB3C296273B03EA00114EC6 /* Application */,
 				4EB3C298273B046B00114EC6 /* Managers */,
 				4EB3C299273B047800114EC6 /* Models */,
@@ -73,6 +100,7 @@
 		4EB3C297273B040600114EC6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4E84DCDD273C1C35000CEB16 /* Cells */,
 				4EB3C28D273B039500114EC6 /* LaunchScreen.storyboard */,
 				4EB3C286273B039200114EC6 /* RandomCocktailViewController.swift */,
 			);
@@ -82,6 +110,7 @@
 		4EB3C298273B046B00114EC6 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				4E637B60273BD46E0082AB7B /* NetworkManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -89,6 +118,8 @@
 		4EB3C299273B047800114EC6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4E637B62273BD4D30082AB7B /* CocktailModel.swift */,
+				4E637B64273BDD710082AB7B /* IngredientModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -162,6 +193,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E84DCDF273C1C53000CEB16 /* RandomCocktailTableViewCell.swift in Sources */,
+				4E637B61273BD46E0082AB7B /* NetworkManager.swift in Sources */,
+				4E84DCE2273C1CA4000CEB16 /* UITableView+Extension.swift in Sources */,
+				4E637B65273BDD710082AB7B /* IngredientModel.swift in Sources */,
+				4E637B63273BD4D30082AB7B /* CocktailModel.swift in Sources */,
 				4EB3C287273B039200114EC6 /* RandomCocktailViewController.swift in Sources */,
 				4EB3C283273B039200114EC6 /* AppDelegate.swift in Sources */,
 			);
