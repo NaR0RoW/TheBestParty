@@ -1,9 +1,9 @@
 import Foundation
 
 enum CellModel {
-    case image(models: [CocktailModel])
-    case ingredients(models: [CocktailModel])
-    case instructions(models: [CocktailModel])
-    case category(models: [CocktailModel])
-    case glass(models: [CocktailModel])
+    case image
+    case ingredients
+    case instructions
+    case category
+    case glass
 }

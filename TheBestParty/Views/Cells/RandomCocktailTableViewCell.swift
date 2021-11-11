@@ -1,12 +1,14 @@
 import UIKit
 
 class RandomCocktailTableViewCell: UITableViewCell {
-    private var cellModel: CellModel!
-    
     // MARK: - Visual Components
     private let descriptionLabel: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 16.0)
+//        label.font = .boldSystemFont(ofSize: 22.0)
+        
+        label.font = UIFont.preferredFont(forTextStyle: .headline)
+        label.adjustsFontForContentSizeCategory = true
+        
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         
@@ -27,14 +29,21 @@ class RandomCocktailTableViewCell: UITableViewCell {
 
 // MARK: - Extensions
 extension RandomCocktailTableViewCell {
-    func configureCell(with cocktail: CocktailModel) {
-        switch cellModel {
-        
-        default:
-            ""
-        }
+    public func configureInstructionsCell(with cocktail: CocktailModel) {
         DispatchQueue.main.async {
             self.descriptionLabel.text = cocktail.drinks.first?.cocktailInstructions
+        }
+    }
+    
+    public func configureCategoryCell(with cocktail: CocktailModel) {
+        DispatchQueue.main.async {
+            self.descriptionLabel.text = cocktail.drinks.first?.cocktailCategory
+        }
+    }
+    
+    public func configureGlassCell(with cocktail: CocktailModel) {
+        DispatchQueue.main.async {
+            self.descriptionLabel.text = cocktail.drinks.first?.cocktailGlass
         }
     }
     

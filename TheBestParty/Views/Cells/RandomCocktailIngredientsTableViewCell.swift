@@ -4,7 +4,7 @@ class RandomCocktailIngredientsTableViewCell: UITableViewCell {
     // MARK: - Visual Components
     private let firstIngredientLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16.0)
+        label.font = .systemFont(ofSize: 22.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -12,7 +12,7 @@ class RandomCocktailIngredientsTableViewCell: UITableViewCell {
     
     private let firstIngredientMeasureLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16.0)
+        label.font = .systemFont(ofSize: 22.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -20,7 +20,7 @@ class RandomCocktailIngredientsTableViewCell: UITableViewCell {
     
     private let secondIngredientLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16.0)
+        label.font = .systemFont(ofSize: 22.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -28,7 +28,7 @@ class RandomCocktailIngredientsTableViewCell: UITableViewCell {
     
     private let secondIngredientMeasureLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16.0)
+        label.font = .systemFont(ofSize: 22.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -36,7 +36,7 @@ class RandomCocktailIngredientsTableViewCell: UITableViewCell {
     
     private let thirdIngredientLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16.0)
+        label.font = .systemFont(ofSize: 22.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -44,7 +44,7 @@ class RandomCocktailIngredientsTableViewCell: UITableViewCell {
     
     private let thirdIngredientMeasureLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16.0)
+        label.font = .systemFont(ofSize: 22.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -52,7 +52,7 @@ class RandomCocktailIngredientsTableViewCell: UITableViewCell {
     
     private let fourthIngredientLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16.0)
+        label.font = .systemFont(ofSize: 22.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -60,7 +60,7 @@ class RandomCocktailIngredientsTableViewCell: UITableViewCell {
     
     private let fourthIngredientMeasureLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16.0)
+        label.font = .systemFont(ofSize: 22.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -109,25 +109,25 @@ extension RandomCocktailIngredientsTableViewCell {
             firstIngredientLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10.0),
             firstIngredientLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15.0),
             
-            secondIngredientLabel.topAnchor.constraint(equalTo: firstIngredientLabel.topAnchor, constant: 15.0),
+            secondIngredientLabel.topAnchor.constraint(equalTo: firstIngredientLabel.topAnchor, constant: 25.0),
             secondIngredientLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15.0),
 
-            thirdIngredientLabel.topAnchor.constraint(equalTo: secondIngredientLabel.topAnchor, constant: 15.0),
+            thirdIngredientLabel.topAnchor.constraint(equalTo: secondIngredientLabel.topAnchor, constant: 25.0),
             thirdIngredientLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15.0),
             
-            fourthIngredientLabel.topAnchor.constraint(equalTo: thirdIngredientLabel.topAnchor, constant: 15.0),
+            fourthIngredientLabel.topAnchor.constraint(equalTo: thirdIngredientLabel.topAnchor, constant: 25.0),
             fourthIngredientLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15.0),
             
             firstIngredientMeasureLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10.0),
             firstIngredientMeasureLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -15.0),
             
-            secondIngredientMeasureLabel.topAnchor.constraint(equalTo: firstIngredientMeasureLabel.topAnchor, constant: 15.0),
+            secondIngredientMeasureLabel.topAnchor.constraint(equalTo: firstIngredientMeasureLabel.topAnchor, constant: 25.0),
             secondIngredientMeasureLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -15.0),
             
-            thirdIngredientMeasureLabel.topAnchor.constraint(equalTo: secondIngredientMeasureLabel.topAnchor, constant: 15.0),
+            thirdIngredientMeasureLabel.topAnchor.constraint(equalTo: secondIngredientMeasureLabel.topAnchor, constant: 25.0),
             thirdIngredientMeasureLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -15.0),
             
-            fourthIngredientMeasureLabel.topAnchor.constraint(equalTo: thirdIngredientMeasureLabel.topAnchor, constant: 15.0),
+            fourthIngredientMeasureLabel.topAnchor.constraint(equalTo: thirdIngredientMeasureLabel.topAnchor, constant: 25.0),
             fourthIngredientMeasureLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -15.0)
         ])
     }

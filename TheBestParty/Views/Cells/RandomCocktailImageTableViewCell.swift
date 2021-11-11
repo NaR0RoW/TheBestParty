@@ -11,7 +11,7 @@ class RandomCocktailImageTableViewCell: UITableViewCell {
     
     private let cocktailNameLabel: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 30)
+        label.font = .boldSystemFont(ofSize: 30.0)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         
@@ -20,7 +20,7 @@ class RandomCocktailImageTableViewCell: UITableViewCell {
     
     private let cocktailDescriptionLabel: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 22)
+        label.font = .boldSystemFont(ofSize: 22.0)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         
