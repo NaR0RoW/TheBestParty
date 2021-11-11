@@ -3,71 +3,39 @@ import UIKit
 class RandomCocktailViewController: UIViewController {
     // MARK: - Private properties
     private let network: NetworkProvider = NetworkManager()
+    private var cellModel = [CellModel]()
+    private var cocktails = [CocktailModel]()
     
     // MARK: - Visual Components
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
 
         return scrollView
     }()
-    
-    private let topView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .clear
-        
-        return view
-    }()
-    
+
     private let getCocktailButton: UIButton = {
         let button = UIButton()
-        let image = UIImage(systemName: "person.fill")
+        let image = UIImage(systemName: "arrow.uturn.backward.circle.fill")?.withTintColor(.red, renderingMode: .alwaysOriginal)
         button.setImage(image, for: .normal)
         button.backgroundColor = .purple
+        button.layer.cornerRadius = 30
         button.addTarget(self, action: #selector(getRandomCocktail), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
     }()
     
-    private let cocktailImageView: UIImageView = {
-        let imageView = UIImageView()
-        let image = UIImage(systemName: "person.fill")
-        image?.withRenderingMode(.alwaysTemplate)
-        imageView.image = image
-        imageView.tintColor = .brown
-        imageView.backgroundColor = .blue
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-
-        return imageView
-    }()
-    
-    private let cocktailNameLabel: UILabel = {
-        let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 24)
-        label.backgroundColor = .red
-        label.text = "CocktailName"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
-    }()
-    
-    private let cocktailDescriptionLabel: UILabel = {
-        let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 18)
-        label.backgroundColor = .green
-        label.text = "CocktailDescription"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
-    }()
-    
-    lazy var cocktailDescriptionTableView: UITableView = {
+    lazy var cocktailTableView: UITableView = {
         let tableView = UITableView()
+        tableView.registerCell(RandomCocktailImageTableViewCell.self)
+        tableView.registerCell(RandomCocktailIngredientsTableViewCell.self)
         tableView.registerCell(RandomCocktailTableViewCell.self)
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.showsVerticalScrollIndicator = false
+        tableView.allowsSelection = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         return tableView
@@ -78,19 +46,41 @@ class RandomCocktailViewController: UIViewController {
         super.viewDidLoad()
         
         configureView()
-        
-        print("Loaded")
+        setUpModels()
     }
 }
 
 // MARK: - Extensions
 extension RandomCocktailViewController {
+    @objc func getRandomCocktail() {
+        cocktails.removeAll()
+        network.getRandomCocktail { result in
+            switch result {
+            case .success(let data):
+                DispatchQueue.main.async {
+                    self.cocktails.append(data)
+                    self.cocktailTableView.reloadData()
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    private func setUpModels() {
+        cellModel.append(.image(models: []))
+        cellModel.append(.ingredients(models: []))
+        cellModel.append(.instructions(models: []))
+        cellModel.append(.category(models: []))
+        cellModel.append(.glass(models: []))
+    }
+    
     private func configureView() {
         view.backgroundColor = .systemBackground
         
         configureScrollView()
-        configureTopView()
         configureTableView()
+        configureRandomButtonView()
     }
     
     private func configureScrollView() {
@@ -102,88 +92,100 @@ extension RandomCocktailViewController {
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
-
-    private func configureTopView() {
-        scrollView.addSubview(topView)
+    
+    private func configureTableView() {
+        scrollView.addSubview(cocktailTableView)
         NSLayoutConstraint.activate([
-            topView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            topView.leftAnchor.constraint(equalTo: scrollView.leftAnchor),
-            topView.widthAnchor.constraint(equalToConstant: view.frame.size.width),
-            topView.heightAnchor.constraint(equalToConstant: view.frame.size.width)
-        ])
-        
-        topView.addSubview(cocktailImageView)
-        NSLayoutConstraint.activate([
-            cocktailImageView.topAnchor.constraint(equalTo: topView.topAnchor),
-            cocktailImageView.leftAnchor.constraint(equalTo: topView.leftAnchor),
-            cocktailImageView.widthAnchor.constraint(equalToConstant: view.frame.size.width),
-            cocktailImageView.heightAnchor.constraint(equalToConstant: view.frame.size.width),
-        ])
-
-        topView.addSubview(getCocktailButton)
-        NSLayoutConstraint.activate([
-            getCocktailButton.topAnchor.constraint(equalTo: topView.topAnchor),
-            getCocktailButton.rightAnchor.constraint(equalTo: topView.rightAnchor),
-            getCocktailButton.widthAnchor.constraint(equalToConstant: 50.0),
-            getCocktailButton.heightAnchor.constraint(equalToConstant: 50.0),
-        ])
-        
-        topView.addSubview(cocktailNameLabel)
-        NSLayoutConstraint.activate([
-            cocktailNameLabel.bottomAnchor.constraint(equalTo: topView.bottomAnchor, constant: -30.0),
-            cocktailNameLabel.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 15.0)
-        ])
-
-        topView.addSubview(cocktailDescriptionLabel)
-        NSLayoutConstraint.activate([
-            cocktailDescriptionLabel.topAnchor.constraint(equalTo: cocktailNameLabel.bottomAnchor),
-            cocktailDescriptionLabel.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 15.0)
+            cocktailTableView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            cocktailTableView.leftAnchor.constraint(equalTo: scrollView.leftAnchor),
+            cocktailTableView.widthAnchor.constraint(equalToConstant: view.frame.size.width),
+            cocktailTableView.heightAnchor.constraint(equalToConstant: CGFloat(450.0 * 2.0)),
+            cocktailTableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ])
     }
     
-    private func configureTableView() {
-        scrollView.addSubview(cocktailDescriptionTableView)
+    private func configureRandomButtonView() {
+        view.addSubview(getCocktailButton)
         NSLayoutConstraint.activate([
-            cocktailDescriptionTableView.topAnchor.constraint(equalTo: topView.bottomAnchor),
-            cocktailDescriptionTableView.leftAnchor.constraint(equalTo: scrollView.leftAnchor),
-            cocktailDescriptionTableView.widthAnchor.constraint(equalToConstant: view.frame.size.width),
-            cocktailDescriptionTableView.heightAnchor.constraint(equalToConstant: CGFloat(450 * 10)),
-            cocktailDescriptionTableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+            getCocktailButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15.0),
+            getCocktailButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15.0),
+            getCocktailButton.widthAnchor.constraint(equalToConstant: 50.0),
+            getCocktailButton.heightAnchor.constraint(equalToConstant: 50.0),
         ])
-    }
-
-    @objc func getRandomCocktail() {
-        network.getRandomCocktail { result in
-            switch result {
-            case .success(let model):
-                DispatchQueue.main.async {
-                    self.cocktailNameLabel.text = model.drinks.first?.strDrink
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
     }
 }
 
 // MARK: - UITableViewDataSource
 extension RandomCocktailViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 25
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return cellModel.count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50.0
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch cellModel[section] {
+        case .image:
+            return nil
+        case .ingredients:
+            return "Ingredients"
+        case .instructions:
+            return "Instructions"
+        case .category:
+            return "Category"
+        case .glass:
+            return "Glass"
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as RandomCocktailTableViewCell
-
-        return cell
+        if cocktails.isEmpty {
+            return UITableViewCell()
+        } else {
+            let cocktail = cocktails[indexPath.row]
+            
+            switch cellModel[indexPath.section] {
+            case .image:
+                let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as RandomCocktailImageTableViewCell
+//                let cocktail = cocktails[indexPath.row]
+                cell.configureCell(with: cocktail)
+                
+                return cell
+                
+            case .ingredients:
+                let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as RandomCocktailIngredientsTableViewCell
+//                let cocktail = cocktails[indexPath.row]
+                cell.configureCell(with: cocktail)
+                
+                return cell
+                
+            case .instructions, .category, .glass:
+                let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as RandomCocktailTableViewCell
+//                let cocktail = cocktails[indexPath.row]
+                cell.configureCell(with: cocktail)
+                
+                return cell
+            }
+        }
     }
 }
 
 // MARK: - UITableViewDelegate
 extension RandomCocktailViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch cellModel[indexPath.section] {
+        case .image:
+            return view.frame.width
+        case .ingredients:
+            return 100.0
+        case .instructions:
+            return 200.0
+        case .category:
+            return 200.0
+        case .glass:
+            return 200.0
+        }
+    }
 }

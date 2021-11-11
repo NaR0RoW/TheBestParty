@@ -1,18 +1,78 @@
 import Foundation
 
-struct CocktailModel: Codable {
-    let drinks: [Cocktail]
+public struct CocktailModel: Codable {
+    public let drinks: [Cocktail]
 }
 
-struct Cocktail: Codable {
-    let strDrink: String?
-    let strCategory: String?
-    let strGlass: String?
-    let strInstructions: String?
-    let strDrinkThumb: String?
-    let strIngredient1: String?
-    let strIngredient2: String?
+public struct Cocktail {
+    public let cocktailName: String?
+    public let cocktailCategory: String?
+    public let cocktailGlass: String?
+    public let cocktailInstructions: String?
+    public let cocktailImage: String?
+    public let cocktailFirstIngredient: String?
+    public let cocktailSecondIngredient: String?
+    public let cocktailThirdIngredient: String?
+    public let cocktailFourthIngredient: String?
+    public let cocktailFirstIngredientMeasure: String?
+    public let cocktailSecondIngredientMeasure: String?
+    public let cocktailThirdIngredientMeasure: String?
+    public let cocktailFourthIngredientMeasure: String?
 }
+
+//extension CocktailModel: Codable, Hashable {
+//    public static func == (_ lhs: CocktailModel, _ rhs: CocktailModel) -> Bool {
+//        return lhs.drinks.first?.cocktailName == rhs.drinks.first?.cocktailName
+//    }
+//
+//    public func hash(into hasher: inout Hasher) {
+//        hasher.combine(drinks.first?.cocktailName)
+//    }
+//}
+
+extension Cocktail: Codable {
+    enum CodingKeys: String, CodingKey {
+        case cocktailName = "strDrink"
+        case cocktailCategory = "strCategory"
+        case cocktailGlass = "strGlass"
+        case cocktailInstructions = "strInstructions"
+        case cocktailImage = "strDrinkThumb"
+        case cocktailFirstIngredient = "strIngredient1"
+        case cocktailSecondIngredient = "strIngredient2"
+        case cocktailThirdIngredient = "strIngredient3"
+        case cocktailFourthIngredient = "strIngredient4"
+        case cocktailFirstIngredientMeasure = "strMeasure1"
+        case cocktailSecondIngredientMeasure = "strMeasure2"
+        case cocktailThirdIngredientMeasure = "strMeasure3"
+        case cocktailFourthIngredientMeasure = "strMeasure4"
+    }
+}
+
+//public struct Movie {
+//    public let id: Int
+//    public let title: String
+//    public let overview: String
+//    public let poster: String
+//}
+//
+//extension Movie: Hashable {
+//    public static func == (lhs: Movie, rhs: Movie) -> Bool {
+//        return lhs.id == rhs.id
+//    }
+//
+//    public func hash(into hasher: inout Hasher) {
+//        hasher.combine(id)
+//    }
+//}
+//
+//extension Movie: Decodable {
+//    enum CodingKeys: String, CodingKey {
+//        case id
+//        case title
+//        case overview
+//        case poster = "poster_path"
+//    }
+//}
 
 //{
 //   "drinks":[

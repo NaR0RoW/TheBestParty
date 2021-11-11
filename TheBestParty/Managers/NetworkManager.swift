@@ -1,7 +1,9 @@
+import Combine
 import Foundation
 
 protocol NetworkProvider {
     func getRandomCocktail(completion: @escaping((Result<CocktailModel, APIError>) -> Void))
+//    func getRandomCocktail() -> AnyPublisher<CocktailModel, APIError>
 }
 
 enum APIError: Error {
@@ -19,16 +21,20 @@ final class NetworkManager: NetworkProvider {
         case GET
     }
 
-    func getRandomCocktail(completion: @escaping((Result<CocktailModel, APIError>) -> Void)) {
+    public func getRandomCocktail(completion: @escaping((Result<CocktailModel, APIError>) -> Void)) {
         request(method: .GET, completion: completion)
     }
+//
+//    public func getRandomCocktail() -> AnyPublisher<CocktailModel, APIError> {
+//        return call(method: .GET)
+//    }
 
     private func request<T: Codable>(method: Method, completion: @escaping((Result<T, APIError>) -> Void)) {
         let path = Constants.randomCocktail
 
         guard let url = URL(string: path) else {
             completion(.failure(.internalError))
-            print("Invalid url string")
+            print("Invalid url")
 
             return
         }
@@ -40,7 +46,7 @@ final class NetworkManager: NetworkProvider {
         call(with: request, completion: completion)
     }
 
-    func call<T: Codable>(with request: URLRequest, completion: @escaping((Result<T, APIError>) -> Void)) {
+    private func call<T: Codable>(with request: URLRequest, completion: @escaping((Result<T, APIError>) -> Void)) {
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard error == nil else {
                 completion(.failure(.serverError))
@@ -68,4 +74,29 @@ final class NetworkManager: NetworkProvider {
 
         dataTask.resume()
     }
+    
+//    private func request(method: Method) -> URLRequest {
+//        let path = Constants.randomCocktail
+//
+//        guard let url = URL(string: path) else {
+//            preconditionFailure("Invalid url string")
+//        }
+//
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "\(method)"
+//        request.allHTTPHeaderFields = ["Content-Type": "application/json"]
+//
+//        return request
+//    }
+//
+//    private func call<T: Codable>(method: Method) -> AnyPublisher<T, APIError> {
+//        let urlRequest = request(method: method)
+//
+//        return URLSession.shared.dataTaskPublisher(for: urlRequest)
+//            .mapError { _ in APIError.serverError }
+//            .map { $0.data }
+//            .decode(type: T.self, decoder: JSONDecoder())
+//            .mapError { _ in APIError.parsingError }
+//            .eraseToAnyPublisher()
+//    }
 }

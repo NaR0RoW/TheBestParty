@@ -1,4 +1,4 @@
-import UIKit
+import UIKit.UITableView
 
 extension UITableView {
     func registerCell<Cell: UITableViewCell>(_ cellClass: Cell.Type) {
