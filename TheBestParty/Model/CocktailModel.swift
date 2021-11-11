@@ -10,6 +10,7 @@ public struct Cocktail {
     public let cocktailGlass: String?
     public let cocktailInstructions: String?
     public let cocktailImage: String?
+    public let cocktailType: String?
     public let cocktailFirstIngredient: String?
     public let cocktailSecondIngredient: String?
     public let cocktailThirdIngredient: String?
@@ -37,6 +38,7 @@ extension Cocktail: Codable {
         case cocktailGlass = "strGlass"
         case cocktailInstructions = "strInstructions"
         case cocktailImage = "strDrinkThumb"
+        case cocktailType = "strAlcoholic"
         case cocktailFirstIngredient = "strIngredient1"
         case cocktailSecondIngredient = "strIngredient2"
         case cocktailThirdIngredient = "strIngredient3"

@@ -1,4 +1,4 @@
-import Combine
+//import Combine
 import Foundation
 
 protocol NetworkProvider {
@@ -6,7 +6,7 @@ protocol NetworkProvider {
 //    func getRandomCocktail() -> AnyPublisher<CocktailModel, APIError>
 }
 
-enum APIError: Error {
+public enum APIError: Error {
     case internalError
     case serverError
     case parsingError

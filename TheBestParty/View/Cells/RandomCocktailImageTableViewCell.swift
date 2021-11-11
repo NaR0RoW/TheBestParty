@@ -41,7 +41,7 @@ class RandomCocktailImageTableViewCell: UITableViewCell {
 
 // MARK: - Extensions
 extension RandomCocktailImageTableViewCell {
-    func configureCell(with cocktail: CocktailModel) {
+    public func configureCell(with cocktail: CocktailModel) {
         DispatchQueue.global(qos: .utility).async { [weak self] in
             guard let url = cocktail.drinks.first?.cocktailImage else { return }
             guard let urlString = URL(string: url) else { return }
@@ -65,11 +65,11 @@ extension RandomCocktailImageTableViewCell {
             cocktailImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             cocktailImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
             
-            cocktailNameLabel.bottomAnchor.constraint(equalTo: cocktailImageView.bottomAnchor, constant: -30.0),
-            cocktailNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15.0),
+            cocktailNameLabel.bottomAnchor.constraint(equalTo: cocktailImageView.bottomAnchor, constant: -40.0),
+            cocktailNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20.0),
             
             cocktailDescriptionLabel.topAnchor.constraint(equalTo: cocktailNameLabel.bottomAnchor),
-            cocktailDescriptionLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15.0)
+            cocktailDescriptionLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20.0)
         ])
     }
 }

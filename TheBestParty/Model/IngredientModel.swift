@@ -1,5 +1,5 @@
 import Foundation
 
-struct IngredientModel: Codable {
+public struct IngredientModel: Codable {
     let str: String
 }

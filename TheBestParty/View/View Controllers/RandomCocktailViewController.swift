@@ -1,10 +1,14 @@
 import UIKit
 
+// MARK: TODO - Add UICollectionView to Ingredients with images
+//       Make UITableView height constraints dynamic
+//       Add more ingredients and ingredients measures
+
 class RandomCocktailViewController: UIViewController {
     // MARK: - Private properties
-    private let network: NetworkProvider = NetworkManager()
+    private let networkManager: NetworkProvider = NetworkManager()
     private var cellModel = [CellModel]()
-    private var cocktails = [CocktailModel]()
+    private var cocktailsModel = [CocktailModel]()
     
     // MARK: - Visual Components
     private let scrollView: UIScrollView = {
@@ -17,10 +21,9 @@ class RandomCocktailViewController: UIViewController {
 
     private let getCocktailButton: UIButton = {
         let button = UIButton()
-        let image = UIImage(systemName: "arrow.uturn.backward.circle.fill")?.withTintColor(.red, renderingMode: .alwaysOriginal)
+        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 30.0, weight: .bold, scale: .large)
+        let image = UIImage(systemName: "arrow.uturn.backward.circle.fill", withConfiguration: imageConfiguration)?.withTintColor(.systemBackground, renderingMode: .alwaysOriginal)
         button.setImage(image, for: .normal)
-        button.backgroundColor = .purple
-        button.layer.cornerRadius = 30
         button.addTarget(self, action: #selector(getRandomCocktail), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
 
@@ -39,11 +42,6 @@ class RandomCocktailViewController: UIViewController {
         tableView.allowsSelection = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
-//        tableView.estimatedRowHeight = 85.0
-//        tableView.rowHeight = UITableView.automaticDimension
-//        tableView.rowHeight = UITableView.automaticDimension
-//        tableView.estimatedRowHeight = UITableView.automaticDimension
-        
         return tableView
     }()
 
@@ -59,12 +57,12 @@ class RandomCocktailViewController: UIViewController {
 // MARK: - Extensions
 extension RandomCocktailViewController {
     @objc func getRandomCocktail() {
-        cocktails.removeAll()
-        network.getRandomCocktail { result in
+        cocktailsModel.removeAll()
+        networkManager.getRandomCocktail { result in
             switch result {
             case .success(let data):
                 DispatchQueue.main.async {
-                    self.cocktails.append(data)
+                    self.cocktailsModel.append(data)
                     self.cocktailTableView.reloadData()
                 }
             case .failure(let error):
@@ -78,10 +76,12 @@ extension RandomCocktailViewController {
         cellModel.append(.ingredients)
         cellModel.append(.instructions)
         cellModel.append(.category)
+        cellModel.append(.cocktailType)
         cellModel.append(.glass)
     }
     
     private func configureView() {
+        view.backgroundColor = .systemBackground
         configureScrollView()
         configureTableView()
         configureRandomButtonView()
@@ -103,6 +103,7 @@ extension RandomCocktailViewController {
             cocktailTableView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             cocktailTableView.leftAnchor.constraint(equalTo: scrollView.leftAnchor),
             cocktailTableView.widthAnchor.constraint(equalToConstant: view.frame.size.width),
+            // MARK: FIX ME - make tableView height dynamic
             cocktailTableView.heightAnchor.constraint(equalToConstant: CGFloat(450.0 * 3.0)),
             cocktailTableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ])
@@ -112,9 +113,7 @@ extension RandomCocktailViewController {
         view.addSubview(getCocktailButton)
         NSLayoutConstraint.activate([
             getCocktailButton.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 15.0),
-            getCocktailButton.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: -15.0),
-            getCocktailButton.widthAnchor.constraint(equalToConstant: 50.0),
-            getCocktailButton.heightAnchor.constraint(equalToConstant: 50.0)
+            getCocktailButton.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: -15.0)
         ])
     }
 }
@@ -129,26 +128,28 @@ extension RandomCocktailViewController: UITableViewDataSource {
         switch cellModel[section] {
         case .image:
             return nil
-        case .ingredients:
-            return "Ingredients"
-        case .instructions:
-            return "Instructions"
-        case .category:
-            return "Category"
-        case .glass:
-            return "Glass"
+        case .ingredients, .instructions, .category, .glass, .cocktailType:
+            return cellModel[section].description
         }
     }
     
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let tableView = view as? UITableViewHeaderFooterView else { return }
+        tableView.frame = CGRect(x: 0, y: 0, width: self.view.width, height: 0)
+        tableView.contentView.backgroundColor = .systemBackground
+        tableView.textLabel?.font = .systemFont(ofSize: 22.0)
+        tableView.textLabel?.textColor = .systemOrange
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if cocktails.isEmpty {
+        if cocktailsModel.isEmpty {
             return UITableViewCell()
         } else {
-            let cocktail = cocktails[indexPath.row]
+            let cocktail = cocktailsModel[indexPath.row]
             
             switch cellModel[indexPath.section] {
             case .image:
@@ -175,6 +176,12 @@ extension RandomCocktailViewController: UITableViewDataSource {
                 
                 return cell
                 
+            case .cocktailType:
+                let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as RandomCocktailTableViewCell
+                cell.configureCocktailTypeCell(with: cocktail)
+                
+                return cell
+                
             case .glass:
                 let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as RandomCocktailTableViewCell
                 cell.configureGlassCell(with: cocktail)
@@ -193,16 +200,14 @@ extension RandomCocktailViewController: UITableViewDelegate {
             return view.frame.width
         case .ingredients:
             return 150.0
-//            return UITableView.automaticDimension
         case .instructions:
             return 200.0
-//            return UITableView.automaticDimension
         case .category:
             return 50.0
-//            return UITableView.automaticDimension
+        case .cocktailType:
+            return 50.0
         case .glass:
             return 50.0
-//            return UITableView.automaticDimension
         }
     }
 }
