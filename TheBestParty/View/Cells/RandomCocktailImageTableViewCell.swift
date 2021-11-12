@@ -56,18 +56,21 @@ extension RandomCocktailImageTableViewCell {
     
     private func setupView() {
         contentView.addSubview(cocktailImageView)
-        contentView.addSubview(cocktailNameLabel)
-        contentView.addSubview(cocktailDescriptionLabel)
-        
         NSLayoutConstraint.activate([
             cocktailImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             cocktailImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             cocktailImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            cocktailImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
-            
+            cocktailImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width)
+        ])
+        
+        contentView.addSubview(cocktailNameLabel)
+        NSLayoutConstraint.activate([
             cocktailNameLabel.bottomAnchor.constraint(equalTo: cocktailImageView.bottomAnchor, constant: -40.0),
-            cocktailNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20.0),
-            
+            cocktailNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20.0)
+        ])
+        
+        contentView.addSubview(cocktailDescriptionLabel)
+        NSLayoutConstraint.activate([
             cocktailDescriptionLabel.topAnchor.constraint(equalTo: cocktailNameLabel.bottomAnchor),
             cocktailDescriptionLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20.0)
         ])

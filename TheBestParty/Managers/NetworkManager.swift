@@ -3,6 +3,7 @@ import Foundation
 
 protocol NetworkProvider {
     func getRandomCocktail(completion: @escaping((Result<CocktailModel, APIError>) -> Void))
+    func getCocktails(completion: @escaping((Result<CocktailModel, APIError>) -> Void))
 //    func getRandomCocktail() -> AnyPublisher<CocktailModel, APIError>
 }
 
@@ -15,6 +16,7 @@ public enum APIError: Error {
 final class NetworkManager: NetworkProvider {
     struct Constants {
         static let randomCocktail = "https://www.thecocktaildb.com/api/json/v1/1/random.php"
+        static let cocktails = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s"
     }
 
     private enum Method: String {
@@ -22,15 +24,19 @@ final class NetworkManager: NetworkProvider {
     }
 
     public func getRandomCocktail(completion: @escaping((Result<CocktailModel, APIError>) -> Void)) {
-        request(method: .GET, completion: completion)
+        request(with: Constants.randomCocktail, method: .GET, completion: completion)
+    }
+    
+    public func getCocktails(completion: @escaping((Result<CocktailModel, APIError>) -> Void)) {
+        request(with: Constants.cocktails, method: .GET, completion: completion)
     }
 //
 //    public func getRandomCocktail() -> AnyPublisher<CocktailModel, APIError> {
 //        return call(method: .GET)
 //    }
 
-    private func request<T: Codable>(method: Method, completion: @escaping((Result<T, APIError>) -> Void)) {
-        let path = Constants.randomCocktail
+    private func request<T: Codable>(with url: String, method: Method, completion: @escaping((Result<T, APIError>) -> Void)) {
+        let path = url
 
         guard let url = URL(string: path) else {
             completion(.failure(.internalError))

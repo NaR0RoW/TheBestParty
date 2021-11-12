@@ -24,7 +24,11 @@ class RandomCocktailViewController: UIViewController {
         let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 30.0, weight: .bold, scale: .large)
         let image = UIImage(systemName: "arrow.uturn.backward.circle.fill", withConfiguration: imageConfiguration)?.withTintColor(.systemBackground, renderingMode: .alwaysOriginal)
         button.setImage(image, for: .normal)
-        button.addTarget(self, action: #selector(getRandomCocktail), for: .touchUpInside)
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 1
+        button.layer.shadowOffset = .zero
+        button.layer.shadowRadius = 10
+        button.addTarget(self, action: #selector(getAnotherRandomCocktail), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
@@ -51,12 +55,17 @@ class RandomCocktailViewController: UIViewController {
         
         configureView()
         setUpModels()
+        getRandomCocktail()
     }
 }
 
 // MARK: - Extensions
 extension RandomCocktailViewController {
-    @objc func getRandomCocktail() {
+    @objc func getAnotherRandomCocktail() {
+        getRandomCocktail()
+    }
+    
+    private func getRandomCocktail() {
         cocktailsModel.removeAll()
         networkManager.getRandomCocktail { result in
             switch result {
@@ -82,6 +91,8 @@ extension RandomCocktailViewController {
     
     private func configureView() {
         view.backgroundColor = .systemBackground
+        navigationController?.isNavigationBarHidden = true
+        navigationController?.navigationBar.prefersLargeTitles = true
         configureScrollView()
         configureTableView()
         configureRandomButtonView()

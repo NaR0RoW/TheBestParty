@@ -7,9 +7,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         let submodules = (
-            cocktails: CocktailsViewController(),
-            ingredients: IngredientsViewController(),
-            randomCocktail: RandomCocktailViewController()
+            cocktails: UINavigationController(rootViewController: CocktailsViewController()),
+            favoritesCocktails: UINavigationController(rootViewController: FavoritesCocktailsViewController()),
+            ingredients: UINavigationController(rootViewController: IngredientsViewController()),
+            randomCocktail: UINavigationController(rootViewController: RandomCocktailViewController())
         )
 
         let tabBarController = TabBarModuleBuilder.build(usingSubmodules: submodules)

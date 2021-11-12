@@ -34,11 +34,11 @@ public struct Cocktail {
 extension Cocktail: Codable {
     enum CodingKeys: String, CodingKey {
         case cocktailName = "strDrink"
-        case cocktailCategory = "strCategory"
+        case cocktailCategory = "strCategory" //
         case cocktailGlass = "strGlass"
         case cocktailInstructions = "strInstructions"
         case cocktailImage = "strDrinkThumb"
-        case cocktailType = "strAlcoholic"
+        case cocktailType = "strAlcoholic" //
         case cocktailFirstIngredient = "strIngredient1"
         case cocktailSecondIngredient = "strIngredient2"
         case cocktailThirdIngredient = "strIngredient3"
