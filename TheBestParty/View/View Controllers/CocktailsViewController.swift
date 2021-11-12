@@ -16,30 +16,33 @@ class CocktailsViewController: UIViewController {
         return searchController
     }()
     
-    lazy var cocktailsTableView: UITableView = {
-        let tableView = UITableView()
-        tableView.registerCell(CocktailTableViewCell.self)
-        tableView.showsVerticalScrollIndicator = false
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+    lazy var cocktailsCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: view.width / 2 - 15.0, height: view.width / 2 - 15.0)
+        layout.sectionInset = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .systemBackground
+        collectionView.registerCell(CocktailCollectionViewCell.self)
+//        collectionView.showsVerticalScrollIndicator = false
+        collectionView.delegate = self
+        collectionView.dataSource = self
+//        collectionView.translatesAutoresizingMaskIntoConstraints = false
         
-        return tableView
+        return collectionView
     }()
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         getCocktails()
-        view.addSubview(cocktailsTableView)
+        view.addSubview(cocktailsCollectionView)
         setupView()
 //        setupConstraints()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        cocktailsTableView.frame = view.bounds
+        cocktailsCollectionView.frame = view.bounds
     }
 }
 
@@ -57,7 +60,7 @@ extension CocktailsViewController {
                             cocktailGlass: nil,
                             cocktailInstructions: nil,
                             cocktailImage: $0.cocktailImage,
-                            cocktailType: $0.cocktailType,
+                            cocktailType: nil,
                             cocktailFirstIngredient: nil,
                             cocktailSecondIngredient: nil,
                             cocktailThirdIngredient: nil,
@@ -68,7 +71,7 @@ extension CocktailsViewController {
                             cocktailFourthIngredientMeasure: nil
                         )])
                     }
-                    self.cocktailsTableView.reloadData()
+                    self.cocktailsCollectionView.reloadData()
                 }
             case .failure(let error):
                 print(error.localizedDescription)
@@ -77,7 +80,6 @@ extension CocktailsViewController {
     }
     
     private func setupView() {
-        view.backgroundColor = .systemBackground
         title = "Cocktails"
 //        navigationController?.navigationBar.tintColor = .label
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -100,24 +102,22 @@ extension CocktailsViewController: UISearchBarDelegate {
     
 }
 
-// MARK: - UITableViewDataSource
-extension CocktailsViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+// MARK: - UICollectionViewDataSource
+extension CocktailsViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cocktailsModel.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as CocktailTableViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cocktail = cocktailsModel[indexPath.row]
+        let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CocktailCollectionViewCell
         cell.configureCell(with: cocktail)
-        
+
         return cell
     }
 }
 
-// MARK: - UITableViewDelegate
-extension CocktailsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 250.0
-    }
+// MARK: - UICollectionViewDelegate
+extension CocktailsViewController: UICollectionViewDelegate {
+    
 }
