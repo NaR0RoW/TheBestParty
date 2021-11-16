@@ -13,7 +13,6 @@
 		4E62BAB0273E9041006BA756 /* CocktailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E62BAAF273E9041006BA756 /* CocktailsViewController.swift */; };
 		4E62BAB2273E9050006BA756 /* IngredientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E62BAB1273E9050006BA756 /* IngredientsViewController.swift */; };
 		4E62BAB4273E941E006BA756 /* FavoritesCocktailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E62BAB3273E941E006BA756 /* FavoritesCocktailsViewController.swift */; };
-		4E62BAB6273EBBA6006BA756 /* CocktailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E62BAB5273EBBA6006BA756 /* CocktailTableViewCell.swift */; };
 		4E62BAB8273EBBBF006BA756 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E62BAB7273EBBBF006BA756 /* UICollectionView+Extension.swift */; };
 		4E62BABA273ED5A6006BA756 /* CocktailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E62BAB9273ED5A6006BA756 /* CocktailCollectionViewCell.swift */; };
 		4E637B61273BD46E0082AB7B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E637B60273BD46E0082AB7B /* NetworkManager.swift */; };
@@ -22,6 +21,7 @@
 		4E659CB2273D1E970056BB2C /* CellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E659CB1273D1E970056BB2C /* CellModel.swift */; };
 		4E659CB4273D21650056BB2C /* RandomCocktailImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E659CB3273D21650056BB2C /* RandomCocktailImageTableViewCell.swift */; };
 		4E659CB6273D413F0056BB2C /* RandomCocktailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E659CB5273D413F0056BB2C /* RandomCocktailTableViewCell.swift */; };
+		4E682E39274458500049C526 /* StyleGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E682E38274458500049C526 /* StyleGuide.swift */; };
 		4E84DCDF273C1C53000CEB16 /* RandomCocktailIngredientsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E84DCDE273C1C53000CEB16 /* RandomCocktailIngredientsTableViewCell.swift */; };
 		4E84DCE2273C1CA4000CEB16 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E84DCE1273C1CA4000CEB16 /* UITableView+Extension.swift */; };
 		4E874EF5273D994C00C85E04 /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E874EF4273D994C00C85E04 /* UIStackView+Extension.swift */; };
@@ -39,7 +39,6 @@
 		4E62BAAF273E9041006BA756 /* CocktailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsViewController.swift; sourceTree = "<group>"; };
 		4E62BAB1273E9050006BA756 /* IngredientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsViewController.swift; sourceTree = "<group>"; };
 		4E62BAB3273E941E006BA756 /* FavoritesCocktailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCocktailsViewController.swift; sourceTree = "<group>"; };
-		4E62BAB5273EBBA6006BA756 /* CocktailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailTableViewCell.swift; sourceTree = "<group>"; };
 		4E62BAB7273EBBBF006BA756 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 		4E62BAB9273ED5A6006BA756 /* CocktailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailCollectionViewCell.swift; sourceTree = "<group>"; };
 		4E637B60273BD46E0082AB7B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -48,6 +47,7 @@
 		4E659CB1273D1E970056BB2C /* CellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellModel.swift; sourceTree = "<group>"; };
 		4E659CB3273D21650056BB2C /* RandomCocktailImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomCocktailImageTableViewCell.swift; sourceTree = "<group>"; };
 		4E659CB5273D413F0056BB2C /* RandomCocktailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomCocktailTableViewCell.swift; sourceTree = "<group>"; };
+		4E682E38274458500049C526 /* StyleGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleGuide.swift; sourceTree = "<group>"; };
 		4E84DCDE273C1C53000CEB16 /* RandomCocktailIngredientsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomCocktailIngredientsTableViewCell.swift; sourceTree = "<group>"; };
 		4E84DCE1273C1CA4000CEB16 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		4E874EF4273D994C00C85E04 /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
@@ -94,7 +94,6 @@
 				4E659CB3273D21650056BB2C /* RandomCocktailImageTableViewCell.swift */,
 				4E84DCDE273C1C53000CEB16 /* RandomCocktailIngredientsTableViewCell.swift */,
 				4E659CB5273D413F0056BB2C /* RandomCocktailTableViewCell.swift */,
-				4E62BAB5273EBBA6006BA756 /* CocktailTableViewCell.swift */,
 				4E62BAB9273ED5A6006BA756 /* CocktailCollectionViewCell.swift */,
 			);
 			path = Cells;
@@ -125,6 +124,7 @@
 			children = (
 				4E84DCE0273C1C88000CEB16 /* Extensions */,
 				4E62BAA8273E8A2B006BA756 /* TabBar */,
+				4E682E38274458500049C526 /* StyleGuide.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -282,11 +282,11 @@
 				4E62BABA273ED5A6006BA756 /* CocktailCollectionViewCell.swift in Sources */,
 				4E62BAAE273E8AAB006BA756 /* TabBarController.swift in Sources */,
 				4E62BAB0273E9041006BA756 /* CocktailsViewController.swift in Sources */,
-				4E62BAB6273EBBA6006BA756 /* CocktailTableViewCell.swift in Sources */,
 				4E84DCE2273C1CA4000CEB16 /* UITableView+Extension.swift in Sources */,
 				4E659CB2273D1E970056BB2C /* CellModel.swift in Sources */,
 				4E62BAAA273E8A38006BA756 /* TabBarRouter.swift in Sources */,
 				4E637B65273BDD710082AB7B /* IngredientModel.swift in Sources */,
+				4E682E39274458500049C526 /* StyleGuide.swift in Sources */,
 				4E874EFA273DA99200C85E04 /* UIView+Extension.swift in Sources */,
 				4E637B63273BD4D30082AB7B /* CocktailModel.swift in Sources */,
 				4EB3C287273B039200114EC6 /* RandomCocktailViewController.swift in Sources */,

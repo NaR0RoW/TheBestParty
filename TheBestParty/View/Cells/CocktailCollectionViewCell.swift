@@ -11,9 +11,7 @@ class CocktailCollectionViewCell: UICollectionViewCell {
     
     private let cocktailNameLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 22.0, weight: .black)
-        label.textColor = .white
-        label.numberOfLines = 0
+        label.configureHeaderLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
@@ -24,10 +22,7 @@ class CocktailCollectionViewCell: UICollectionViewCell {
         let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 20.0, weight: .bold, scale: .large)
         let image = UIImage(systemName: "heart.circle.fill", withConfiguration: imageConfiguration)?.withTintColor(.white, renderingMode: .alwaysOriginal)
         button.setImage(image, for: .normal)
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 1
-        button.layer.shadowOffset = .zero
-        button.layer.shadowRadius = 10
+        button.configureShadow()
 //        button.addTarget(self, action: #selector(addToFavorite), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
 
@@ -36,8 +31,7 @@ class CocktailCollectionViewCell: UICollectionViewCell {
 
     private let cocktailCategoryLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 18.0)
-        label.textColor = .white
+        label.configureSubHeaderLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
@@ -45,8 +39,7 @@ class CocktailCollectionViewCell: UICollectionViewCell {
     
     private let cocktailTypeLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 18.0)
-        label.textColor = .white
+        label.configureSubHeaderLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
@@ -66,7 +59,7 @@ class CocktailCollectionViewCell: UICollectionViewCell {
 
 extension CocktailCollectionViewCell {
 //    @objc private func addToFavorite() {
-//        print("Tapped")
+//        print("Added to favorite")
 //    }
     
     private func setupView() {

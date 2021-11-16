@@ -24,10 +24,7 @@ class RandomCocktailViewController: UIViewController {
         let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 30.0, weight: .bold, scale: .large)
         let image = UIImage(systemName: "arrow.uturn.backward.circle.fill", withConfiguration: imageConfiguration)?.withTintColor(.white, renderingMode: .alwaysOriginal)
         button.setImage(image, for: .normal)
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 1
-        button.layer.shadowOffset = .zero
-        button.layer.shadowRadius = 10
+        button.configureShadow()
         button.addTarget(self, action: #selector(getAnotherRandomCocktail), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
 
