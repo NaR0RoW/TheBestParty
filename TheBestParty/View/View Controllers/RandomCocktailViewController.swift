@@ -22,7 +22,7 @@ class RandomCocktailViewController: UIViewController {
     private let getCocktailButton: UIButton = {
         let button = UIButton()
         let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 30.0, weight: .bold, scale: .large)
-        let image = UIImage(systemName: "arrow.uturn.backward.circle.fill", withConfiguration: imageConfiguration)?.withTintColor(.systemBackground, renderingMode: .alwaysOriginal)
+        let image = UIImage(systemName: "arrow.uturn.backward.circle.fill", withConfiguration: imageConfiguration)?.withTintColor(.white, renderingMode: .alwaysOriginal)
         button.setImage(image, for: .normal)
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 1
@@ -92,7 +92,6 @@ extension RandomCocktailViewController {
     private func configureView() {
         view.backgroundColor = .systemBackground
         navigationController?.isNavigationBarHidden = true
-        navigationController?.navigationBar.prefersLargeTitles = true
         configureScrollView()
         configureTableView()
         configureRandomButtonView()

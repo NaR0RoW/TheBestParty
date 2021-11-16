@@ -17,10 +17,10 @@ class TabBarRouter {
 
 extension TabBarRouter {
     static func tabs(usingSubmodules submodules: Submodules) -> Tabs {
-        let cocktailsTabBarItem = UITabBarItem(title: "Cocktails", image: UIImage(systemName: "person.fill")?.withRenderingMode(.alwaysTemplate), tag: 1)
-        let favoritesCocktailsTabBarItem = UITabBarItem(title: "Favorites", image: UIImage(systemName: "star.fill")?.withRenderingMode(.alwaysTemplate), tag: 2)
-        let ingredientsTabBarItem = UITabBarItem(title: "Ingredients", image: UIImage(systemName: "xmark")?.withRenderingMode(.alwaysTemplate), tag: 3)
-        let randomCocktailTabBarItem = UITabBarItem(title: "Random", image: UIImage(systemName: "gear")?.withRenderingMode(.alwaysTemplate), tag: 4)
+        let cocktailsTabBarItem = UITabBarItem(title: "Cocktails", image: UIImage(named: "cocktail"), tag: 1)
+        let favoritesCocktailsTabBarItem = UITabBarItem(title: "Favorite", image: UIImage(named: "heart"), tag: 2)
+        let ingredientsTabBarItem = UITabBarItem(title: "Ingredients", image: UIImage(named: "recipe"), tag: 3)
+        let randomCocktailTabBarItem = UITabBarItem(title: "Random", image: UIImage(named: "dices"), tag: 4)
         
         submodules.cocktails.tabBarItem = cocktailsTabBarItem
         submodules.favoritesCocktails.tabBarItem = favoritesCocktailsTabBarItem

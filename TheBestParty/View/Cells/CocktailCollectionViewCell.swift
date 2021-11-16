@@ -11,9 +11,9 @@ class CocktailCollectionViewCell: UICollectionViewCell {
     
     private let cocktailNameLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 22.0)
+        label.font = .systemFont(ofSize: 22.0, weight: .black)
         label.textColor = .white
-        label.numberOfLines = 2
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
@@ -36,7 +36,16 @@ class CocktailCollectionViewCell: UICollectionViewCell {
 
     private let cocktailCategoryLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 22.0)
+        label.font = .systemFont(ofSize: 18.0)
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+
+        return label
+    }()
+    
+    private let cocktailTypeLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 18.0)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
 
@@ -69,24 +78,33 @@ extension CocktailCollectionViewCell {
             cocktailImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor)
         ])
         
-        contentView.addSubview(cocktailNameLabel)
-        NSLayoutConstraint.activate([
-            cocktailNameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30.0),
-            cocktailNameLabel.leftAnchor.constraint(equalTo: cocktailImageView.leftAnchor, constant: 15.0),
-        ])
-
         contentView.addSubview(favoriteButton)
         NSLayoutConstraint.activate([
-            favoriteButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10.0),
-            favoriteButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -15.0),
-            favoriteButton.widthAnchor.constraint(equalToConstant: 25.0),
-            favoriteButton.heightAnchor.constraint(equalToConstant: 25.0)
+            favoriteButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5.0),
+            favoriteButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -5.0),
+            favoriteButton.widthAnchor.constraint(equalToConstant: 30.0),
+            favoriteButton.heightAnchor.constraint(equalToConstant: 30.0)
+        ])
+        
+        contentView.addSubview(cocktailNameLabel)
+        NSLayoutConstraint.activate([
+            cocktailNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10.0),
+            cocktailNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10.0),
+            cocktailNameLabel.rightAnchor.constraint(equalTo: favoriteButton.leftAnchor, constant: -10.0)
         ])
 
         contentView.addSubview(cocktailCategoryLabel)
         NSLayoutConstraint.activate([
-            cocktailCategoryLabel.topAnchor.constraint(equalTo: cocktailNameLabel.topAnchor, constant: 25.0),
-            cocktailCategoryLabel.leftAnchor.constraint(equalTo: cocktailImageView.leftAnchor, constant: 15.0),
+            cocktailCategoryLabel.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -50.0),
+            cocktailCategoryLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10.0),
+            cocktailCategoryLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10.0)
+        ])
+        
+        contentView.addSubview(cocktailTypeLabel)
+        NSLayoutConstraint.activate([
+            cocktailTypeLabel.topAnchor.constraint(equalTo: cocktailCategoryLabel.bottomAnchor),
+            cocktailTypeLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10.0),
+            cocktailTypeLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10.0)
         ])
     }
     
@@ -99,6 +117,7 @@ extension CocktailCollectionViewCell {
                 self?.cocktailImageView.image = UIImage(data: data)
                 self?.cocktailNameLabel.text = cocktail.drinks.first?.cocktailName
                 self?.cocktailCategoryLabel.text = cocktail.drinks.first?.cocktailCategory
+                self?.cocktailTypeLabel.text = cocktail.drinks.first?.cocktailType
             }
         }
     }

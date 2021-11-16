@@ -4,13 +4,14 @@ class CocktailsViewController: UIViewController {
     // MARK: - Properties
     private let networkManager: NetworkProvider = NetworkManager()
     private var cocktailsModel = [CocktailModel]()
+    private var timer: Timer?
     
     // MARK: - Visual Components
     lazy var searchController: UISearchController = {
         let searchController = UISearchController()
         searchController.searchBar.placeholder = "Yummy"
         searchController.searchBar.delegate = self
-//        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.obscuresBackgroundDuringPresentation = false
 //        searchController.searchBar.autocapitalizationType = .none
         
         return searchController
@@ -19,14 +20,14 @@ class CocktailsViewController: UIViewController {
     lazy var cocktailsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: view.width / 2 - 15.0, height: view.width / 2 - 15.0)
-        layout.sectionInset = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
+        layout.sectionInset = UIEdgeInsets(top: 5.0, left: 10.0, bottom: 5.0, right: 10.0)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .systemBackground
         collectionView.registerCell(CocktailCollectionViewCell.self)
-//        collectionView.showsVerticalScrollIndicator = false
+//        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.delegate = self
         collectionView.dataSource = self
-//        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.showsVerticalScrollIndicator = false
         
         return collectionView
     }()
@@ -34,22 +35,27 @@ class CocktailsViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        getCocktails()
+        getCocktails(searchItem: "")
         view.addSubview(cocktailsCollectionView)
         setupView()
-//        setupConstraints()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        cocktailsCollectionView.frame = view.bounds
+        cocktailsCollectionView.frame = view.frame
     }
 }
 
 // MARK: - Extensions
 extension CocktailsViewController {
-    private func getCocktails() {
-        networkManager.getCocktails { result in
+    private func setupView() {
+        title = "Cocktails"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.searchController = searchController
+    }
+    
+    private func getCocktails(searchItem: String) {
+        networkManager.getCocktails(searchItem: searchItem) { result in
             switch result {
             case .success(let data):
                 DispatchQueue.main.async {
@@ -60,7 +66,7 @@ extension CocktailsViewController {
                             cocktailGlass: nil,
                             cocktailInstructions: nil,
                             cocktailImage: $0.cocktailImage,
-                            cocktailType: nil,
+                            cocktailType: $0.cocktailType,
                             cocktailFirstIngredient: nil,
                             cocktailSecondIngredient: nil,
                             cocktailThirdIngredient: nil,
@@ -78,23 +84,6 @@ extension CocktailsViewController {
             }
         }
     }
-    
-    private func setupView() {
-        title = "Cocktails"
-//        navigationController?.navigationBar.tintColor = .label
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.searchController = searchController
-    }
-    
-//    private func setupConstraints() {
-//        view.addSubview(cocktailsTableView)
-//        NSLayoutConstraint.activate([
-//            cocktailsTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-//            cocktailsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-//            cocktailsTableView.leftAnchor.constraint(equalTo: view.leftAnchor),
-//            cocktailsTableView.rightAnchor.constraint(equalTo: view.rightAnchor)
-//        ])
-//    }
 }
 
 // MARK: - UISearchBarDelegate
@@ -106,6 +95,7 @@ extension CocktailsViewController: UISearchBarDelegate {
 extension CocktailsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cocktailsModel.count
+//        return 50
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -114,10 +104,22 @@ extension CocktailsViewController: UICollectionViewDataSource {
         cell.configureCell(with: cocktail)
 
         return cell
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+//        cell.backgroundColor = .systemBlue
+//
+//        return cell
     }
 }
 
 // MARK: - UICollectionViewDelegate
 extension CocktailsViewController: UICollectionViewDelegate {
-    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let text = searchText.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+        if text != "" {
+            timer?.invalidate()
+            self.timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { [weak self] _ in
+                self?.getCocktails(searchItem: text ?? "")
+            }
+        }
+    }
 }
