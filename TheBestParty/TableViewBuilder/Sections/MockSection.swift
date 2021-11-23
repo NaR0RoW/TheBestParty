@@ -1,7 +1,6 @@
 import UIKit
 
-class BaseSection: TableViewSectionBuilder {
-    
+class MockSection: TableViewSectionBuilder {
     var builders: [TableViewCellBuilder]
     
     init(builders: [TableViewCellBuilder], tableView: UITableView) {

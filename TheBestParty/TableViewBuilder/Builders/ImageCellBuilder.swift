@@ -12,7 +12,7 @@ class ImageCellBuilder: TableViewCellBuilder {
     }
     
     func registerCell(in tableView: UITableView) {
-        tableView.register(ImageCell.self, forCellReuseIdentifier: ImageCell.identifier)
+        tableView.registerCell(ImageCell.self)
     }
     
     func cellHeight() -> CGFloat {
@@ -20,10 +20,9 @@ class ImageCellBuilder: TableViewCellBuilder {
     }
     
     func cellAt(indexPath: IndexPath, in tableView: UITableView) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ImageCell.identifier, for: indexPath) as? ImageCell else {
-            return UITableViewCell()
-        }
+        let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as ImageCell
         cell.configureCell(image: image, with: cocktail)
+        
         return cell
     }
 }

@@ -1,7 +1,6 @@
 import UIKit
 
 class TableViewDataSource: NSObject, TableViewDataSourceProtocol {
-    
     var sections: [TableViewSectionBuilder] = []
     
     func numberOfSections(in tableView: UITableView) -> Int {

@@ -1,7 +1,6 @@
 import UIKit
 
 class CocktailsCollectionViewController: UIViewController {
-    
     var presenter: CocktailsCollectionViewPresenterProtocol?
     
     lazy var searchController: UISearchController = {
@@ -15,7 +14,7 @@ class CocktailsCollectionViewController: UIViewController {
     
     lazy var cocktailsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: view.frame.width / 2 - 15.0, height: view.frame.width / 2 - 15.0)
+        layout.itemSize = CGSize(width: view.width / 2 - 15.0, height: view.width / 2 - 15.0)
         layout.sectionInset = UIEdgeInsets(top: 5.0, left: 10.0, bottom: 5.0, right: 10.0)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.registerCell(CocktailCollectionViewCell.self)
@@ -77,8 +76,14 @@ extension CocktailsCollectionViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 extension CocktailsCollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cocktail = presenter?.cocktails?[indexPath.row]
-        presenter?.goToDetails(cocktail: cocktail)
+//        let cocktail = presenter?.cocktails?[indexPath.row]
+//        presenter?.goToDetails(cocktail: cocktail)
+        
+        // Работает
+        guard let cocktail = presenter?.cocktails?[indexPath.row] else {
+            return
+        }
+        navigationController?.pushViewController(SomeViewController(cocktails: CocktailModel(drinks: cocktail.drinks)), animated: true)
     }
 }
 

@@ -1,8 +1,6 @@
 import UIKit
 
 class ImageCell: UITableViewCell {
-    static let identifier = "ImageCell"
-    // MARK: - Visual Components
     private let cocktailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -12,7 +10,13 @@ class ImageCell: UITableViewCell {
     
     private let cocktailNameLabel: UILabel = {
         let label = UILabel()
-        label.configureSuperHeaderLabel()
+        label.font = .systemFont(ofSize: 30.0, weight: .black)
+        label.textColor = .white
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowOpacity = 1
+        label.layer.shadowOffset = .zero
+        label.layer.shadowRadius = 10
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -20,7 +24,13 @@ class ImageCell: UITableViewCell {
     
     private let cocktailCategoryLabel: UILabel = {
         let label = UILabel()
-        label.configureHeaderLabel()
+        label.font = .systemFont(ofSize: 22.0, weight: .bold)
+        label.textColor = .white
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowOpacity = 1
+        label.layer.shadowOffset = .zero
+        label.layer.shadowRadius = 10
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -34,7 +44,6 @@ class ImageCell: UITableViewCell {
     }
 }
 
-// MARK: - Extensions
 extension ImageCell {
     private func setupView() {
         contentView.addSubview(cocktailImageView)

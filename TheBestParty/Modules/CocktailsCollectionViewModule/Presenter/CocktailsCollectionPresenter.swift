@@ -35,18 +35,18 @@ class CocktailsCollectionViewPresenter: CocktailsCollectionViewPresenterProtocol
                         CocktailModel(drinks: [Cocktail(
                             cocktailName: $0.cocktailName,
                             cocktailCategory: $0.cocktailCategory,
-                            cocktailGlass: nil,
-                            cocktailInstructions: nil,
+                            cocktailGlass: $0.cocktailGlass,
+                            cocktailInstructions: $0.cocktailInstructions,
                             cocktailImage: $0.cocktailImage,
                             cocktailType: $0.cocktailType,
-                            cocktailFirstIngredient: nil,
-                            cocktailSecondIngredient: nil,
-                            cocktailThirdIngredient: nil,
-                            cocktailFourthIngredient: nil,
-                            cocktailFirstIngredientMeasure: nil,
-                            cocktailSecondIngredientMeasure: nil,
-                            cocktailThirdIngredientMeasure: nil,
-                            cocktailFourthIngredientMeasure: nil
+                            cocktailFirstIngredient: $0.cocktailFirstIngredient,
+                            cocktailSecondIngredient: $0.cocktailSecondIngredient,
+                            cocktailThirdIngredient: $0.cocktailThirdIngredient,
+                            cocktailFourthIngredient: $0.cocktailFourthIngredient,
+                            cocktailFirstIngredientMeasure: $0.cocktailFirstIngredientMeasure,
+                            cocktailSecondIngredientMeasure: $0.cocktailSecondIngredientMeasure,
+                            cocktailThirdIngredientMeasure: $0.cocktailThirdIngredientMeasure,
+                            cocktailFourthIngredientMeasure: $0.cocktailFourthIngredientMeasure
                         )])
                     }
                     self.view?.success()

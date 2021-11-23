@@ -1,8 +1,6 @@
 import UIKit
 
 class IngredientCell: UITableViewCell {
-    static let identifier = "IngredientCell"
-    // MARK: - Visual Components
     private let firstIngredientLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 22.0)
@@ -86,11 +84,11 @@ class IngredientCell: UITableViewCell {
         self.secondIngredientMeasureLabel.text = cocktail.drinks.first?.cocktailSecondIngredientMeasure
         self.thirdIngredientMeasureLabel.text = cocktail.drinks.first?.cocktailThirdIngredientMeasure
         self.fourthIngredientMeasureLabel.text = cocktail.drinks.first?.cocktailFourthIngredientMeasure
+        
         setupView()
     }
 }
 
-// MARK: - Extensions
 extension IngredientCell {
     private func setupView() {
         ingredientStackView.addArrangedSubviews(
@@ -118,4 +116,3 @@ extension IngredientCell {
         ])
     }
 }
-

@@ -12,7 +12,6 @@
 		4E62BAAE273E8AAB006BA756 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E62BAAD273E8AAB006BA756 /* TabBarController.swift */; };
 		4E62BAB8273EBBBF006BA756 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E62BAB7273EBBBF006BA756 /* UICollectionView+Extension.swift */; };
 		4E637B61273BD46E0082AB7B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E637B60273BD46E0082AB7B /* NetworkManager.swift */; };
-		4E682E39274458500049C526 /* StyleGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E682E38274458500049C526 /* StyleGuide.swift */; };
 		4E6EF5D8274D6CE7009EC3A3 /* AssemblyModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EF5D7274D6CE7009EC3A3 /* AssemblyModuleBuilder.swift */; };
 		4E6EF5DA274D6CF7009EC3A3 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EF5D9274D6CF7009EC3A3 /* Router.swift */; };
 		4E6EF5E0274D6DA6009EC3A3 /* CocktailDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EF5DF274D6DA6009EC3A3 /* CocktailDetailsViewController.swift */; };
@@ -28,7 +27,7 @@
 		4EB3C28C273B039500114EC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EB3C28B273B039500114EC6 /* Assets.xcassets */; };
 		4EB3C28F273B039500114EC6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EB3C28D273B039500114EC6 /* LaunchScreen.storyboard */; };
 		4EF619C4274D6F0400928D41 /* SomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF619C3274D6F0400928D41 /* SomeViewController.swift */; };
-		4EF619C7274D6F1900928D41 /* BaseSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF619C6274D6F1900928D41 /* BaseSection.swift */; };
+		4EF619C7274D6F1900928D41 /* MockSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF619C6274D6F1900928D41 /* MockSection.swift */; };
 		4EF619C9274D6F2200928D41 /* SimpleHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF619C8274D6F2200928D41 /* SimpleHeader.swift */; };
 		4EF619CB274D6F2F00928D41 /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF619CA274D6F2F00928D41 /* TableViewDataSource.swift */; };
 		4EF619CD274D6F3D00928D41 /* TableViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF619CC274D6F3D00928D41 /* TableViewFactory.swift */; };
@@ -45,6 +44,7 @@
 		4EF619E7274D6FEF00928D41 /* FavoritesCocktailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF619E6274D6FEF00928D41 /* FavoritesCocktailsViewController.swift */; };
 		4EF619E9274D6FFB00928D41 /* IngredientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF619E8274D6FFB00928D41 /* IngredientsViewController.swift */; };
 		4EF619EB274D700600928D41 /* RandomCocktailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF619EA274D700600928D41 /* RandomCocktailViewController.swift */; };
+		4EF619ED274D73CF00928D41 /* TableCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF619EC274D73CF00928D41 /* TableCellBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +53,6 @@
 		4E62BAAD273E8AAB006BA756 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		4E62BAB7273EBBBF006BA756 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 		4E637B60273BD46E0082AB7B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		4E682E38274458500049C526 /* StyleGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleGuide.swift; sourceTree = "<group>"; };
 		4E6EF5D7274D6CE7009EC3A3 /* AssemblyModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyModuleBuilder.swift; sourceTree = "<group>"; };
 		4E6EF5D9274D6CF7009EC3A3 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		4E6EF5DF274D6DA6009EC3A3 /* CocktailDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailDetailsViewController.swift; sourceTree = "<group>"; };
@@ -71,7 +70,7 @@
 		4EB3C28E273B039500114EC6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4EB3C290273B039500114EC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EF619C3274D6F0400928D41 /* SomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SomeViewController.swift; sourceTree = "<group>"; };
-		4EF619C6274D6F1900928D41 /* BaseSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSection.swift; sourceTree = "<group>"; };
+		4EF619C6274D6F1900928D41 /* MockSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSection.swift; sourceTree = "<group>"; };
 		4EF619C8274D6F2200928D41 /* SimpleHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleHeader.swift; sourceTree = "<group>"; };
 		4EF619CA274D6F2F00928D41 /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 		4EF619CC274D6F3D00928D41 /* TableViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewFactory.swift; sourceTree = "<group>"; };
@@ -88,6 +87,7 @@
 		4EF619E6274D6FEF00928D41 /* FavoritesCocktailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCocktailsViewController.swift; sourceTree = "<group>"; };
 		4EF619E8274D6FFB00928D41 /* IngredientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsViewController.swift; sourceTree = "<group>"; };
 		4EF619EA274D700600928D41 /* RandomCocktailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomCocktailViewController.swift; sourceTree = "<group>"; };
+		4EF619EC274D73CF00928D41 /* TableCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,17 +133,17 @@
 			isa = PBXGroup;
 			children = (
 				4E6EF5E1274D6DB2009EC3A3 /* Presenter */,
-				4E6EF5DE274D6D93009EC3A3 /* ViewController */,
+				4E6EF5DE274D6D93009EC3A3 /* View */,
 			);
 			path = CocktailDetailsModule;
 			sourceTree = "<group>";
 		};
-		4E6EF5DE274D6D93009EC3A3 /* ViewController */ = {
+		4E6EF5DE274D6D93009EC3A3 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				4E6EF5DF274D6DA6009EC3A3 /* CocktailDetailsViewController.swift */,
 			);
-			path = ViewController;
+			path = View;
 			sourceTree = "<group>";
 		};
 		4E6EF5E1274D6DB2009EC3A3 /* Presenter */ = {
@@ -213,7 +213,6 @@
 			isa = PBXGroup;
 			children = (
 				4E84DCE0273C1C88000CEB16 /* Extensions */,
-				4E682E38274458500049C526 /* StyleGuide.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -270,14 +269,13 @@
 		4EF619C2274D6EF200928D41 /* TableViewBuilder */ = {
 			isa = PBXGroup;
 			children = (
-				4EF619E3274D6FD100928D41 /* TableCell.swift */,
+				4EF619C3274D6F0400928D41 /* SomeViewController.swift */,
+				4EF619CC274D6F3D00928D41 /* TableViewFactory.swift */,
 				4EF619D8274D6F7F00928D41 /* Protocols */,
 				4EF619D3274D6F6200928D41 /* Cells */,
 				4EF619CE274D6F4900928D41 /* Builders */,
 				4EF619C5274D6F0D00928D41 /* Sections */,
-				4EF619C3274D6F0400928D41 /* SomeViewController.swift */,
 				4EF619CA274D6F2F00928D41 /* TableViewDataSource.swift */,
-				4EF619CC274D6F3D00928D41 /* TableViewFactory.swift */,
 			);
 			path = TableViewBuilder;
 			sourceTree = "<group>";
@@ -285,7 +283,7 @@
 		4EF619C5274D6F0D00928D41 /* Sections */ = {
 			isa = PBXGroup;
 			children = (
-				4EF619C6274D6F1900928D41 /* BaseSection.swift */,
+				4EF619C6274D6F1900928D41 /* MockSection.swift */,
 				4EF619C8274D6F2200928D41 /* SimpleHeader.swift */,
 			);
 			path = Sections;
@@ -296,6 +294,7 @@
 			children = (
 				4EF619CF274D6F5000928D41 /* ImageCellBuilder.swift */,
 				4EF619D1274D6F5B00928D41 /* IngredientCellBuilder.swift */,
+				4EF619EC274D73CF00928D41 /* TableCellBuilder.swift */,
 			);
 			path = Builders;
 			sourceTree = "<group>";
@@ -305,6 +304,7 @@
 			children = (
 				4EF619D4274D6F6C00928D41 /* ImageCell.swift */,
 				4EF619D6274D6F7400928D41 /* IngredientCell.swift */,
+				4EF619E3274D6FD100928D41 /* TableCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -400,11 +400,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4EF619C7274D6F1900928D41 /* BaseSection.swift in Sources */,
+				4EF619C7274D6F1900928D41 /* MockSection.swift in Sources */,
 				4E6EF5E9274D6DF5009EC3A3 /* CocktailModel.swift in Sources */,
 				4EF619D7274D6F7400928D41 /* IngredientCell.swift in Sources */,
 				4E6EF5ED274D6E29009EC3A3 /* CocktailCollectionViewCell.swift in Sources */,
 				4EF619D0274D6F5000928D41 /* ImageCellBuilder.swift in Sources */,
+				4EF619ED274D73CF00928D41 /* TableCellBuilder.swift in Sources */,
 				4E637B61273BD46E0082AB7B /* NetworkManager.swift in Sources */,
 				4EF619DA274D6F8700928D41 /* FactoryProtocol.swift in Sources */,
 				4EF619DE274D6F9D00928D41 /* TableViewCellBuilder.swift in Sources */,
@@ -413,7 +414,6 @@
 				4E62BAAA273E8A38006BA756 /* TabBarRouter.swift in Sources */,
 				4EF619DC274D6F9300928D41 /* TableViewSectionBuilder.swift in Sources */,
 				4EF619D2274D6F5B00928D41 /* IngredientCellBuilder.swift in Sources */,
-				4E682E39274458500049C526 /* StyleGuide.swift in Sources */,
 				4EF619E7274D6FEF00928D41 /* FavoritesCocktailsViewController.swift in Sources */,
 				4E874EFA273DA99200C85E04 /* UIView+Extension.swift in Sources */,
 				4E6EF5EF274D6E39009EC3A3 /* CocktailsCollectionPresenter.swift in Sources */,

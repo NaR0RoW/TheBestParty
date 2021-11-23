@@ -1,7 +1,6 @@
 import UIKit
 
-class SimpleHeaderSection: BaseSection {
-    
+class SimpleHeaderSection: MockSection {
     private let title: String
     
     init(title: String, builders: [TableViewCellBuilder], tableView: UITableView) {
@@ -11,26 +10,16 @@ class SimpleHeaderSection: BaseSection {
     
     override func viewForHeader() -> UIView? {
         let view = UIView()
+        let label = UILabel()
+        label.text = title
+        view.addSubview(label)
+        label.frame = CGRect(x: 15, y: 0, width: 100, height: 80)
         view.backgroundColor = .systemPink
         
         return view
     }
     
-//    guard let tableView = view as? UITableViewHeaderFooterView else { return }
-//    tableView.frame = CGRect(x: 0, y: 0, width: self.view.width, height: 0)
-//    tableView.contentView.backgroundColor = .systemBackground
-//    tableView.textLabel?.font = .systemFont(ofSize: 22.0)
-//    tableView.textLabel?.textColor = .systemOrange
-    
-//    override func heightForHeader() -> CGFloat {
-//        return 80
-//    }
-//
-//    override func viewForFooter() -> UIView? {
-//        return DividerFooterView(frame: .zero)
-//    }
-//
-//    override func heightForFooter() -> CGFloat {
-//        return 20
-//    }
+    override func heightForHeader() -> CGFloat {
+        return 80
+    }
 }
