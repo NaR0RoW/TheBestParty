@@ -1,35 +1,43 @@
 import UIKit
 
 class CocktailDetailsViewController: UIViewController {
-    var presenter: CocktailDetailsViewPresenter?
-
-    private let label: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-
-        return label
+    private let cocktails: CocktailModel
+    private var dataSource: TableViewDataSourceProtocol
+    private var factory: FactoryProtocol?
+    
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.showsVerticalScrollIndicator = false
+        tableView.allowsSelection = false
+        tableView.separatorStyle = .none
+        tableView.delegate = dataSource
+        tableView.dataSource = dataSource
+        return tableView
     }()
 
-    private let button: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
+    init(dataSource: TableViewDataSourceProtocol = TableViewDataSource(),
+         cocktails: CocktailModel) {
+        self.dataSource = dataSource
+        self.cocktails = cocktails
+        super.init(nibName: nil, bundle: nil)
+        setupTableContent()
+    }
 
-        return button
-    }()
-
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(label)
-        label.frame = CGRect(x: 150, y: 150, width: 250, height: 250)
-        view.addSubview(button)
-        button.frame = CGRect(x: 150, y: 550, width: 250, height: 250)
-//        button.addTarget(self, action: #selector(presenter.tap), for: .touchUpInside)
-        presenter?.setCocktail()
+        view.addSubview(tableView)
+        tableView.frame = view.frame
+        tableView.reloadData()
     }
-}
 
-extension CocktailDetailsViewController: CocktailDetailsViewProtocol {
-    func setupDetails(with cocktail: CocktailModel?) {
-        label.text = cocktail?.drinks.first?.cocktailName
+    private func setupTableContent() {
+        factory = TableViewFactory(model: cocktails, tableView: tableView)
+        if let sections = factory?.getSections() {
+            dataSource.sections = sections
+        }
     }
 }

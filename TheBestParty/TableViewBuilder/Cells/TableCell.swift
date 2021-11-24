@@ -20,6 +20,8 @@ class TableCell: UITableViewCell {
             self.descriptionLabel.text = cocktail.drinks.first?.cocktailCategory
         case .glass:
             self.descriptionLabel.text = cocktail.drinks.first?.cocktailGlass
+        case .ingredients:
+            break
         }
         
         setupView()

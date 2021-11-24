@@ -36,10 +36,11 @@ class ImageCell: UITableViewCell {
         return label
     }()
     
-    public func configureCell(image: UIImage, with cocktail: CocktailModel) {
-        self.cocktailImageView.image = image
+    public func configureCell(with cocktail: CocktailModel) {
+        self.cocktailImageView.loadFromString(from: cocktail.drinks.first?.cocktailImage ?? "")
         self.cocktailNameLabel.text = cocktail.drinks.first?.cocktailName
         self.cocktailCategoryLabel.text = cocktail.drinks.first?.cocktailCategory
+        
         setupView()
     }
 }

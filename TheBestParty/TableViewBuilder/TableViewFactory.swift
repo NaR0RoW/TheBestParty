@@ -11,48 +11,39 @@ class TableViewFactory: FactoryProtocol {
     
     func getSections() -> [TableViewSectionBuilder] {
         return [
-            SimpleHeaderSection(
-                title: "Image",
-                builders: [
-                    ImageCellBuilder(height: UIScreen.main.bounds.width, image: UIImage(systemName: "person.fill")!, cocktail: model),
-                ], tableView: tableView),
+            MockSection(builders: [
+                ImageCellBuilder(height: UIScreen.main.bounds.width, cocktail: model)
+            ], tableView: tableView),
         
             SimpleHeaderSection(
-                title: "Ingredients",
+                title: CellType.ingredients.description,
                 builders: [
                     IngredientCellBuilder(height: 150, cocktail: model),
                 ], tableView: tableView),
             
             SimpleHeaderSection(
-                title: "instructions",
+                title: CellType.instructions.description,
                 builders: [
                     TableCellBuilder(height: 150, cocktail: model, cellType: .instructions),
                 ], tableView: tableView),
             
             SimpleHeaderSection(
-                title: "category",
+                title: CellType.category.description,
                 builders: [
-                    TableCellBuilder(height: 150, cocktail: model, cellType: .category),
+                    TableCellBuilder(height: 50.0, cocktail: model, cellType: .category),
                 ], tableView: tableView),
             
             SimpleHeaderSection(
-                title: "type",
+                title: CellType.type.description,
                 builders: [
-                    TableCellBuilder(height: 150, cocktail: model, cellType: .type),
+                    TableCellBuilder(height: 50.0, cocktail: model, cellType: .type),
                 ], tableView: tableView),
             
             SimpleHeaderSection(
-                title: "glass",
+                title: CellType.glass.description,
                 builders: [
-                    TableCellBuilder(height: 150, cocktail: model, cellType: .glass),
+                    TableCellBuilder(height: 50.0, cocktail: model, cellType: .glass),
                 ], tableView: tableView)
         ]
     }
-}
-
-enum CellType {
-    case instructions
-    case category
-    case type
-    case glass
 }

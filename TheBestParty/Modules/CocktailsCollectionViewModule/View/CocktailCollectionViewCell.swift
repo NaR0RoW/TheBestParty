@@ -76,6 +76,13 @@ class CocktailCollectionViewCell: UICollectionViewCell {
 }
 
 extension CocktailCollectionViewCell {
+    public func configureCell(with cocktail: CocktailModel) {
+        self.cocktailImageView.loadFromString(from: cocktail.drinks.first?.cocktailImage ?? "")
+        self.cocktailNameLabel.text = cocktail.drinks.first?.cocktailName
+        self.cocktailCategoryLabel.text = cocktail.drinks.first?.cocktailCategory
+        self.cocktailTypeLabel.text = cocktail.drinks.first?.cocktailType
+    }
+    
     private func setupView() {
         contentView.addSubview(cocktailImageView)
         NSLayoutConstraint.activate([
@@ -113,19 +120,5 @@ extension CocktailCollectionViewCell {
             cocktailTypeLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10.0),
             cocktailTypeLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10.0)
         ])
-    }
-    
-    public func configureCell(with cocktail: CocktailModel) {
-        DispatchQueue.global(qos: .utility).async { [weak self] in
-            guard let url = cocktail.drinks.first?.cocktailImage else { return }
-            guard let urlString = URL(string: url) else { return }
-            guard let data = try? Data(contentsOf: urlString) else { return }
-            DispatchQueue.main.async {
-                self?.cocktailImageView.image = UIImage(data: data)
-                self?.cocktailNameLabel.text = cocktail.drinks.first?.cocktailName
-                self?.cocktailCategoryLabel.text = cocktail.drinks.first?.cocktailCategory
-                self?.cocktailTypeLabel.text = cocktail.drinks.first?.cocktailType
-            }
-        }
     }
 }

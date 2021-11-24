@@ -10,16 +10,18 @@ class SimpleHeaderSection: MockSection {
     
     override func viewForHeader() -> UIView? {
         let view = UIView()
+        view.backgroundColor = .systemBackground
         let label = UILabel()
         label.text = title
+        label.textColor = .systemOrange
+        label.font = .systemFont(ofSize: 20.0, weight: .semibold)
         view.addSubview(label)
-        label.frame = CGRect(x: 15, y: 0, width: 100, height: 80)
-        view.backgroundColor = .systemPink
+        label.frame = CGRect(x: 20, y: 0, width: UIScreen.main.bounds.width, height: heightForHeader())
         
         return view
     }
     
     override func heightForHeader() -> CGFloat {
-        return 80
+        return 30.0
     }
 }

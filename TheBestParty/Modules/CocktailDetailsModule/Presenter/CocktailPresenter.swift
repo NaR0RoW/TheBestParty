@@ -31,3 +31,34 @@ class CocktailDetailsViewPresenter: CocktailDetailsViewPresenterProtocol {
 //        router?.popToRoot()
 //    }
 }
+
+
+//
+//
+//protocol CocktailDetailsViewProtocol: AnyObject {
+//    func setupDetails(with cocktail: CocktailModel?)
+//}
+//
+//protocol CocktailDetailsViewPresenterProtocol: AnyObject {
+//    init(view: CocktailDetailsViewProtocol, cocktail: CocktailModel?)
+//    func setupDetails()
+////    func tap()
+//}
+//
+//class CocktailDetailsViewPresenter: CocktailDetailsViewPresenterProtocol {
+//    weak var view: CocktailDetailsViewProtocol?
+//    var cocktail: CocktailModel?
+//    
+//    required init(view: CocktailDetailsViewProtocol, cocktail: CocktailModel?) {
+//        self.view = view
+//        self.cocktail = cocktail
+//    }
+//    
+//    public func setupDetails() {
+//        self.view?.setupDetails(with: cocktail)
+//    }
+//    
+////    func tap() {
+////        router?.popToRoot()
+////    }
+//}

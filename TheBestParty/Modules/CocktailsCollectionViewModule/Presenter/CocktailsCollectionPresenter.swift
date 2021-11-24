@@ -9,7 +9,7 @@ protocol CocktailsCollectionViewPresenterProtocol: AnyObject {
     init(view: CocktailsCollectionViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol)
     var cocktails: [CocktailModel]? { get set }
     func getCocktails()
-    func goToDetails(cocktail: CocktailModel?)
+//    func goToDetails(cocktail: CocktailModel?)
 }
 
 class CocktailsCollectionViewPresenter: CocktailsCollectionViewPresenterProtocol {
@@ -22,11 +22,12 @@ class CocktailsCollectionViewPresenter: CocktailsCollectionViewPresenterProtocol
         self.view = view
         self.networkService = networkService
         self.router = router
+        
         getCocktails()
     }
     
     func getCocktails() { // Thread 1
-        networkService?.getCocktail() { [weak self] result in // Thread 3
+        networkService?.getCocktails() { [weak self] result in // Thread 3
             guard let self = self else { return } // Thread 3
             DispatchQueue.main.async { // Thread 3
                 switch result { // Thread 1
@@ -57,7 +58,7 @@ class CocktailsCollectionViewPresenter: CocktailsCollectionViewPresenterProtocol
         }
     }
     
-    func goToDetails(cocktail: CocktailModel?) {
-        router?.showDetail(cocktail: cocktail)
-    }
+//    func goToDetails(cocktail: CocktailModel?) {
+//        router?.showDetail(cocktail: cocktail)
+//    }
 }

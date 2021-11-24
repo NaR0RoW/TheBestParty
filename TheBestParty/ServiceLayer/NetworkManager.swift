@@ -1,7 +1,7 @@
 import Foundation
 
 protocol NetworkServiceProtocol {
-    func getCocktail(completion: @escaping((Result<CocktailModel, APIError>) -> Void))
+    func getCocktails(completion: @escaping((Result<CocktailModel, APIError>) -> Void))
 }
 
 public enum APIError: Error {
@@ -21,7 +21,7 @@ final class NetworkService: NetworkServiceProtocol {
         case GET
     }
 
-    public func getCocktail(completion: @escaping((Result<CocktailModel, APIError>) -> Void)) {
+    public func getCocktails(completion: @escaping((Result<CocktailModel, APIError>) -> Void)) {
         request(with: Constants.cocktail, method: .GET, completion: completion)
     }
 

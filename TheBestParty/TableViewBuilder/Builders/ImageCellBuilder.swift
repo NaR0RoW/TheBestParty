@@ -2,12 +2,10 @@ import UIKit
 
 class ImageCellBuilder: TableViewCellBuilder {
     private let height: CGFloat
-    private let image: UIImage
     private let cocktail: CocktailModel
     
-    init(height: CGFloat, image: UIImage, cocktail: CocktailModel) {
+    init(height: CGFloat, cocktail: CocktailModel) {
         self.height = height
-        self.image = image
         self.cocktail = cocktail
     }
     
@@ -21,7 +19,8 @@ class ImageCellBuilder: TableViewCellBuilder {
     
     func cellAt(indexPath: IndexPath, in tableView: UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as ImageCell
-        cell.configureCell(image: image, with: cocktail)
+        cell.configureCell(with: cocktail)
+        cell.backgroundColor = .systemBackground
         
         return cell
     }

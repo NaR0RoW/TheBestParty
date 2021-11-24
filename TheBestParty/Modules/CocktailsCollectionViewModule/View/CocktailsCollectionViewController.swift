@@ -17,6 +17,7 @@ class CocktailsCollectionViewController: UIViewController {
         layout.itemSize = CGSize(width: view.width / 2 - 15.0, height: view.width / 2 - 15.0)
         layout.sectionInset = UIEdgeInsets(top: 5.0, left: 10.0, bottom: 5.0, right: 10.0)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .systemBackground
         collectionView.registerCell(CocktailCollectionViewCell.self)
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -40,7 +41,6 @@ class CocktailsCollectionViewController: UIViewController {
 extension CocktailsCollectionViewController {
     private func setupView() {
         view.addSubview(cocktailsCollectionView)
-        
         title = "Cocktails"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.searchController = searchController
@@ -79,17 +79,18 @@ extension CocktailsCollectionViewController: UICollectionViewDelegate {
 //        let cocktail = presenter?.cocktails?[indexPath.row]
 //        presenter?.goToDetails(cocktail: cocktail)
         
-        // Работает
         guard let cocktail = presenter?.cocktails?[indexPath.row] else {
             return
         }
-        navigationController?.pushViewController(SomeViewController(cocktails: CocktailModel(drinks: cocktail.drinks)), animated: true)
+//        presenter?.goToDetails(cocktail: cocktail)
+        
+        // Работает
+        navigationController?.pushViewController(CocktailDetailsViewController(cocktails: CocktailModel(drinks: cocktail.drinks)), animated: true)
     }
 }
 
-// По солиду, все четко
 // MARK: - UIScrollViewDelegate
-//extension CocktailsCollectionViewController: UIScrollViewDelegate {
+extension CocktailsCollectionViewController: UIScrollViewDelegate {
 //    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
 //        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
 //            navigationController?.setNavigationBarHidden(true, animated: true)
@@ -97,7 +98,7 @@ extension CocktailsCollectionViewController: UICollectionViewDelegate {
 //            navigationController?.setNavigationBarHidden(false, animated: true)
 //        }
 //    }
-//}
+}
 
 // MARK: - UISearchBarDelegate
 extension CocktailsCollectionViewController: UISearchBarDelegate {

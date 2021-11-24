@@ -20,6 +20,7 @@ class IngredientCellBuilder: TableViewCellBuilder {
     func cellAt(indexPath: IndexPath, in tableView: UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as IngredientCell
         cell.configureCell(with: cocktail)
+        cell.backgroundColor = .systemBackground
         
         return cell
     }

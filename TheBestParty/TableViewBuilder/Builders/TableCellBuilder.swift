@@ -21,8 +21,8 @@ class TableCellBuilder: TableViewCellBuilder {
     
     func cellAt(indexPath: IndexPath, in tableView: UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as TableCell
-        
         cell.configureCell(with: cocktail, type: cellType)
+        cell.backgroundColor = .systemBackground
         
         return cell
     }
