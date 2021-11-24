@@ -12,37 +12,37 @@ class TableViewFactory: FactoryProtocol {
     func getSections() -> [TableViewSectionBuilder] {
         return [
             MockSection(builders: [
-                ImageCellBuilder(height: UIScreen.main.bounds.width, cocktail: model)
+                ImageCellBuilder(cocktail: model)
             ], tableView: tableView),
-        
+
             SimpleHeaderSection(
                 title: CellType.ingredients.description,
                 builders: [
-                    IngredientCellBuilder(height: 150.0, cocktail: model),
+                    IngredientCellBuilder(cocktail: model),
                 ], tableView: tableView),
             
             SimpleHeaderSection(
                 title: CellType.instructions.description,
                 builders: [
-                    TableCellBuilder(height: 150.0, cocktail: model, cellType: .instructions),
+                    TableCellBuilder(cocktail: model, cellType: .instructions),
                 ], tableView: tableView),
             
             SimpleHeaderSection(
                 title: CellType.category.description,
                 builders: [
-                    TableCellBuilder(height: 50.0, cocktail: model, cellType: .category),
+                    TableCellBuilder(cocktail: model, cellType: .category),
                 ], tableView: tableView),
-            
+
             SimpleHeaderSection(
                 title: CellType.type.description,
                 builders: [
-                    TableCellBuilder(height: 50.0, cocktail: model, cellType: .type),
+                    TableCellBuilder(cocktail: model, cellType: .type),
                 ], tableView: tableView),
-            
+
             SimpleHeaderSection(
                 title: CellType.glass.description,
                 builders: [
-                    TableCellBuilder(height: 50.0, cocktail: model, cellType: .glass),
+                    TableCellBuilder(cocktail: model, cellType: .glass),
                 ], tableView: tableView)
         ]
     }

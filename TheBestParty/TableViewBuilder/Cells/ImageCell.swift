@@ -68,10 +68,10 @@ extension ImageCell {
     private func setupView() {
         contentView.addSubview(cocktailImageView)
         NSLayoutConstraint.activate([
-            cocktailImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             cocktailImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            cocktailImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            cocktailImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width)
+            cocktailImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            cocktailImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            cocktailImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor)
         ])
         
         contentView.addSubview(cocktailNameLabel)
@@ -79,7 +79,7 @@ extension ImageCell {
             cocktailNameLabel.bottomAnchor.constraint(equalTo: cocktailImageView.bottomAnchor, constant: -40.0),
             cocktailNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20.0)
         ])
-        
+
         contentView.addSubview(cocktailCategoryLabel)
         NSLayoutConstraint.activate([
             cocktailCategoryLabel.topAnchor.constraint(equalTo: cocktailNameLabel.bottomAnchor),

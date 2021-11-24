@@ -100,7 +100,9 @@ extension IngredientCell {
         contentView.addSubview(ingredientStackView)
         NSLayoutConstraint.activate([
             ingredientStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10.0),
+            ingredientStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10.0),
             ingredientStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20.0),
+            ingredientStackView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20.0)
         ])
         
         ingredientMeasureStackView.addArrangedSubviews(
@@ -112,6 +114,8 @@ extension IngredientCell {
         contentView.addSubview(ingredientMeasureStackView)
         NSLayoutConstraint.activate([
             ingredientMeasureStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10.0),
+            ingredientMeasureStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10.0),
+            ingredientMeasureStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20.0),
             ingredientMeasureStackView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20.0)
         ])
     }

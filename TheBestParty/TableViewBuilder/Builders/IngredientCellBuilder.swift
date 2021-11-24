@@ -1,11 +1,11 @@
 import UIKit
 
 class IngredientCellBuilder: TableViewCellBuilder {
-    private let height: CGFloat
+//    private let height: CGFloat
     private let cocktail: CocktailModel
     
-    init(height: CGFloat, cocktail: CocktailModel) {
-        self.height = height
+    init(cocktail: CocktailModel) {
+//        self.height = height
         self.cocktail = cocktail
     }
     
@@ -13,9 +13,9 @@ class IngredientCellBuilder: TableViewCellBuilder {
         tableView.registerCell(IngredientCell.self)
     }
     
-    func cellHeight() -> CGFloat {
-        return height
-    }
+//    func cellHeight() -> CGFloat {
+//        return height
+//    }
     
     func cellAt(indexPath: IndexPath, in tableView: UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as IngredientCell

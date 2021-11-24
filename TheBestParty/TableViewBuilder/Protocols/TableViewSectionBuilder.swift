@@ -7,7 +7,7 @@ protocol TableViewSectionBuilder {
     func viewForFooter() -> UIView?
     func heightForFooter() -> CGFloat
     func numberOfRows() -> Int
-    func cellHeight(for indexPath: IndexPath) -> CGFloat
+//    func cellHeight(for indexPath: IndexPath) -> CGFloat
     func cellAt(indexPath: IndexPath, in tableView: UITableView) -> UITableViewCell
 }
 
@@ -16,9 +16,9 @@ extension TableViewSectionBuilder {
         return builders.count
     }
     
-    func cellHeight(for indexPath: IndexPath) -> CGFloat {
-        return builders[indexPath.row].cellHeight()
-    }
+//    func cellHeight(for indexPath: IndexPath) -> CGFloat {
+//        return builders[indexPath.row].cellHeight()
+//    }
     
     func cellAt(indexPath: IndexPath, in tableView: UITableView) -> UITableViewCell {
         return builders[indexPath.row].cellAt(indexPath: indexPath, in: tableView)
