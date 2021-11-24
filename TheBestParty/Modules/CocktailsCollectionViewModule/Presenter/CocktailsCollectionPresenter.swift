@@ -9,7 +9,7 @@ protocol CocktailsCollectionViewPresenterProtocol: AnyObject {
     init(view: CocktailsCollectionViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol)
     var cocktails: [CocktailModel]? { get set }
     func getCocktails()
-//    func goToDetails(cocktail: CocktailModel?)
+    func goToDetails(cocktail: CocktailModel?)
 }
 
 class CocktailsCollectionViewPresenter: CocktailsCollectionViewPresenterProtocol {
@@ -58,7 +58,7 @@ class CocktailsCollectionViewPresenter: CocktailsCollectionViewPresenterProtocol
         }
     }
     
-//    func goToDetails(cocktail: CocktailModel?) {
-//        router?.showDetail(cocktail: cocktail)
-//    }
+    func goToDetails(cocktail: CocktailModel?) {
+        router?.showDetails(cocktail: cocktail)
+    }
 }

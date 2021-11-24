@@ -18,13 +18,13 @@ class TableViewFactory: FactoryProtocol {
             SimpleHeaderSection(
                 title: CellType.ingredients.description,
                 builders: [
-                    IngredientCellBuilder(height: 150, cocktail: model),
+                    IngredientCellBuilder(height: 150.0, cocktail: model),
                 ], tableView: tableView),
             
             SimpleHeaderSection(
                 title: CellType.instructions.description,
                 builders: [
-                    TableCellBuilder(height: 150, cocktail: model, cellType: .instructions),
+                    TableCellBuilder(height: 150.0, cocktail: model, cellType: .instructions),
                 ], tableView: tableView),
             
             SimpleHeaderSection(

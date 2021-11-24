@@ -1,6 +1,20 @@
 import UIKit
 
 class ImageCell: UITableViewCell {
+//    private let backButton: UIButton = {
+//        let button = UIButton()
+//        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 20.0, weight: .bold, scale: .large)
+//        let image = UIImage(systemName: "heart.circle.fill", withConfiguration: imageConfiguration)?.withTintColor(.white, renderingMode: .alwaysOriginal)
+//        button.setImage(image, for: .normal)
+//        button.layer.shadowColor = UIColor.black.cgColor
+//        button.layer.shadowOpacity = 1
+//        button.layer.shadowOffset = .zero
+//        button.layer.shadowRadius = 10
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        return button
+//    }()
+    
     private let cocktailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false

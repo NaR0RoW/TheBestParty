@@ -114,6 +114,7 @@
 		4E6EF5DB274D6D60009EC3A3 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				4E6EF5E5274D6DE1009EC3A3 /* Model */,
 				4E6EF5E4274D6DD9009EC3A3 /* CocktailsCollectionViewModule */,
 				4E6EF5DD274D6D89009EC3A3 /* CocktailDetailsModule */,
 				4E6EF5DC274D6D68009EC3A3 /* TabBarModule */,
@@ -132,8 +133,8 @@
 		4E6EF5DD274D6D89009EC3A3 /* CocktailDetailsModule */ = {
 			isa = PBXGroup;
 			children = (
-				4E6EF5E1274D6DB2009EC3A3 /* Presenter */,
 				4E6EF5DE274D6D93009EC3A3 /* View */,
+				4E6EF5E1274D6DB2009EC3A3 /* Presenter */,
 			);
 			path = CocktailDetailsModule;
 			sourceTree = "<group>";
@@ -157,9 +158,8 @@
 		4E6EF5E4274D6DD9009EC3A3 /* CocktailsCollectionViewModule */ = {
 			isa = PBXGroup;
 			children = (
-				4E6EF5E7274D6DEC009EC3A3 /* Presenter */,
 				4E6EF5E6274D6DE9009EC3A3 /* View */,
-				4E6EF5E5274D6DE1009EC3A3 /* Model */,
+				4E6EF5E7274D6DEC009EC3A3 /* Presenter */,
 			);
 			path = CocktailsCollectionViewModule;
 			sourceTree = "<group>";
@@ -193,10 +193,10 @@
 			isa = PBXGroup;
 			children = (
 				4E62BAB7273EBBBF006BA756 /* UICollectionView+Extension.swift */,
+				4E54AF37274E4C3B00C94F70 /* UIImage+Extension.swift */,
 				4E874EF4273D994C00C85E04 /* UIStackView+Extension.swift */,
 				4E84DCE1273C1CA4000CEB16 /* UITableView+Extension.swift */,
 				4E874EF9273DA99200C85E04 /* UIView+Extension.swift */,
-				4E54AF37274E4C3B00C94F70 /* UIImage+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -245,7 +245,7 @@
 				4EB3C298273B046B00114EC6 /* ServiceLayer */,
 				4E6EF5DB274D6D60009EC3A3 /* Modules */,
 				4EF619C2274D6EF200928D41 /* TableViewBuilder */,
-				4EF619E5274D6FDD00928D41 /* Some controllers */,
+				4EF619E5274D6FDD00928D41 /* Other Modules */,
 			);
 			path = TheBestParty;
 			sourceTree = "<group>";
@@ -321,14 +321,14 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		4EF619E5274D6FDD00928D41 /* Some controllers */ = {
+		4EF619E5274D6FDD00928D41 /* Other Modules */ = {
 			isa = PBXGroup;
 			children = (
 				4EF619E6274D6FEF00928D41 /* FavoritesCocktailsViewController.swift */,
 				4EF619E8274D6FFB00928D41 /* IngredientsViewController.swift */,
 				4EF619EA274D700600928D41 /* RandomCocktailViewController.swift */,
 			);
-			path = "Some controllers";
+			path = "Other Modules";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -76,28 +76,14 @@ extension CocktailsCollectionViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 extension CocktailsCollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let cocktail = presenter?.cocktails?[indexPath.row]
-//        presenter?.goToDetails(cocktail: cocktail)
-        
-        guard let cocktail = presenter?.cocktails?[indexPath.row] else {
-            return
-        }
-//        presenter?.goToDetails(cocktail: cocktail)
-        
-        // Работает
-        navigationController?.pushViewController(CocktailDetailsViewController(cocktails: CocktailModel(drinks: cocktail.drinks)), animated: true)
+        let cocktail = presenter?.cocktails?[indexPath.row]
+        presenter?.goToDetails(cocktail: cocktail)
     }
 }
 
 // MARK: - UIScrollViewDelegate
 extension CocktailsCollectionViewController: UIScrollViewDelegate {
-//    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-//        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
-//            navigationController?.setNavigationBarHidden(true, animated: true)
-//        } else {
-//            navigationController?.setNavigationBarHidden(false, animated: true)
-//        }
-//    }
+
 }
 
 // MARK: - UISearchBarDelegate

@@ -7,7 +7,7 @@ protocol RouterMainProtocol {
 
 protocol RouterProtocol: RouterMainProtocol {
     func initialViewController()
-//    func showDetail(cocktail: CocktailModel?)
+    func showDetails(cocktail: CocktailModel?)
     func popToRoot()
 }
 
@@ -22,17 +22,17 @@ class Router: RouterProtocol {
     
     func initialViewController() {
         if let navigationController = navigationController {
-            guard let cocktailViewController = assemblyModuleBuilder?.createCocktailsCollectionModule(router: self) else { return }
-            navigationController.viewControllers = [cocktailViewController]
+            guard let cocktailsCollectionViewController = assemblyModuleBuilder?.createCocktailsCollectionModule(router: self) else { return }
+            navigationController.viewControllers = [cocktailsCollectionViewController]
         }
     }
-//
-//    func showDetail(cocktail: CocktailModel?) {
-//        if let navigationController = navigationController {
-//            guard let cocktailViewController = assemblyModuleBuilder?.createCocktailModule(cocktail: cocktail, router: self) else { return }
-//            navigationController.pushViewController(cocktailViewController, animated: true)
-//        }
-//    }
+
+    func showDetails(cocktail: CocktailModel?) {
+        if let navigationController = navigationController {
+            guard let cocktailDetailsViewController = assemblyModuleBuilder?.createCocktailDetailsModule(cocktail: cocktail, router: self) else { return }
+            navigationController.pushViewController(cocktailDetailsViewController, animated: true)
+        }
+    }
     
     func popToRoot() {
         if let navigationController = navigationController {

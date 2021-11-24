@@ -17,9 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             ingredients: UINavigationController(rootViewController: IngredientsViewController()),
             randomCocktail: UINavigationController(rootViewController: RandomCocktailViewController())
         )
-
         let tabBarController = TabBarModuleBuilder.build(usingSubmodules: submodules)
         window.rootViewController = tabBarController
+        UINavigationBar.appearance().tintColor = UIColor.label
         window.makeKeyAndVisible()
         self.window = window
         
