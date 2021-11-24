@@ -1,6 +1,7 @@
 import UIKit
 
 class ImageCell: UITableViewCell {
+    var previousUrlString: String?
 //    private let backButton: UIButton = {
 //        let button = UIButton()
 //        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 20.0, weight: .bold, scale: .large)
@@ -51,7 +52,11 @@ class ImageCell: UITableViewCell {
     }()
     
     public func configureCell(with cocktail: CocktailModel) {
-        self.cocktailImageView.loadFromString(from: cocktail.drinks.first?.cocktailImage ?? "")
+        ImageDownloader.shared.downloadImage(with: cocktail.drinks.first?.cocktailImage, completionHandler: { image, cached in
+            if cached || cocktail.drinks.first?.cocktailImage == self.previousUrlString {
+                self.cocktailImageView.image = image
+            }
+        }, placeholderImage: UIImage(systemName: "person.fill"))
         self.cocktailNameLabel.text = cocktail.drinks.first?.cocktailName
         self.cocktailCategoryLabel.text = cocktail.drinks.first?.cocktailCategory
         

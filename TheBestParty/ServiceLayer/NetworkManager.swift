@@ -1,7 +1,7 @@
 import Foundation
 
 protocol NetworkServiceProtocol {
-    func getCocktails(completion: @escaping((Result<CocktailModel, APIError>) -> Void))
+    func getCocktails(searchTerm: String, completion: @escaping((Result<CocktailModel, APIError>) -> Void))
 }
 
 public enum APIError: Error {
@@ -21,12 +21,12 @@ final class NetworkService: NetworkServiceProtocol {
         case GET
     }
 
-    public func getCocktails(completion: @escaping((Result<CocktailModel, APIError>) -> Void)) {
-        request(with: Constants.cocktail, method: .GET, completion: completion)
+    public func getCocktails(searchTerm: String, completion: @escaping((Result<CocktailModel, APIError>) -> Void)) {
+        request(with: Constants.cocktail, searchTerm: searchTerm, method: .GET, completion: completion)
     }
 
-    private func request<T: Codable>(with url: String, method: Method, completion: @escaping((Result<T, APIError>) -> Void)) {
-        let path = url
+    private func request<T: Codable>(with url: String, searchTerm: String, method: Method, completion: @escaping((Result<T, APIError>) -> Void)) {
+        let path = url + searchTerm
 
         guard let url = URL(string: path) else {
             completion(.failure(.internalError))

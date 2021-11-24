@@ -1,8 +1,12 @@
 import UIKit
 
 class CocktailCollectionViewCell: UICollectionViewCell {
+    var previousUrlString: String?
+    
     private let cocktailImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.layer.cornerRadius = 15.0
+        imageView.layer.masksToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
         return imageView
@@ -13,9 +17,9 @@ class CocktailCollectionViewCell: UICollectionViewCell {
         label.font = .systemFont(ofSize: 22.0, weight: .bold)
         label.textColor = .white
         label.layer.shadowColor = UIColor.black.cgColor
-        label.layer.shadowOpacity = 1
+        label.layer.shadowOpacity = 1.0
         label.layer.shadowOffset = .zero
-        label.layer.shadowRadius = 10
+        label.layer.shadowRadius = 10.0
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
 
@@ -28,9 +32,9 @@ class CocktailCollectionViewCell: UICollectionViewCell {
         let image = UIImage(systemName: "heart.circle.fill", withConfiguration: imageConfiguration)?.withTintColor(.white, renderingMode: .alwaysOriginal)
         button.setImage(image, for: .normal)
         button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 1
+        button.layer.shadowOpacity = 1.0
         button.layer.shadowOffset = .zero
-        button.layer.shadowRadius = 10
+        button.layer.shadowRadius = 10.0
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
@@ -41,9 +45,9 @@ class CocktailCollectionViewCell: UICollectionViewCell {
         label.font = .systemFont(ofSize: 18.0, weight: .semibold)
         label.textColor = .white
         label.layer.shadowColor = UIColor.black.cgColor
-        label.layer.shadowOpacity = 1
+        label.layer.shadowOpacity = 1.0
         label.layer.shadowOffset = .zero
-        label.layer.shadowRadius = 10
+        label.layer.shadowRadius = 10.0
         label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
 
@@ -55,9 +59,9 @@ class CocktailCollectionViewCell: UICollectionViewCell {
         label.font = .systemFont(ofSize: 18.0, weight: .semibold)
         label.textColor = .white
         label.layer.shadowColor = UIColor.black.cgColor
-        label.layer.shadowOpacity = 1
+        label.layer.shadowOpacity = 1.0
         label.layer.shadowOffset = .zero
-        label.layer.shadowRadius = 10
+        label.layer.shadowRadius = 10.0
         label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
 
@@ -77,7 +81,14 @@ class CocktailCollectionViewCell: UICollectionViewCell {
 
 extension CocktailCollectionViewCell {
     public func configureCell(with cocktail: CocktailModel) {
-        self.cocktailImageView.loadFromString(from: cocktail.drinks.first?.cocktailImage ?? "")
+//        self.cocktailImageView.loadFromString(from: cocktail.drinks.first?.cocktailImage ?? "")
+        ImageDownloader.shared.downloadImage(with: cocktail.drinks.first?.cocktailImage, completionHandler: { image, cached in
+            if cached || cocktail.drinks.first?.cocktailImage == self.previousUrlString {
+                self.cocktailImageView.image = image
+            }
+        }, placeholderImage: UIImage(systemName: "person.fill"))
+        previousUrlString = cocktail.drinks.first?.cocktailImage
+        
         self.cocktailNameLabel.text = cocktail.drinks.first?.cocktailName
         self.cocktailCategoryLabel.text = cocktail.drinks.first?.cocktailCategory
         self.cocktailTypeLabel.text = cocktail.drinks.first?.cocktailType

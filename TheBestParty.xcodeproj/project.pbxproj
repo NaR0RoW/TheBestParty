@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4E54AF38274E4C3B00C94F70 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E54AF37274E4C3B00C94F70 /* UIImage+Extension.swift */; };
 		4E54AF3B274E53EC00C94F70 /* CellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E54AF3A274E53EC00C94F70 /* CellType.swift */; };
+		4E54AF3D274EA5A800C94F70 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E54AF3C274EA5A800C94F70 /* ImageDownloader.swift */; };
 		4E62BAAA273E8A38006BA756 /* TabBarRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E62BAA9273E8A38006BA756 /* TabBarRouter.swift */; };
 		4E62BAAC273E8A83006BA756 /* TabBarModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E62BAAB273E8A83006BA756 /* TabBarModuleBuilder.swift */; };
 		4E62BAAE273E8AAB006BA756 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E62BAAD273E8AAB006BA756 /* TabBarController.swift */; };
@@ -48,8 +48,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4E54AF37274E4C3B00C94F70 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		4E54AF3A274E53EC00C94F70 /* CellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellType.swift; sourceTree = "<group>"; };
+		4E54AF3C274EA5A800C94F70 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		4E62BAA9273E8A38006BA756 /* TabBarRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarRouter.swift; sourceTree = "<group>"; };
 		4E62BAAB273E8A83006BA756 /* TabBarModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarModuleBuilder.swift; sourceTree = "<group>"; };
 		4E62BAAD273E8AAB006BA756 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -193,7 +193,6 @@
 			isa = PBXGroup;
 			children = (
 				4E62BAB7273EBBBF006BA756 /* UICollectionView+Extension.swift */,
-				4E54AF37274E4C3B00C94F70 /* UIImage+Extension.swift */,
 				4E874EF4273D994C00C85E04 /* UIStackView+Extension.swift */,
 				4E84DCE1273C1CA4000CEB16 /* UITableView+Extension.swift */,
 				4E874EF9273DA99200C85E04 /* UIView+Extension.swift */,
@@ -263,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				4E637B60273BD46E0082AB7B /* NetworkManager.swift */,
+				4E54AF3C274EA5A800C94F70 /* ImageDownloader.swift */,
 			);
 			path = ServiceLayer;
 			sourceTree = "<group>";
@@ -403,7 +403,6 @@
 				4EF619C7274D6F1900928D41 /* MockSection.swift in Sources */,
 				4E6EF5E9274D6DF5009EC3A3 /* CocktailModel.swift in Sources */,
 				4EF619D7274D6F7400928D41 /* IngredientCell.swift in Sources */,
-				4E54AF38274E4C3B00C94F70 /* UIImage+Extension.swift in Sources */,
 				4E6EF5ED274D6E29009EC3A3 /* CocktailCollectionViewCell.swift in Sources */,
 				4EF619D0274D6F5000928D41 /* ImageCellBuilder.swift in Sources */,
 				4EF619ED274D73CF00928D41 /* TableCellBuilder.swift in Sources */,
@@ -431,6 +430,7 @@
 				4E62BAAC273E8A83006BA756 /* TabBarModuleBuilder.swift in Sources */,
 				4EB3C283273B039200114EC6 /* AppDelegate.swift in Sources */,
 				4EF619EB274D700600928D41 /* RandomCocktailViewController.swift in Sources */,
+				4E54AF3D274EA5A800C94F70 /* ImageDownloader.swift in Sources */,
 				4E54AF3B274E53EC00C94F70 /* CellType.swift in Sources */,
 				4E874EF5273D994C00C85E04 /* UIStackView+Extension.swift in Sources */,
 				4EF619C9274D6F2200928D41 /* SimpleHeader.swift in Sources */,

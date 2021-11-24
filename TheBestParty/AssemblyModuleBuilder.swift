@@ -5,8 +5,8 @@ protocol AssemblyModuleBuilderProtocol {
     func createCocktailDetailsModule(cocktail: CocktailModel?, router: RouterProtocol) -> UIViewController
 }
 
-class AssemblyModuleBuilder: AssemblyModuleBuilderProtocol {
-    func createCocktailsCollectionModule(router: RouterProtocol) -> UIViewController {
+final class AssemblyModuleBuilder: AssemblyModuleBuilderProtocol {
+    public func createCocktailsCollectionModule(router: RouterProtocol) -> UIViewController {
         let view = CocktailsCollectionViewController()
         let networkService = NetworkService()
         let presenter = CocktailsCollectionViewPresenter(view: view, networkService: networkService, router: router)
@@ -15,7 +15,7 @@ class AssemblyModuleBuilder: AssemblyModuleBuilderProtocol {
         return view
     }
     
-    func createCocktailDetailsModule(cocktail: CocktailModel?, router: RouterProtocol) -> UIViewController {
+    public func createCocktailDetailsModule(cocktail: CocktailModel?, router: RouterProtocol) -> UIViewController {
         let view = CocktailDetailsViewController()
         let dataSource = TableViewDataSource()
         let presenter = CocktailDetailsViewPresenter(view: view, cocktail: cocktail, router: router, dataSource: dataSource)

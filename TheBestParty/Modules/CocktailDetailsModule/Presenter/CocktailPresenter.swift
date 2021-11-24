@@ -10,7 +10,7 @@ protocol CocktailDetailsViewPresenterProtocol: AnyObject {
 //    func tap()
 }
 
-class CocktailDetailsViewPresenter: CocktailDetailsViewPresenterProtocol {
+final class CocktailDetailsViewPresenter: CocktailDetailsViewPresenterProtocol {
     weak var view: CocktailDetailsViewProtocol?
     var cocktail: CocktailModel?
     var router: RouterProtocol?

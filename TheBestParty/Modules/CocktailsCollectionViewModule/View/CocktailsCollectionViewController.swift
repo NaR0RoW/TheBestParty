@@ -15,9 +15,8 @@ class CocktailsCollectionViewController: UIViewController {
     lazy var cocktailsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: view.width / 2 - 15.0, height: view.width / 2 - 15.0)
-        layout.sectionInset = UIEdgeInsets(top: 5.0, left: 10.0, bottom: 5.0, right: 10.0)
+        layout.sectionInset = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .systemBackground
         collectionView.registerCell(CocktailCollectionViewCell.self)
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -25,6 +24,17 @@ class CocktailsCollectionViewController: UIViewController {
         
         return collectionView
     }()
+    
+//    private let loadingAlert: UIAlertController = {
+//        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+//        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+//        loadingIndicator.hidesWhenStopped = true
+//        loadingIndicator.style = UIActivityIndicatorView.Style.large
+//        loadingIndicator.startAnimating()
+//        alert.view.addSubview(loadingIndicator)
+//
+//        return alert
+//    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +58,14 @@ extension CocktailsCollectionViewController {
 }
 
 extension CocktailsCollectionViewController: CocktailsCollectionViewProtocol {
+//    func presentAlert() {
+//        navigationController?.present(loadingAlert, animated: true)
+//    }
+//    
+//    func dismissAlert() {
+//        loadingAlert.dismiss(animated: true)
+//    }
+    
     func success() {
         cocktailsCollectionView.reloadData()
     }
@@ -88,5 +106,7 @@ extension CocktailsCollectionViewController: UIScrollViewDelegate {
 
 // MARK: - UISearchBarDelegate
 extension CocktailsCollectionViewController: UISearchBarDelegate {
-
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        presenter?.searchForCocktail(searchTerm: searchText)
+    }
 }

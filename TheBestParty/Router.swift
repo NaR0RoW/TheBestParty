@@ -11,7 +11,7 @@ protocol RouterProtocol: RouterMainProtocol {
     func popToRoot()
 }
 
-class Router: RouterProtocol {
+final class Router: RouterProtocol {
     var navigationController: UINavigationController?
     var assemblyModuleBuilder: AssemblyModuleBuilderProtocol?
     
@@ -20,21 +20,21 @@ class Router: RouterProtocol {
         self.assemblyModuleBuilder = assemblyBuilder
     }
     
-    func initialViewController() {
+    public func initialViewController() {
         if let navigationController = navigationController {
             guard let cocktailsCollectionViewController = assemblyModuleBuilder?.createCocktailsCollectionModule(router: self) else { return }
             navigationController.viewControllers = [cocktailsCollectionViewController]
         }
     }
 
-    func showDetails(cocktail: CocktailModel?) {
+    public func showDetails(cocktail: CocktailModel?) {
         if let navigationController = navigationController {
             guard let cocktailDetailsViewController = assemblyModuleBuilder?.createCocktailDetailsModule(cocktail: cocktail, router: self) else { return }
             navigationController.pushViewController(cocktailDetailsViewController, animated: true)
         }
     }
     
-    func popToRoot() {
+    public func popToRoot() {
         if let navigationController = navigationController {
             navigationController.popToRootViewController(animated: true)
         }

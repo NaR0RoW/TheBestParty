@@ -3,21 +3,24 @@ import Foundation
 protocol CocktailsCollectionViewProtocol: AnyObject {
     func success()
     func failure(error: Error)
+//    func presentAlert()
+//    func dismissAlert()
 }
 
 protocol CocktailsCollectionViewPresenterProtocol: AnyObject {
     init(view: CocktailsCollectionViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol)
     var cocktails: [CocktailModel]? { get set }
-    func getCocktails()
+    func getCocktails(searchTerm: String)
     func goToDetails(cocktail: CocktailModel?)
+    func searchForCocktail(searchTerm: String)
 }
 
-class CocktailsCollectionViewPresenter: CocktailsCollectionViewPresenterProtocol {
+final class CocktailsCollectionViewPresenter: CocktailsCollectionViewPresenterProtocol {
     weak var view: CocktailsCollectionViewProtocol?
     var cocktails: [CocktailModel]?
     var router: RouterProtocol?
     let networkService: NetworkServiceProtocol?
-    
+
     required init(view: CocktailsCollectionViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol) {
         self.view = view
         self.networkService = networkService
@@ -26,8 +29,8 @@ class CocktailsCollectionViewPresenter: CocktailsCollectionViewPresenterProtocol
         getCocktails()
     }
     
-    func getCocktails() { // Thread 1
-        networkService?.getCocktails() { [weak self] result in // Thread 3
+    public func getCocktails(searchTerm: String = "") { // Thread 1
+        networkService?.getCocktails(searchTerm: searchTerm) { [weak self] result in // Thread 3
             guard let self = self else { return } // Thread 3
             DispatchQueue.main.async { // Thread 3
                 switch result { // Thread 1
@@ -58,7 +61,23 @@ class CocktailsCollectionViewPresenter: CocktailsCollectionViewPresenterProtocol
         }
     }
     
-    func goToDetails(cocktail: CocktailModel?) {
+    public func goToDetails(cocktail: CocktailModel?) {
         router?.showDetails(cocktail: cocktail)
+    }
+    
+    public func searchForCocktail(searchTerm: String) {
+        var timer: Timer?
+        let text = searchTerm.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+        if text != "" {
+            timer?.invalidate()
+            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { [weak self] _ in
+                guard let self = self else { return }
+//                self.view?.presentAlert()
+                self.getCocktails(searchTerm: searchTerm)
+//                DispatchQueue.main.async {
+//                    self.view?.dismissAlert()
+//                }
+            })
+        }
     }
 }
