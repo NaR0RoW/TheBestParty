@@ -29,6 +29,83 @@ class IngredientCell: UITableViewCell {
         return label
     }()
     
+    private let fifthIngredientLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 22.0)
+        
+        return label
+    }()
+
+    private let sixthIngredientLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 22.0)
+        
+        return label
+    }()
+
+    private let seventhIngredientLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 22.0)
+        
+        return label
+    }()
+      
+    private let eighthIngredientLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 22.0)
+        
+        return label
+    }()
+    
+    private let ninthIngredientLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 22.0)
+        
+        return label
+    }()
+    
+    private let tenthIngredientLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 22.0)
+        
+        return label
+    }()
+    
+    private let eleventhIngredientLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 22.0)
+        
+        return label
+    }()
+    
+    private let twelfthIngredientLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 22.0)
+        
+        return label
+    }()
+    
+    private let thirteenthIngredientLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 22.0)
+        
+        return label
+    }()
+    
+    private let fourteenthIngredientLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 22.0)
+        
+        return label
+    }()
+    
+    private let fifteenthIngredientLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 22.0)
+        
+        return label
+    }()
+    
     private let ingredientStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -65,6 +142,83 @@ class IngredientCell: UITableViewCell {
         return label
     }()
     
+    private let fifthIngredientMeasureLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 22.0)
+        
+        return label
+    }()
+
+    private let sixthIngredientMeasureLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 22.0)
+        
+        return label
+    }()
+
+    private let seventhIngredientMeasureLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 22.0)
+        
+        return label
+    }()
+      
+    private let eighthIngredientMeasureLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 22.0)
+        
+        return label
+    }()
+    
+    private let ninthIngredientMeasureLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 22.0)
+        
+        return label
+    }()
+    
+    private let tenthIngredientMeasureLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 22.0)
+        
+        return label
+    }()
+    
+    private let eleventhIngredientMeasureLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 22.0)
+        
+        return label
+    }()
+    
+    private let twelfthIngredientMeasureLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 22.0)
+        
+        return label
+    }()
+    
+    private let thirteenthIngredientMeasureLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 22.0)
+        
+        return label
+    }()
+    
+    private let fourteenthIngredientMeasureLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 22.0)
+        
+        return label
+    }()
+    
+    private let fifteenthIngredientMeasureLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 22.0)
+        
+        return label
+    }()
+    
     private let ingredientMeasureStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -79,11 +233,32 @@ class IngredientCell: UITableViewCell {
         self.secondIngredientLabel.text = cocktail.drinks.first?.cocktailSecondIngredient
         self.thirdIngredientLabel.text = cocktail.drinks.first?.cocktailThirdIngredient
         self.fourthIngredientLabel.text = cocktail.drinks.first?.cocktailFourthIngredient
-        
+        self.fifthIngredientLabel.text = cocktail.drinks.first?.cocktailFifthIngredient
+        self.sixthIngredientLabel.text = cocktail.drinks.first?.cocktailSixthIngredient
+        self.seventhIngredientLabel.text = cocktail.drinks.first?.cocktailSeventhIngredient
+        self.eighthIngredientLabel.text = cocktail.drinks.first?.cocktailEighthIngredient
+        self.ninthIngredientLabel.text = cocktail.drinks.first?.cocktailNinthIngredient
+        self.tenthIngredientLabel.text = cocktail.drinks.first?.cocktailTenthIngredient
+        self.eleventhIngredientLabel.text = cocktail.drinks.first?.cocktailEleventhIngredient
+        self.twelfthIngredientLabel.text = cocktail.drinks.first?.cocktailTwelfthIngredient
+        self.thirteenthIngredientLabel.text = cocktail.drinks.first?.cocktailThirteenthIngredient
+        self.fourteenthIngredientLabel.text = cocktail.drinks.first?.cocktailFourteenthIngredient
+        self.fifteenthIngredientLabel.text = cocktail.drinks.first?.cocktailFifteenthIngredient
         self.firstIngredientMeasureLabel.text = cocktail.drinks.first?.cocktailFirstIngredientMeasure
         self.secondIngredientMeasureLabel.text = cocktail.drinks.first?.cocktailSecondIngredientMeasure
         self.thirdIngredientMeasureLabel.text = cocktail.drinks.first?.cocktailThirdIngredientMeasure
         self.fourthIngredientMeasureLabel.text = cocktail.drinks.first?.cocktailFourthIngredientMeasure
+        self.fifthIngredientMeasureLabel.text = cocktail.drinks.first?.cocktailFifthIngredientMeasure
+        self.sixthIngredientMeasureLabel.text = cocktail.drinks.first?.cocktailSixthIngredientMeasure
+        self.seventhIngredientMeasureLabel.text = cocktail.drinks.first?.cocktailSeventhIngredientMeasure
+        self.eighthIngredientMeasureLabel.text = cocktail.drinks.first?.cocktailEighthIngredientMeasure
+        self.ninthIngredientMeasureLabel.text = cocktail.drinks.first?.cocktailNinthIngredientMeasure
+        self.tenthIngredientMeasureLabel.text = cocktail.drinks.first?.cocktailTenthIngredientMeasure
+        self.eleventhIngredientMeasureLabel.text = cocktail.drinks.first?.cocktailEleventhIngredientMeasure
+        self.twelfthIngredientMeasureLabel.text = cocktail.drinks.first?.cocktailTwelfthIngredientMeasure
+        self.thirteenthIngredientMeasureLabel.text = cocktail.drinks.first?.cocktailThirteenthIngredientMeasure
+        self.fourteenthIngredientMeasureLabel.text = cocktail.drinks.first?.cocktailFourteenthIngredientMeasure
+        self.fifteenthIngredientMeasureLabel.text = cocktail.drinks.first?.cocktailFifteenthIngredientMeasure
         
         setupView()
     }
@@ -95,7 +270,18 @@ extension IngredientCell {
             [firstIngredientLabel,
              secondIngredientLabel,
              thirdIngredientLabel,
-             fourthIngredientLabel]
+             fourthIngredientLabel,
+             fifthIngredientLabel,
+             sixthIngredientLabel,
+             seventhIngredientLabel,
+             eighthIngredientLabel,
+             ninthIngredientLabel,
+             tenthIngredientLabel,
+             eleventhIngredientLabel,
+             twelfthIngredientLabel,
+             thirteenthIngredientLabel,
+             fourteenthIngredientLabel,
+             fifteenthIngredientLabel]
         )
         contentView.addSubview(ingredientStackView)
         NSLayoutConstraint.activate([
@@ -109,7 +295,18 @@ extension IngredientCell {
             [firstIngredientMeasureLabel,
              secondIngredientMeasureLabel,
              thirdIngredientMeasureLabel,
-             fourthIngredientMeasureLabel]
+             fourthIngredientMeasureLabel,
+             fifthIngredientMeasureLabel,
+             sixthIngredientMeasureLabel,
+             seventhIngredientMeasureLabel,
+             eighthIngredientMeasureLabel,
+             ninthIngredientMeasureLabel,
+             tenthIngredientMeasureLabel,
+             eleventhIngredientMeasureLabel,
+             twelfthIngredientMeasureLabel,
+             thirteenthIngredientMeasureLabel,
+             fourteenthIngredientMeasureLabel,
+             fifteenthIngredientMeasureLabel]
         )
         contentView.addSubview(ingredientMeasureStackView)
         NSLayoutConstraint.activate([
