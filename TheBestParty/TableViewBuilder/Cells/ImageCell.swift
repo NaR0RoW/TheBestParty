@@ -71,7 +71,8 @@ extension ImageCell {
             cocktailImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             cocktailImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             cocktailImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            cocktailImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor)
+            cocktailImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            cocktailImageView.heightAnchor.constraint(equalTo: contentView.widthAnchor)
         ])
         
         contentView.addSubview(cocktailNameLabel)
