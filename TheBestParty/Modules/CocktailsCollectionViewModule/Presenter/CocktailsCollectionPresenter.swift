@@ -89,13 +89,14 @@ final class CocktailsCollectionViewPresenter: CocktailsCollectionViewPresenterPr
     
     public func searchForCocktail(searchTerm: String) {
         var timer: Timer?
-        let text = searchTerm.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
-        if text != "" {
+        let trimmedText = searchTerm.trimmingCharacters(in: .whitespaces)
+        if trimmedText != "" {
             timer?.invalidate()
             timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { [weak self] _ in
                 guard let self = self else { return }
 //                self.view?.presentAlert()
-                self.getCocktails(searchTerm: searchTerm)
+                print(trimmedText)
+                self.getCocktails(searchTerm: trimmedText)
 //                DispatchQueue.main.async {
 //                    self.view?.dismissAlert()
 //                }

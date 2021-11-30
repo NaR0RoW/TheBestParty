@@ -25,6 +25,41 @@ class CocktailsCollectionViewController: UIViewController {
         return collectionView
     }()
     
+    private let noResultsView: UIView = {
+        let view = UIView()
+        view.alpha = 0.0
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+    private let noResultsImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "noResults")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return imageView
+    }()
+    
+    private let headerLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 30.0, weight: .bold)
+        label.text = "Ничего не найдено"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
+    private let subLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 22.0, weight: .semibold)
+        label.text = "Попробуй написать похожий запрос"
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
 //    private let loadingAlert: UIAlertController = {
 //        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
 //        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
@@ -40,6 +75,7 @@ class CocktailsCollectionViewController: UIViewController {
         super.viewDidLoad()
         
         setupView()
+        setupNoResultsView()
     }
     
     override func viewDidLayoutSubviews() {
@@ -50,10 +86,41 @@ class CocktailsCollectionViewController: UIViewController {
 
 extension CocktailsCollectionViewController {
     private func setupView() {
+        view.backgroundColor = .systemBackground
         view.addSubview(cocktailsCollectionView)
         title = "Cocktails"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.searchController = searchController
+    }
+    
+    private func setupNoResultsView() {
+        view.addSubview(noResultsView)
+        NSLayoutConstraint.activate([
+            noResultsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25.0),
+            noResultsView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 25.0),
+            noResultsView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -25.0),
+            noResultsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25.0)
+        ])
+        
+        noResultsView.addSubview(noResultsImage)
+        NSLayoutConstraint.activate([
+            noResultsImage.topAnchor.constraint(equalTo: noResultsView.topAnchor),
+            noResultsImage.centerXAnchor.constraint(equalTo: noResultsView.centerXAnchor),
+            noResultsImage.widthAnchor.constraint(equalTo: noResultsView.widthAnchor),
+            noResultsImage.heightAnchor.constraint(equalTo: noResultsView.widthAnchor)
+        ])
+        
+        noResultsView.addSubview(headerLabel)
+        NSLayoutConstraint.activate([
+            headerLabel.topAnchor.constraint(equalTo: noResultsImage.bottomAnchor, constant: 25.0),
+            headerLabel.centerXAnchor.constraint(equalTo: noResultsView.centerXAnchor)
+        ])
+        
+        noResultsView.addSubview(subLabel)
+        NSLayoutConstraint.activate([
+            subLabel.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 25.0),
+            subLabel.centerXAnchor.constraint(equalTo: noResultsView.centerXAnchor)
+        ])
     }
 }
 
@@ -61,17 +128,22 @@ extension CocktailsCollectionViewController: CocktailsCollectionViewProtocol {
 //    func presentAlert() {
 //        navigationController?.present(loadingAlert, animated: true)
 //    }
-//    
+    
 //    func dismissAlert() {
 //        loadingAlert.dismiss(animated: true)
 //    }
     
     func success() {
+        noResultsView.alpha = 0.0
+        cocktailsCollectionView.alpha = 1.0
         cocktailsCollectionView.reloadData()
     }
     
     func failure(error: Error) {
         print(error.localizedDescription)
+        cocktailsCollectionView.alpha = 0.0
+        cocktailsCollectionView.reloadData()
+        noResultsView.alpha = 1.0
     }
 }
 
