@@ -1,3 +1,4 @@
+import Kingfisher
 import UIKit
 
 class CocktailCollectionViewCell: UICollectionViewCell {
@@ -77,17 +78,18 @@ class CocktailCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+               
+        self.cocktailImageView.image = nil
+    }
 }
 
 extension CocktailCollectionViewCell {
     public func configureCell(with cocktail: CocktailModel) {
-//        self.cocktailImageView.loadFromString(from: cocktail.drinks.first?.cocktailImage ?? "")
-        ImageDownloader.shared.downloadImage(with: cocktail.drinks.first?.cocktailImage, completionHandler: { image, cached in
-            if cached || cocktail.drinks.first?.cocktailImage == self.previousUrlString {
-                self.cocktailImageView.image = image
-            }
-        }, placeholderImage: UIImage(systemName: "person.fill"))
-        previousUrlString = cocktail.drinks.first?.cocktailImage
+        guard let url = URL(string: cocktail.drinks.first?.cocktailImage ?? "") else { return }
+        self.cocktailImageView.kf.setImage(with: url)
         
         self.cocktailNameLabel.text = cocktail.drinks.first?.cocktailName
         self.cocktailCategoryLabel.text = cocktail.drinks.first?.cocktailCategory

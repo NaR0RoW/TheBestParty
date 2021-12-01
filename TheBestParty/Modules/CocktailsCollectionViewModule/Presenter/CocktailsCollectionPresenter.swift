@@ -3,8 +3,6 @@ import Foundation
 protocol CocktailsCollectionViewProtocol: AnyObject {
     func success()
     func failure(error: Error)
-//    func presentAlert()
-//    func dismissAlert()
 }
 
 protocol CocktailsCollectionViewPresenterProtocol: AnyObject {
@@ -29,11 +27,11 @@ final class CocktailsCollectionViewPresenter: CocktailsCollectionViewPresenterPr
         getCocktails()
     }
     
-    public func getCocktails(searchTerm: String = "") { // Thread 1
-        networkService?.getCocktails(searchTerm: searchTerm) { [weak self] result in // Thread 3
-            guard let self = self else { return } // Thread 3
-            DispatchQueue.main.async { // Thread 3
-                switch result { // Thread 1
+    public func getCocktails(searchTerm: String = "") { 
+        networkService?.getCocktails(searchTerm: searchTerm) { [weak self] result in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                switch result {
                 case .success(let cocktails):
                     self.cocktails = cocktails.drinks.compactMap {
                         CocktailModel(drinks: [Cocktail(
@@ -75,7 +73,9 @@ final class CocktailsCollectionViewPresenter: CocktailsCollectionViewPresenterPr
                             cocktailFifteenthIngredientMeasure: $0.cocktailFifteenthIngredientMeasure
                         )])
                     }
-                    self.view?.success()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        self.view?.success()
+                    }
                 case .failure(let error):
                     self.view?.failure(error: error)
                 }
@@ -92,14 +92,9 @@ final class CocktailsCollectionViewPresenter: CocktailsCollectionViewPresenterPr
         let trimmedText = searchTerm.trimmingCharacters(in: .whitespaces)
         if trimmedText != "" {
             timer?.invalidate()
-            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { [weak self] _ in
+            timer = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { [weak self] _ in
                 guard let self = self else { return }
-//                self.view?.presentAlert()
-                print(trimmedText)
                 self.getCocktails(searchTerm: trimmedText)
-//                DispatchQueue.main.async {
-//                    self.view?.dismissAlert()
-//                }
             })
         }
     }

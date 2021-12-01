@@ -28,7 +28,6 @@ class TableViewDataSource: NSObject, TableViewDataSourceProtocol {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return sections[indexPath.section].builders[indexPath.row].cellHeight()
         return UITableView.automaticDimension
     }
     

@@ -1,21 +1,9 @@
+import Kingfisher
 import UIKit
 
 class ImageCell: UITableViewCell {
     var previousUrlString: String?
-//    private let backButton: UIButton = {
-//        let button = UIButton()
-//        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 20.0, weight: .bold, scale: .large)
-//        let image = UIImage(systemName: "heart.circle.fill", withConfiguration: imageConfiguration)?.withTintColor(.white, renderingMode: .alwaysOriginal)
-//        button.setImage(image, for: .normal)
-//        button.layer.shadowColor = UIColor.black.cgColor
-//        button.layer.shadowOpacity = 1
-//        button.layer.shadowOffset = .zero
-//        button.layer.shadowRadius = 10
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        return button
-//    }()
-    
+
     private let cocktailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -52,11 +40,9 @@ class ImageCell: UITableViewCell {
     }()
     
     public func configureCell(with cocktail: CocktailModel) {
-        ImageDownloader.shared.downloadImage(with: cocktail.drinks.first?.cocktailImage, completionHandler: { image, cached in
-            if cached || cocktail.drinks.first?.cocktailImage == self.previousUrlString {
-                self.cocktailImageView.image = image
-            }
-        }, placeholderImage: UIImage(systemName: "person.fill"))
+        guard let url = URL(string: cocktail.drinks.first?.cocktailImage ?? "") else { return }
+        
+        self.cocktailImageView.kf.setImage(with: url)
         self.cocktailNameLabel.text = cocktail.drinks.first?.cocktailName
         self.cocktailCategoryLabel.text = cocktail.drinks.first?.cocktailCategory
         

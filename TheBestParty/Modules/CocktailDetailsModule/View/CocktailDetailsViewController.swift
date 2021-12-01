@@ -10,6 +10,7 @@ class CocktailDetailsViewController: UIViewController {
         tableView.showsVerticalScrollIndicator = false
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
+        tableView.translatesAutoresizingMaskIntoConstraints = false
 
         return tableView
     }()
@@ -46,17 +47,12 @@ class CocktailDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
+        setupTableView()
         setupTopItems()
         presenter?.setupDetails()
         tableView.reloadData()
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        tableView.frame = view.frame
-    }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
@@ -69,20 +65,26 @@ class CocktailDetailsViewController: UIViewController {
 }
 
 extension CocktailDetailsViewController {
-    private func setupView() {
+    private func setupTableView() {
         view.addSubview(tableView)
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor)
+        ])
     }
     
     private func setupTopItems() {
         view.addSubview(favoriteButton)
         NSLayoutConstraint.activate([
-            favoriteButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            favoriteButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30.0),
             favoriteButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15.0)
         ])
         
         view.addSubview(backButton)
         NSLayoutConstraint.activate([
-            backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30.0),
             backButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15.0)
         ])
     }

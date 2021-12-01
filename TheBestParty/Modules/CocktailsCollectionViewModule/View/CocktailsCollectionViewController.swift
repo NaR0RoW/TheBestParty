@@ -44,7 +44,7 @@ class CocktailsCollectionViewController: UIViewController {
     private let headerLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 30.0, weight: .bold)
-        label.text = "Ничего не найдено"
+        label.text = "No results found"
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -53,23 +53,14 @@ class CocktailsCollectionViewController: UIViewController {
     private let subLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 22.0, weight: .semibold)
-        label.text = "Попробуй написать похожий запрос"
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.text = "Make sure all word are spelled correctly of try different keywords."
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
-    
-//    private let loadingAlert: UIAlertController = {
-//        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
-//        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-//        loadingIndicator.hidesWhenStopped = true
-//        loadingIndicator.style = UIActivityIndicatorView.Style.large
-//        loadingIndicator.startAnimating()
-//        alert.view.addSubview(loadingIndicator)
-//
-//        return alert
-//    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,9 +88,9 @@ extension CocktailsCollectionViewController {
         view.addSubview(noResultsView)
         NSLayoutConstraint.activate([
             noResultsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25.0),
-            noResultsView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 25.0),
-            noResultsView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -25.0),
-            noResultsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25.0)
+            noResultsView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15.0),
+            noResultsView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15.0),
+            noResultsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15.0)
         ])
         
         noResultsView.addSubview(noResultsImage)
@@ -119,20 +110,13 @@ extension CocktailsCollectionViewController {
         noResultsView.addSubview(subLabel)
         NSLayoutConstraint.activate([
             subLabel.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 25.0),
-            subLabel.centerXAnchor.constraint(equalTo: noResultsView.centerXAnchor)
+            subLabel.leftAnchor.constraint(equalTo: noResultsView.leftAnchor, constant: 15.0),
+            subLabel.rightAnchor.constraint(equalTo: noResultsView.rightAnchor, constant: -15.0)
         ])
     }
 }
 
 extension CocktailsCollectionViewController: CocktailsCollectionViewProtocol {
-//    func presentAlert() {
-//        navigationController?.present(loadingAlert, animated: true)
-//    }
-    
-//    func dismissAlert() {
-//        loadingAlert.dismiss(animated: true)
-//    }
-    
     func success() {
         noResultsView.alpha = 0.0
         cocktailsCollectionView.alpha = 1.0
