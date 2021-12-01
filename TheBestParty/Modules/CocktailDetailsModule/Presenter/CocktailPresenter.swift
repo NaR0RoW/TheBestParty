@@ -7,7 +7,7 @@ protocol CocktailDetailsViewProtocol: AnyObject {
 protocol CocktailDetailsViewPresenterProtocol: AnyObject {
     init(view: CocktailDetailsViewProtocol, cocktail: CocktailModel?, router: RouterProtocol, dataSource: TableViewDataSourceProtocol)
     func setupDetails()
-//    func tap()
+    func popToRoot()
 }
 
 final class CocktailDetailsViewPresenter: CocktailDetailsViewPresenterProtocol {
@@ -27,7 +27,7 @@ final class CocktailDetailsViewPresenter: CocktailDetailsViewPresenterProtocol {
         self.view?.setupDetails(with: cocktail, with: dataSource)
     }
     
-//    func tap() {
-//        router?.popToRoot()
-//    }
+    public func popToRoot() {
+        router?.popToRoot()
+    }
 }
