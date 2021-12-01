@@ -3,6 +3,7 @@ import UIKit
 protocol AssemblyModuleBuilderProtocol {
     func createCocktailsCollectionModule(router: RouterProtocol) -> UIViewController
     func createCocktailDetailsModule(cocktail: CocktailModel?, router: RouterProtocol) -> UIViewController
+    func createRandomCocktailModule() -> UIViewController
 }
 
 final class AssemblyModuleBuilder: AssemblyModuleBuilderProtocol {
@@ -19,6 +20,16 @@ final class AssemblyModuleBuilder: AssemblyModuleBuilderProtocol {
         let view = CocktailDetailsViewController()
         let dataSource = TableViewDataSource()
         let presenter = CocktailDetailsViewPresenter(view: view, cocktail: cocktail, router: router, dataSource: dataSource)
+        view.presenter = presenter
+
+        return view
+    }
+    
+    public func createRandomCocktailModule() -> UIViewController {
+        let view = RandomCocktailViewController()
+        let dataSource = TableViewDataSource()
+        let networkService = NetworkService()
+        let presenter = RandomCocktailViewPresenter(view: view, networkService: networkService, dataSource: dataSource)
         view.presenter = presenter
 
         return view

@@ -6,20 +6,19 @@ protocol CocktailsCollectionViewProtocol: AnyObject {
 }
 
 protocol CocktailsCollectionViewPresenterProtocol: AnyObject {
-    init(view: CocktailsCollectionViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol)
+    init(view: CocktailsCollectionViewProtocol, networkService: NetworkProviderForCocktails, router: RouterProtocol)
     var cocktails: [CocktailModel]? { get set }
-    func getCocktails(searchTerm: String)
     func goToDetails(cocktail: CocktailModel?)
     func searchForCocktail(searchTerm: String)
 }
 
 final class CocktailsCollectionViewPresenter: CocktailsCollectionViewPresenterProtocol {
     weak var view: CocktailsCollectionViewProtocol?
-    var cocktails: [CocktailModel]?
+    let networkService: NetworkProviderForCocktails?
     var router: RouterProtocol?
-    let networkService: NetworkServiceProtocol?
+    var cocktails: [CocktailModel]?
 
-    required init(view: CocktailsCollectionViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol) {
+    required init(view: CocktailsCollectionViewProtocol, networkService: NetworkProviderForCocktails, router: RouterProtocol) {
         self.view = view
         self.networkService = networkService
         self.router = router
