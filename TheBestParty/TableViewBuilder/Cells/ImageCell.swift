@@ -2,8 +2,6 @@ import Kingfisher
 import UIKit
 
 class ImageCell: UITableViewCell {
-    var previousUrlString: String?
-
     private let cocktailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false

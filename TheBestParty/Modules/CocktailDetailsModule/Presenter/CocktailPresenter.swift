@@ -8,6 +8,7 @@ protocol CocktailDetailsViewPresenterProtocol: AnyObject {
     init(view: CocktailDetailsViewProtocol, cocktail: CocktailModel?, router: RouterProtocol, dataSource: TableViewDataSourceProtocol)
     func setupDetails()
     func popToRoot()
+    func addToFavorite()
 }
 
 final class CocktailDetailsViewPresenter: CocktailDetailsViewPresenterProtocol {
@@ -29,5 +30,9 @@ final class CocktailDetailsViewPresenter: CocktailDetailsViewPresenterProtocol {
     
     public func popToRoot() {
         router?.popToRoot()
+    }
+    
+    public func addToFavorite() {
+        print("Added to favorite")
     }
 }

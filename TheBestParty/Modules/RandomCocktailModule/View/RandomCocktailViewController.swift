@@ -6,7 +6,7 @@ class RandomCocktailViewController: UIViewController {
     var presenter: RandomCocktailViewPresenterProtocol?
     
     private lazy var tableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.showsVerticalScrollIndicator = false
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
@@ -18,13 +18,7 @@ class RandomCocktailViewController: UIViewController {
     private let refreshButton: UIButton = {
         let button = UIButton()
         button.addTarget(self, action: #selector(refresh), for: .touchUpInside)
-        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 25.0, weight: .bold, scale: .large)
-        let image = UIImage(systemName: "arrow.counterclockwise.circle", withConfiguration: imageConfiguration)?.withTintColor(.white, renderingMode: .alwaysOriginal)
-        button.setImage(image, for: .normal)
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 1.0
-        button.layer.shadowOffset = .zero
-        button.layer.shadowRadius = 10.0
+        button.createShadowButtonWithSystemImage(with: "arrow.counterclockwise.circle")
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
@@ -33,13 +27,7 @@ class RandomCocktailViewController: UIViewController {
     private let favoriteButton: UIButton = {
         let button = UIButton()
         button.addTarget(self, action: #selector(addToFavorite), for: .touchUpInside)
-        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 25.0, weight: .bold, scale: .large)
-        let image = UIImage(systemName: "heart.circle.fill", withConfiguration: imageConfiguration)?.withTintColor(.white, renderingMode: .alwaysOriginal)
-        button.setImage(image, for: .normal)
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 1.0
-        button.layer.shadowOffset = .zero
-        button.layer.shadowRadius = 10.0
+        button.createShadowButtonWithSystemImage(with: "heart.circle.fill")
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -76,13 +64,13 @@ extension RandomCocktailViewController {
     private func setupTopItems() {
         view.addSubview(favoriteButton)
         NSLayoutConstraint.activate([
-            favoriteButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30.0),
+            favoriteButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10.0),
             favoriteButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15.0)
         ])
         
         view.addSubview(refreshButton)
         NSLayoutConstraint.activate([
-            refreshButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30.0),
+            refreshButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10.0),
             refreshButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15.0)
         ])
     }
@@ -92,7 +80,7 @@ extension RandomCocktailViewController: RandomCocktailViewProtocol {
     func success(with cocktail: CocktailModel?, with dataSource: TableViewDataSourceProtocol?) {
         tableView.delegate = dataSource
         tableView.dataSource = dataSource
-
+        
         guard let cocktail = cocktail else { return }
 
         factory = TableViewFactory(model: cocktail, tableView: tableView)
@@ -112,6 +100,6 @@ extension RandomCocktailViewController: RandomCocktailViewProtocol {
     }
     
     @objc private func addToFavorite() {
-        print("Added to favorite")
+        presenter?.addToFavorite()
     }
 }

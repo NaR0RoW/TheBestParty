@@ -21,6 +21,7 @@ class CocktailsCollectionViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.showsVerticalScrollIndicator = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         return collectionView
     }()
@@ -56,7 +57,6 @@ class CocktailsCollectionViewController: UIViewController {
         label.numberOfLines = 0
         label.textAlignment = .center
         label.text = "Make sure all word are spelled correctly of try different keywords."
-        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -66,12 +66,8 @@ class CocktailsCollectionViewController: UIViewController {
         super.viewDidLoad()
         
         setupView()
+        setupCollectionView()
         setupNoResultsView()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        cocktailsCollectionView.frame = view.frame
     }
 }
 
@@ -82,6 +78,16 @@ extension CocktailsCollectionViewController {
         title = "Cocktails"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.searchController = searchController
+    }
+    
+    private func setupCollectionView() {
+        view.addSubview(cocktailsCollectionView)
+        NSLayoutConstraint.activate([
+            cocktailsCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            cocktailsCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            cocktailsCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            cocktailsCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor)
+        ])
     }
     
     private func setupNoResultsView() {

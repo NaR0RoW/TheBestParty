@@ -8,6 +8,7 @@ protocol RandomCocktailViewProtocol: AnyObject {
 protocol RandomCocktailViewPresenterProtocol: AnyObject {
     init(view: RandomCocktailViewProtocol, networkService: NetworkProviderForRandomCocktail, dataSource: TableViewDataSourceProtocol)
     func refresh()
+    func addToFavorite()
 }
 
 final class RandomCocktailViewPresenter: RandomCocktailViewPresenterProtocol {
@@ -42,5 +43,8 @@ final class RandomCocktailViewPresenter: RandomCocktailViewPresenterProtocol {
     public func refresh() {
         getRandomCocktail()
     }
+    
+    public func addToFavorite() {
+        print("Added to favorite")
+    }
 }
-

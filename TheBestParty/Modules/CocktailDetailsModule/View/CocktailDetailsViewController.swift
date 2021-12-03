@@ -6,7 +6,7 @@ class CocktailDetailsViewController: UIViewController {
     var presenter: CocktailDetailsViewPresenterProtocol?
     
     private lazy var tableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.showsVerticalScrollIndicator = false
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
@@ -18,13 +18,7 @@ class CocktailDetailsViewController: UIViewController {
     private let backButton: UIButton = {
         let button = UIButton()
         button.addTarget(self, action: #selector(popToRoot), for: .touchUpInside)
-        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 25.0, weight: .bold, scale: .large)
-        let image = UIImage(systemName: "arrow.backward.circle.fill", withConfiguration: imageConfiguration)?.withTintColor(.white, renderingMode: .alwaysOriginal)
-        button.setImage(image, for: .normal)
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 1.0
-        button.layer.shadowOffset = .zero
-        button.layer.shadowRadius = 10.0
+        button.createShadowButtonWithSystemImage(with: "arrow.backward.circle.fill")
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -32,14 +26,8 @@ class CocktailDetailsViewController: UIViewController {
     
     private let favoriteButton: UIButton = {
         let button = UIButton()
-        button.addTarget(self, action: #selector(tap), for: .touchUpInside)
-        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 25.0, weight: .bold, scale: .large)
-        let image = UIImage(systemName: "heart.circle.fill", withConfiguration: imageConfiguration)?.withTintColor(.white, renderingMode: .alwaysOriginal)
-        button.setImage(image, for: .normal)
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 1.0
-        button.layer.shadowOffset = .zero
-        button.layer.shadowRadius = 10.0
+        button.addTarget(self, action: #selector(addToFavorite), for: .touchUpInside)
+        button.createShadowButtonWithSystemImage(with: "heart.circle.fill")
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -76,23 +64,23 @@ extension CocktailDetailsViewController {
     }
     
     private func setupTopItems() {
-        view.addSubview(favoriteButton)
-        NSLayoutConstraint.activate([
-            favoriteButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30.0),
-            favoriteButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15.0)
-        ])
-        
         view.addSubview(backButton)
         NSLayoutConstraint.activate([
-            backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30.0),
+            backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10.0),
             backButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15.0)
+        ])
+        
+        view.addSubview(favoriteButton)
+        NSLayoutConstraint.activate([
+            favoriteButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10.0),
+            favoriteButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15.0)
         ])
     }
 }
 
 extension CocktailDetailsViewController: CocktailDetailsViewProtocol {
-    @objc private func tap() {
-        print("tapped")
+    @objc private func addToFavorite() {
+        presenter?.addToFavorite()
     }
     
     @objc private func popToRoot() {

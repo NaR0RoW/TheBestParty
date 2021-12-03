@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0D373F7C27579CFB000B8F86 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0D373F7B27579CFB000B8F86 /* Kingfisher */; };
 		0D469760275804D300D1B011 /* RandomCocktailViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D46975F275804D300D1B011 /* RandomCocktailViewPresenter.swift */; };
+		0DD9D5C3275A35FE00C75CD4 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD9D5C2275A35FE00C75CD4 /* UIButton+Extension.swift */; };
 		4E54AF3B274E53EC00C94F70 /* CellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E54AF3A274E53EC00C94F70 /* CellType.swift */; };
 		4E62BAAA273E8A38006BA756 /* TabBarRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E62BAA9273E8A38006BA756 /* TabBarRouter.swift */; };
 		4E62BAAC273E8A83006BA756 /* TabBarModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E62BAAB273E8A83006BA756 /* TabBarModuleBuilder.swift */; };
@@ -50,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		0D46975F275804D300D1B011 /* RandomCocktailViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomCocktailViewPresenter.swift; sourceTree = "<group>"; };
+		0DD9D5C2275A35FE00C75CD4 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		4E54AF3A274E53EC00C94F70 /* CellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellType.swift; sourceTree = "<group>"; };
 		4E62BAA9273E8A38006BA756 /* TabBarRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarRouter.swift; sourceTree = "<group>"; };
 		4E62BAAB273E8A83006BA756 /* TabBarModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarModuleBuilder.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 		4E84DCE0273C1C88000CEB16 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				0DD9D5C2275A35FE00C75CD4 /* UIButton+Extension.swift */,
 				4E62BAB7273EBBBF006BA756 /* UICollectionView+Extension.swift */,
 				4E874EF4273D994C00C85E04 /* UIStackView+Extension.swift */,
 				4E84DCE1273C1CA4000CEB16 /* UITableView+Extension.swift */,
@@ -453,6 +456,7 @@
 				4E6EF5DA274D6CF7009EC3A3 /* Router.swift in Sources */,
 				4EF619E4274D6FD100928D41 /* TableCell.swift in Sources */,
 				4E6EF5E3274D6DBE009EC3A3 /* CocktailPresenter.swift in Sources */,
+				0DD9D5C3275A35FE00C75CD4 /* UIButton+Extension.swift in Sources */,
 				4EF619CB274D6F2F00928D41 /* TableViewDataSource.swift in Sources */,
 				4EF619E2274D6FB400928D41 /* TableViewDataSourceProtocol.swift in Sources */,
 				4E6EF5D8274D6CE7009EC3A3 /* AssemblyModuleBuilder.swift in Sources */,

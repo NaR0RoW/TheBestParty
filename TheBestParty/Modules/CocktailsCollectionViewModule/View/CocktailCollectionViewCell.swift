@@ -1,9 +1,7 @@
 import Kingfisher
 import UIKit
 
-class CocktailCollectionViewCell: UICollectionViewCell {
-    var previousUrlString: String?
-    
+class CocktailCollectionViewCell: UICollectionViewCell {    
     private let cocktailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 15.0
@@ -29,13 +27,7 @@ class CocktailCollectionViewCell: UICollectionViewCell {
 
     private let favoriteButton: UIButton = {
         let button = UIButton()
-        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 20.0, weight: .bold, scale: .large)
-        let image = UIImage(systemName: "heart.circle.fill", withConfiguration: imageConfiguration)?.withTintColor(.white, renderingMode: .alwaysOriginal)
-        button.setImage(image, for: .normal)
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 1.0
-        button.layer.shadowOffset = .zero
-        button.layer.shadowRadius = 10.0
+        button.createShadowButtonWithSystemImage(with: "heart.circle.fill")
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
