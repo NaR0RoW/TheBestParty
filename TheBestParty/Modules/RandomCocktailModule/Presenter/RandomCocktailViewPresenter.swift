@@ -1,4 +1,5 @@
 import Foundation
+import RealmSwift
 
 protocol RandomCocktailViewProtocol: AnyObject {
     func success(with cocktail: CocktailModel?, with dataSource: TableViewDataSourceProtocol?)
@@ -45,6 +46,12 @@ final class RandomCocktailViewPresenter: RandomCocktailViewPresenterProtocol {
     }
     
     public func addToFavorite() {
-        print("Added to favorite")
+        let realm = try! Realm()
+        
+        try! realm.write {
+            let myReal = CocktailRealmModel()
+            myReal.cocktailsRealm = cocktail
+            realm.add(myReal)
+        }
     }
 }

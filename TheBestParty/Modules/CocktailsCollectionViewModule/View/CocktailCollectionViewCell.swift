@@ -88,6 +88,15 @@ extension CocktailCollectionViewCell {
         self.cocktailTypeLabel.text = cocktail.drinks.first?.cocktailType
     }
     
+//    public func configureRealmCell(with realmCocktail: CocktailRealmModel) {
+//        guard let url = URL(string: realmCocktail.cocktailsRealm?.drinks.first?.cocktailImage ?? "") else { return }
+//        self.cocktailImageView.kf.setImage(with: url)
+//
+//        self.cocktailNameLabel.text = realmCocktail.cocktailsRealm?.drinks.first?.cocktailName
+//        self.cocktailCategoryLabel.text = realmCocktail.cocktailsRealm?.drinks.first?.cocktailCategory
+//        self.cocktailTypeLabel.text = realmCocktail.cocktailsRealm?.drinks.first?.cocktailType
+//    }
+    
     private func setupView() {
         contentView.addSubview(cocktailImageView)
         NSLayoutConstraint.activate([

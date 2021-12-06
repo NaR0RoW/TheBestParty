@@ -4,6 +4,7 @@ protocol AssemblyModuleBuilderProtocol {
     func createCocktailsCollectionModule(router: RouterProtocol) -> UIViewController
     func createCocktailDetailsModule(cocktail: CocktailModel?, router: RouterProtocol) -> UIViewController
     func createRandomCocktailModule() -> UIViewController
+    func createFavoriteCocktailModule() -> UIViewController
 }
 
 final class AssemblyModuleBuilder: AssemblyModuleBuilderProtocol {
@@ -32,6 +33,14 @@ final class AssemblyModuleBuilder: AssemblyModuleBuilderProtocol {
         let presenter = RandomCocktailViewPresenter(view: view, networkService: networkService, dataSource: dataSource)
         view.presenter = presenter
 
+        return view
+    }
+    
+    public func createFavoriteCocktailModule() -> UIViewController {
+        let view = FavoritesCocktailsViewController()
+        let presenter = FavoriteCocktailViewPresenter(view: view)
+        view.presenter = presenter
+        
         return view
     }
 }

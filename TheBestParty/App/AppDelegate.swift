@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let submodules = (
             cocktails: navigationController,
-            favoritesCocktails: UINavigationController(rootViewController: FavoritesCocktailsViewController()),
+            favoritesCocktails: UINavigationController(rootViewController: assemblyBuilder.createFavoriteCocktailModule()),
             ingredients: UINavigationController(rootViewController: IngredientsViewController()),
             randomCocktail: UINavigationController(rootViewController: assemblyBuilder.createRandomCocktailModule())
         )
