@@ -46,12 +46,25 @@ final class RandomCocktailViewPresenter: RandomCocktailViewPresenterProtocol {
     }
     
     public func addToFavorite() {
-        let realm = try! Realm()
+        guard let realm = try? Realm() else { return }
         
-        try! realm.write {
-            let myReal = CocktailRealmModel()
-            myReal.cocktailsRealm = cocktail
-            realm.add(myReal)
+        try? realm.write {
+            let realmModel = CocktailRealmModel()
+            realmModel.cocktailsRealm = cocktail
+
+            // TO THINK: - Think for better solution
+            var cocktailsInRealmNames = [String]()
+            guard let cocktailToAdd = cocktail?.drinks.first?.cocktailName else { return }
+            
+            for element in realm.objects(CocktailRealmModel.self) {
+                guard let cocktailInRealmName = element.cocktailsRealm?.drinks.first?.cocktailName else { return }
+                
+                cocktailsInRealmNames.append(cocktailInRealmName)
+            }
+            
+            if !cocktailsInRealmNames.contains(cocktailToAdd) {
+                realm.add(realmModel)
+            }
         }
     }
 }

@@ -1,8 +1,9 @@
 import Foundation
 import RealmSwift
 
-class CocktailRealmModel: Object {
+final class CocktailRealmModel: Object {
     @objc private dynamic var structData: Data? = nil
+//    @objc dynamic var id = ""
     
     var cocktailsRealm: CocktailModel? {
         get {
@@ -15,4 +16,8 @@ class CocktailRealmModel: Object {
             structData = try? JSONEncoder().encode(newValue)
         }
     }
+    
+//    override class func primaryKey() -> String? {
+//        return "id"
+//    }
 }

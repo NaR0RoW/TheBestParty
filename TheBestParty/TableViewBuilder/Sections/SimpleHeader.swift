@@ -1,6 +1,6 @@
 import UIKit
 
-class SimpleHeaderSection: MockSection {
+final class SimpleHeaderSection: MockSection {
     private let title: String
     
     init(title: String, builders: [TableViewCellBuilder], tableView: UITableView) {

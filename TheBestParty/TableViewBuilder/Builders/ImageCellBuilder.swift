@@ -1,6 +1,6 @@
 import UIKit
 
-class ImageCellBuilder: TableViewCellBuilder {
+final class ImageCellBuilder: TableViewCellBuilder {
     private let cocktail: CocktailModel
     
     init(cocktail: CocktailModel) {

@@ -1,6 +1,6 @@
 import UIKit
 
-class TableCell: UITableViewCell {
+final class TableCell: UITableViewCell {
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 22.0)

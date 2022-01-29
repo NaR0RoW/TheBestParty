@@ -1,6 +1,6 @@
 import UIKit
 
-class RandomCocktailViewController: UIViewController {
+final class RandomCocktailViewController: UIViewController {
     private var factory: FactoryProtocol?
     
     var presenter: RandomCocktailViewPresenterProtocol?
@@ -10,6 +10,7 @@ class RandomCocktailViewController: UIViewController {
         tableView.showsVerticalScrollIndicator = false
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
+        tableView.contentInsetAdjustmentBehavior = .never
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
         return tableView
@@ -53,10 +54,11 @@ class RandomCocktailViewController: UIViewController {
 extension RandomCocktailViewController {
     private func setupTableView() {
         view.addSubview(tableView)
+        tableView.backgroundColor = .systemBackground
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor)
         ])
     }

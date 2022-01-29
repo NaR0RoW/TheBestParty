@@ -1,6 +1,6 @@
 import UIKit
 
-class IngredientCell: UITableViewCell {
+final class IngredientCell: UITableViewCell {
     private let firstIngredientLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 22.0)

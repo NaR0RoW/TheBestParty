@@ -1,4 +1,5 @@
 import Foundation
+import RealmSwift
 
 protocol CocktailDetailsViewProtocol: AnyObject {
     func setupDetails(with cocktail: CocktailModel?, with dataSource: TableViewDataSourceProtocol?)
@@ -33,6 +34,25 @@ final class CocktailDetailsViewPresenter: CocktailDetailsViewPresenterProtocol {
     }
     
     public func addToFavorite() {
-        print("Added to favorite")
+        guard let realm = try? Realm() else { return }
+    
+        try? realm.write {
+            let realmModel = CocktailRealmModel()
+            realmModel.cocktailsRealm = cocktail
+
+//             TO THINK: - Think for better solution
+            var cocktailsInRealmNames = [String]()
+            guard let cocktailToAdd = cocktail?.drinks.first?.cocktailName else { return }
+
+            for element in realm.objects(CocktailRealmModel.self) {
+                guard let cocktailInRealmName = element.cocktailsRealm?.drinks.first?.cocktailName else { return }
+
+                cocktailsInRealmNames.append(cocktailInRealmName)
+            }
+
+            if !cocktailsInRealmNames.contains(cocktailToAdd) {
+                realm.add(realmModel)
+            }
+        }
     }
 }

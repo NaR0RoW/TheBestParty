@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let tabBarController = TabBarModuleBuilder.build(usingSubmodules: submodules)
         window.rootViewController = tabBarController
-        UINavigationBar.appearance().tintColor = UIColor.label
+//        UINavigationBar.appearance().tintColor = UIColor.label
         window.makeKeyAndVisible()
         self.window = window
         

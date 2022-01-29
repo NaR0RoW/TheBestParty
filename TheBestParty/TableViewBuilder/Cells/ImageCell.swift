@@ -1,7 +1,7 @@
 import Kingfisher
 import UIKit
 
-class ImageCell: UITableViewCell {
+final class ImageCell: UITableViewCell {
     private let cocktailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false

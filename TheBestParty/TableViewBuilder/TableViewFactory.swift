@@ -1,6 +1,6 @@
 import UIKit
 
-class TableViewFactory: FactoryProtocol {
+final class TableViewFactory: FactoryProtocol {
     private let model: CocktailModel
     private let tableView: UITableView
     

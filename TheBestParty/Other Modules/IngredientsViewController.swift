@@ -1,6 +1,6 @@
 import UIKit
 
-class IngredientsViewController: UIViewController {
+final class IngredientsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

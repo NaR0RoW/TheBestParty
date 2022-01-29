@@ -1,6 +1,6 @@
 import UIKit
 
-class IngredientCellBuilder: TableViewCellBuilder {
+final class IngredientCellBuilder: TableViewCellBuilder {
     private let cocktail: CocktailModel
     
     init(cocktail: CocktailModel) {

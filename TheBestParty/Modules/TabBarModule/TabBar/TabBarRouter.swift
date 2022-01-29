@@ -1,7 +1,7 @@
 import UIKit
 
-class TabBarRouter {
-    var view: UIViewController
+final class TabBarRouter {
+    var view: UIViewController?
     
     typealias Submodules = (
         cocktails: UIViewController,
@@ -10,7 +10,7 @@ class TabBarRouter {
         randomCocktail: UIViewController
     )
     
-    init(view: UIViewController) {
+    init(view: UIViewController?) {
         self.view = view
     }
 }

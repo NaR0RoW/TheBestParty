@@ -1,6 +1,7 @@
 import UIKit
+import RealmSwift
 
-class CocktailDetailsViewController: UIViewController {
+final class CocktailDetailsViewController: UIViewController {
     private var factory: FactoryProtocol?
     
     var presenter: CocktailDetailsViewPresenterProtocol?
@@ -10,6 +11,7 @@ class CocktailDetailsViewController: UIViewController {
         tableView.showsVerticalScrollIndicator = false
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
+        tableView.contentInsetAdjustmentBehavior = .never
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
         return tableView
@@ -55,10 +57,11 @@ class CocktailDetailsViewController: UIViewController {
 extension CocktailDetailsViewController {
     private func setupTableView() {
         view.addSubview(tableView)
+        tableView.backgroundColor = .systemBackground
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor)
         ])
     }

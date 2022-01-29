@@ -1,6 +1,6 @@
 import UIKit
 
-class CocktailsCollectionViewController: UIViewController {
+final class CocktailsCollectionViewController: UIViewController {
     var presenter: CocktailsCollectionViewPresenterProtocol?
     
     lazy var searchController: UISearchController = {
@@ -73,7 +73,6 @@ class CocktailsCollectionViewController: UIViewController {
 
 extension CocktailsCollectionViewController {
     private func setupView() {
-        view.backgroundColor = .systemBackground
         view.addSubview(cocktailsCollectionView)
         title = "Cocktails"
         navigationController?.navigationBar.prefersLargeTitles = true

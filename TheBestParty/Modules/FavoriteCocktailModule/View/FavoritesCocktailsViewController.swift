@@ -1,8 +1,6 @@
 import UIKit
-import RealmSwift
 
-class FavoritesCocktailsViewController: UIViewController {
-    
+final class FavoritesCocktailsViewController: UIViewController {
     var presenter: FavoriteCocktailViewPresenterProtocol?
     
     lazy var cocktailsCollectionView: UICollectionView = {
@@ -52,16 +50,10 @@ extension FavoritesCocktailsViewController {
 
 extension FavoritesCocktailsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return presenter?.realmCocktails?.count ?? 0
         return presenter?.configureNumberOfItemsInSection() ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let cocktail = presenter?.cocktails?[indexPath.row] else {
-//            return UICollectionViewCell()
-//        }
-//        let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CocktailCollectionViewCell
-//        cell.configureCell(with: cocktail)
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CocktailCollectionViewCell
         cell.configureCell(with: (presenter?.configureCellForItemAt(index: indexPath.row))!)
         
@@ -70,10 +62,7 @@ extension FavoritesCocktailsViewController: UICollectionViewDataSource {
 }
 
 extension FavoritesCocktailsViewController: UICollectionViewDelegate {
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let cocktail = presenter?.cocktails?[indexPath.row]
-//        presenter?.goToDetails(cocktail: cocktail)
-//    }
+    
 }
 
 extension FavoritesCocktailsViewController: FavoriteCocktailViewProtocol {
