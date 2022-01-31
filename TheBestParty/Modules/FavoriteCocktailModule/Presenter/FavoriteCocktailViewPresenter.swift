@@ -8,7 +8,7 @@ protocol FavoriteCocktailViewProtocol: AnyObject {
 protocol FavoriteCocktailViewPresenterProtocol: AnyObject {
     init(view: FavoriteCocktailViewProtocol)
     func configureNumberOfItemsInSection() -> Int
-    func configureCellForItemAt(index: Int) -> CocktailModel?
+    func configureCellForItemAt(index: Int) -> CocktailModelObject?
 }
 
 final class FavoriteCocktailViewPresenter: FavoriteCocktailViewPresenterProtocol {
@@ -19,17 +19,19 @@ final class FavoriteCocktailViewPresenter: FavoriteCocktailViewPresenterProtocol
     }
     
     public func configureNumberOfItemsInSection() -> Int {
-        guard let realm = try? Realm() else { return 0 }
-        let realmCocktails = realm.objects(CocktailRealmModel.self)
+//        guard let realm = try? Realm() else { return 0 }
+//        let realmCocktails = realm.objects(CocktailRealmModel.self)
         
-        return realmCocktails.count
+//        return realmCocktails.count
+        return 1
     }
     
-    public func configureCellForItemAt(index: Int) -> CocktailModel? {
-        guard let realm = try? Realm() else { return nil }
-        let cocktails = realm.objects(CocktailRealmModel.self)
-        let result = cocktails[index].cocktailsRealm
-
-        return result
+    public func configureCellForItemAt(index: Int) -> CocktailModelObject? {
+//        guard let realm = try? Realm() else { return nil }
+//        let cocktails = realm.objects(CocktailRealmModel.self)
+//        let result = cocktails[index].cocktailsRealm
+//
+//        return result
+        return CocktailModelObject()
     }
 }

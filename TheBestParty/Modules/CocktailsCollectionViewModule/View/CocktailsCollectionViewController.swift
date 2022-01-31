@@ -138,6 +138,7 @@ extension CocktailsCollectionViewController: CocktailsCollectionViewProtocol {
 
 extension CocktailsCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("Number: ", presenter?.cocktails?.count as Any) // 25
         return presenter?.cocktails?.count ?? 0
     }
     

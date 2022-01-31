@@ -1,4 +1,5 @@
 import Foundation
+import RealmSwift
 
 protocol CocktailsCollectionViewProtocol: AnyObject {
     func success()
@@ -7,8 +8,8 @@ protocol CocktailsCollectionViewProtocol: AnyObject {
 
 protocol CocktailsCollectionViewPresenterProtocol: AnyObject {
     init(view: CocktailsCollectionViewProtocol, networkService: NetworkProviderForCocktails, router: RouterProtocol)
-    var cocktails: [CocktailModel]? { get set }
-    func goToDetails(cocktail: CocktailModel?)
+    var cocktails: [CocktailModelObject]? { get set }
+    func goToDetails(cocktail: CocktailModelObject?)
     func searchForCocktail(searchTerm: String)
 }
 
@@ -16,7 +17,7 @@ final class CocktailsCollectionViewPresenter: CocktailsCollectionViewPresenterPr
     weak var view: CocktailsCollectionViewProtocol?
     let networkService: NetworkProviderForCocktails?
     var router: RouterProtocol?
-    var cocktails: [CocktailModel]?
+    var cocktails: [CocktailModelObject]?
 
     required init(view: CocktailsCollectionViewProtocol, networkService: NetworkProviderForCocktails, router: RouterProtocol) {
         self.view = view
@@ -31,50 +32,22 @@ final class CocktailsCollectionViewPresenter: CocktailsCollectionViewPresenterPr
             guard let self = self else { return }
             DispatchQueue.main.async {
                 switch result {
-                case .success(let cocktails):
-                    self.cocktails = cocktails.drinks.compactMap {
-                        CocktailModel(drinks: [Cocktail(
-                            cocktailName: $0.cocktailName,
-                            cocktailCategory: $0.cocktailCategory,
-                            cocktailGlass: $0.cocktailGlass,
-                            cocktailInstructions: $0.cocktailInstructions,
-                            cocktailImage: $0.cocktailImage,
-                            cocktailType: $0.cocktailType,
-                            cocktailFirstIngredient: $0.cocktailFirstIngredient,
-                            cocktailSecondIngredient: $0.cocktailSecondIngredient,
-                            cocktailThirdIngredient: $0.cocktailThirdIngredient,
-                            cocktailFourthIngredient: $0.cocktailFourthIngredient,
-                            cocktailFifthIngredient: $0.cocktailFifthIngredient,
-                            cocktailSixthIngredient: $0.cocktailSixthIngredient,
-                            cocktailSeventhIngredient: $0.cocktailSeventhIngredient,
-                            cocktailEighthIngredient: $0.cocktailEighthIngredient,
-                            cocktailNinthIngredient: $0.cocktailNinthIngredient,
-                            cocktailTenthIngredient: $0.cocktailTenthIngredient,
-                            cocktailEleventhIngredient: $0.cocktailEleventhIngredient,
-                            cocktailTwelfthIngredient: $0.cocktailTwelfthIngredient,
-                            cocktailThirteenthIngredient: $0.cocktailThirteenthIngredient,
-                            cocktailFourteenthIngredient: $0.cocktailFourteenthIngredient,
-                            cocktailFifteenthIngredient: $0.cocktailFifteenthIngredient,
-                            cocktailFirstIngredientMeasure: $0.cocktailFirstIngredientMeasure,
-                            cocktailSecondIngredientMeasure: $0.cocktailSecondIngredientMeasure,
-                            cocktailThirdIngredientMeasure: $0.cocktailThirdIngredientMeasure,
-                            cocktailFourthIngredientMeasure: $0.cocktailFourthIngredientMeasure,
-                            cocktailFifthIngredientMeasure: $0.cocktailFifthIngredientMeasure,
-                            cocktailSixthIngredientMeasure: $0.cocktailSixthIngredientMeasure,
-                            cocktailSeventhIngredientMeasure: $0.cocktailSeventhIngredientMeasure,
-                            cocktailEighthIngredientMeasure: $0.cocktailEighthIngredientMeasure,
-                            cocktailNinthIngredientMeasure: $0.cocktailNinthIngredientMeasure,
-                            cocktailTenthIngredientMeasure: $0.cocktailTenthIngredientMeasure,
-                            cocktailEleventhIngredientMeasure: $0.cocktailEleventhIngredientMeasure,
-                            cocktailTwelfthIngredientMeasure: $0.cocktailTwelfthIngredientMeasure,
-                            cocktailThirteenthIngredientMeasure: $0.cocktailThirteenthIngredientMeasure,
-                            cocktailFourteenthIngredientMeasure: $0.cocktailFourteenthIngredientMeasure,
-                            cocktailFifteenthIngredientMeasure: $0.cocktailFifteenthIngredientMeasure
-                        )])
+                case .success(let cocktail):
+
+//                    print("Array: ", self.cocktails as Any) // nil
+//                    print("Item: ", cocktail)
+                    print("---------------------")
+                    print(type(of: self.cocktails as Any)) // Optional<Array<CocktailModelObject>>
+                    print(type(of: cocktail)) // CocktailModelObject
+                    print("---------------------")
+                    self.cocktails = cocktail.drinks.compactMap { _ in
+                        CocktailModelObject()
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         self.view?.success()
                     }
+                    print("---------------------")
+                    print("Cocktails: ", self.cocktails as Any)
                 case .failure(let error):
                     self.view?.failure(error: error)
                 }
@@ -82,7 +55,52 @@ final class CocktailsCollectionViewPresenter: CocktailsCollectionViewPresenterPr
         }
     }
     
-    public func goToDetails(cocktail: CocktailModel?) {
+//case .success(let cocktails):
+//    self.cocktails = cocktails.drinks.compactMap {
+//        CocktailModel(drinks: [Cocktail(
+//            cocktailName: $0.cocktailName,
+//            cocktailCategory: $0.cocktailCategory,
+//            cocktailGlass: $0.cocktailGlass,
+//            cocktailInstructions: $0.cocktailInstructions,
+//            cocktailImage: $0.cocktailImage,
+//            cocktailType: $0.cocktailType,
+//            cocktailFirstIngredient: $0.cocktailFirstIngredient,
+//            cocktailSecondIngredient: $0.cocktailSecondIngredient,
+//            cocktailThirdIngredient: $0.cocktailThirdIngredient,
+//            cocktailFourthIngredient: $0.cocktailFourthIngredient,
+//            cocktailFifthIngredient: $0.cocktailFifthIngredient,
+//            cocktailSixthIngredient: $0.cocktailSixthIngredient,
+//            cocktailSeventhIngredient: $0.cocktailSeventhIngredient,
+//            cocktailEighthIngredient: $0.cocktailEighthIngredient,
+//            cocktailNinthIngredient: $0.cocktailNinthIngredient,
+//            cocktailTenthIngredient: $0.cocktailTenthIngredient,
+//            cocktailEleventhIngredient: $0.cocktailEleventhIngredient,
+//            cocktailTwelfthIngredient: $0.cocktailTwelfthIngredient,
+//            cocktailThirteenthIngredient: $0.cocktailThirteenthIngredient,
+//            cocktailFourteenthIngredient: $0.cocktailFourteenthIngredient,
+//            cocktailFifteenthIngredient: $0.cocktailFifteenthIngredient,
+//            cocktailFirstIngredientMeasure: $0.cocktailFirstIngredientMeasure,
+//            cocktailSecondIngredientMeasure: $0.cocktailSecondIngredientMeasure,
+//            cocktailThirdIngredientMeasure: $0.cocktailThirdIngredientMeasure,
+//            cocktailFourthIngredientMeasure: $0.cocktailFourthIngredientMeasure,
+//            cocktailFifthIngredientMeasure: $0.cocktailFifthIngredientMeasure,
+//            cocktailSixthIngredientMeasure: $0.cocktailSixthIngredientMeasure,
+//            cocktailSeventhIngredientMeasure: $0.cocktailSeventhIngredientMeasure,
+//            cocktailEighthIngredientMeasure: $0.cocktailEighthIngredientMeasure,
+//            cocktailNinthIngredientMeasure: $0.cocktailNinthIngredientMeasure,
+//            cocktailTenthIngredientMeasure: $0.cocktailTenthIngredientMeasure,
+//            cocktailEleventhIngredientMeasure: $0.cocktailEleventhIngredientMeasure,
+//            cocktailTwelfthIngredientMeasure: $0.cocktailTwelfthIngredientMeasure,
+//            cocktailThirteenthIngredientMeasure: $0.cocktailThirteenthIngredientMeasure,
+//            cocktailFourteenthIngredientMeasure: $0.cocktailFourteenthIngredientMeasure,
+//            cocktailFifteenthIngredientMeasure: $0.cocktailFifteenthIngredientMeasure
+//        )])
+//    }
+//    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//        self.view?.success()
+//    }
+    
+    public func goToDetails(cocktail: CocktailModelObject?) {
         router?.showDetails(cocktail: cocktail)
     }
     

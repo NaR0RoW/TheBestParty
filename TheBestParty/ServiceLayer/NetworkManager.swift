@@ -1,11 +1,11 @@
 import Foundation
 
 protocol NetworkProviderForCocktails {
-    func getCocktails(searchTerm: String, completion: @escaping((Result<CocktailModel, APIError>) -> Void))
+    func getCocktails(searchTerm: String, completion: @escaping((Result<CocktailModelObject, APIError>) -> Void))
 }
 
 protocol NetworkProviderForRandomCocktail {
-    func getRandomCocktail(completion: @escaping((Result<CocktailModel, APIError>) -> Void))
+    func getRandomCocktail(completion: @escaping((Result<CocktailModelObject, APIError>) -> Void))
 }
 
 fileprivate typealias NetworkServiceProtocol = NetworkProviderForCocktails & NetworkProviderForRandomCocktail
@@ -26,11 +26,11 @@ final class NetworkService: NetworkServiceProtocol {
         case GET
     }
 
-    public func getCocktails(searchTerm: String, completion: @escaping((Result<CocktailModel, APIError>) -> Void)) {
+    public func getCocktails(searchTerm: String, completion: @escaping((Result<CocktailModelObject, APIError>) -> Void)) {
         request(with: Constants.searchForCocktail.rawValue, searchTerm: searchTerm, method: .GET, completion: completion)
     }
     
-    public func getRandomCocktail(completion: @escaping((Result<CocktailModel, APIError>) -> Void)) {
+    public func getRandomCocktail(completion: @escaping((Result<CocktailModelObject, APIError>) -> Void)) {
         request(with: Constants.randomCocktail.rawValue, searchTerm: "", method: .GET, completion: completion)
     }
 

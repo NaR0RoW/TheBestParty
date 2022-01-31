@@ -83,14 +83,14 @@ extension CocktailDetailsViewController {
 
 extension CocktailDetailsViewController: CocktailDetailsViewProtocol {
     @objc private func addToFavorite() {
-        presenter?.addToFavorite()
+//        presenter?.addToFavorite()
     }
     
     @objc private func popToRoot() {
         presenter?.popToRoot()
     }
     
-    func setupDetails(with cocktail: CocktailModel?, with dataSource: TableViewDataSourceProtocol?) {
+    func setupDetails(with cocktail: CocktailModelObject?, with dataSource: TableViewDataSourceProtocol?) {
         tableView.delegate = dataSource
         tableView.dataSource = dataSource
         

@@ -1,10 +1,10 @@
 import UIKit
 
 final class TableViewFactory: FactoryProtocol {
-    private let model: CocktailModel
+    private let model: CocktailModelObject
     private let tableView: UITableView
     
-    init(model: CocktailModel, tableView: UITableView) {
+    init(model: CocktailModelObject, tableView: UITableView) {
         self.model = model
         self.tableView = tableView
     }
