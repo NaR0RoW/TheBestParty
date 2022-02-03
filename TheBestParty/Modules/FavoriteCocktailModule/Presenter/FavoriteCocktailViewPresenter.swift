@@ -1,35 +1,40 @@
 import Foundation
-import RealmSwift
 
 protocol FavoriteCocktailViewProtocol: AnyObject {
-    
+    func realmIsEmpty()
+    func realmNotEmpty()
 }
 
 protocol FavoriteCocktailViewPresenterProtocol: AnyObject {
-    init(view: FavoriteCocktailViewProtocol)
+    init(view: FavoriteCocktailViewProtocol, realmManager: RealmManagerProtocol?)
     func configureNumberOfItemsInSection() -> Int
     func configureCellForItemAt(index: Int) -> CocktailModel?
+    func checkIfThereAreAnyFavoritesCocktails()
 }
 
 final class FavoriteCocktailViewPresenter: FavoriteCocktailViewPresenterProtocol {
     weak var view: FavoriteCocktailViewProtocol?
+    var realmManager: RealmManagerProtocol?
 
-    required init(view: FavoriteCocktailViewProtocol) {
+    required init(view: FavoriteCocktailViewProtocol, realmManager: RealmManagerProtocol?) {
         self.view = view
+        self.realmManager = realmManager
     }
     
     public func configureNumberOfItemsInSection() -> Int {
-        guard let realm = try? Realm() else { return 0 }
-        let realmCocktails = realm.objects(CocktailRealmModel.self)
-        
-        return realmCocktails.count
+        realmManager?.configureNumberOfItemsInSection() ?? 0
     }
     
     public func configureCellForItemAt(index: Int) -> CocktailModel? {
-        guard let realm = try? Realm() else { return nil }
-        let cocktails = realm.objects(CocktailRealmModel.self)
-        let result = cocktails[index].cocktailsRealm
-
-        return result
+        realmManager?.configureCellForItemAt(index: index)
+    }
+    
+    public func checkIfThereAreAnyFavoritesCocktails() {
+        guard let state = realmManager?.checkIfThereAreAnyFavoritesCocktails() else { return }
+        if state {
+            self.view?.realmIsEmpty()
+        } else {
+            self.view?.realmNotEmpty()
+        }
     }
 }

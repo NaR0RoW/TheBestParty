@@ -11,8 +11,11 @@
 		0D0B448A275E838800A7BBDF /* FavoriteCocktailViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0B4489275E838800A7BBDF /* FavoriteCocktailViewPresenter.swift */; };
 		0D29D79F275A7F62006962D2 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0D29D79E275A7F62006962D2 /* Realm */; };
 		0D29D7A1275A7F62006962D2 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0D29D7A0275A7F62006962D2 /* RealmSwift */; };
+		0D311BEE27A94A7C00669EDE /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D311BED27A94A7C00669EDE /* RealmManager.swift */; };
+		0D311BF127A9503600669EDE /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 0D311BF027A9503600669EDE /* Lottie */; };
 		0D373F7C27579CFB000B8F86 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0D373F7B27579CFB000B8F86 /* Kingfisher */; };
 		0D469760275804D300D1B011 /* RandomCocktailViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D46975F275804D300D1B011 /* RandomCocktailViewPresenter.swift */; };
+		0DAEB59427ABFEBA00ED1130 /* favouriteIcon.json in Resources */ = {isa = PBXBuildFile; fileRef = 0DAEB59327ABFEBA00ED1130 /* favouriteIcon.json */; };
 		0DD9D5C3275A35FE00C75CD4 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD9D5C2275A35FE00C75CD4 /* UIButton+Extension.swift */; };
 		4E54AF3B274E53EC00C94F70 /* CellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E54AF3A274E53EC00C94F70 /* CellType.swift */; };
 		4E62BAAA273E8A38006BA756 /* TabBarRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E62BAA9273E8A38006BA756 /* TabBarRouter.swift */; };
@@ -56,7 +59,9 @@
 /* Begin PBXFileReference section */
 		0D0B4484275E825000A7BBDF /* CocktailRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailRealmModel.swift; sourceTree = "<group>"; };
 		0D0B4489275E838800A7BBDF /* FavoriteCocktailViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCocktailViewPresenter.swift; sourceTree = "<group>"; };
+		0D311BED27A94A7C00669EDE /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		0D46975F275804D300D1B011 /* RandomCocktailViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomCocktailViewPresenter.swift; sourceTree = "<group>"; };
+		0DAEB59327ABFEBA00ED1130 /* favouriteIcon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = favouriteIcon.json; sourceTree = "<group>"; };
 		0DD9D5C2275A35FE00C75CD4 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		4E54AF3A274E53EC00C94F70 /* CellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellType.swift; sourceTree = "<group>"; };
 		4E62BAA9273E8A38006BA756 /* TabBarRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarRouter.swift; sourceTree = "<group>"; };
@@ -107,6 +112,7 @@
 				0D29D7A1275A7F62006962D2 /* RealmSwift in Frameworks */,
 				0D29D79F275A7F62006962D2 /* Realm in Frameworks */,
 				0D373F7C27579CFB000B8F86 /* Kingfisher in Frameworks */,
+				0D311BF127A9503600669EDE /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +142,14 @@
 				0D0B4489275E838800A7BBDF /* FavoriteCocktailViewPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		0D311BF227A9504A00669EDE /* LottieAnimations */ = {
+			isa = PBXGroup;
+			children = (
+				0DAEB59327ABFEBA00ED1130 /* favouriteIcon.json */,
+			);
+			path = LottieAnimations;
 			sourceTree = "<group>";
 		};
 		0D46975C2758047800D1B011 /* RandomCocktailModule */ = {
@@ -269,6 +283,7 @@
 		4E874EF6273D9EA500C85E04 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0D311BF227A9504A00669EDE /* LottieAnimations */,
 				4EB3C290273B039500114EC6 /* Info.plist */,
 				4EB3C28D273B039500114EC6 /* LaunchScreen.storyboard */,
 			);
@@ -328,6 +343,7 @@
 			isa = PBXGroup;
 			children = (
 				4E637B60273BD46E0082AB7B /* NetworkManager.swift */,
+				0D311BED27A94A7C00669EDE /* RealmManager.swift */,
 			);
 			path = ServiceLayer;
 			sourceTree = "<group>";
@@ -414,6 +430,7 @@
 				0D373F7B27579CFB000B8F86 /* Kingfisher */,
 				0D29D79E275A7F62006962D2 /* Realm */,
 				0D29D7A0275A7F62006962D2 /* RealmSwift */,
+				0D311BF027A9503600669EDE /* Lottie */,
 			);
 			productName = TheBestParty;
 			productReference = 4EB3C27F273B039200114EC6 /* TheBestParty.app */;
@@ -445,6 +462,7 @@
 			packageReferences = (
 				0D373F7A27579CFB000B8F86 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				0D29D79D275A7F62006962D2 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				0D311BEF27A9503600669EDE /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 4EB3C280273B039200114EC6 /* Products */;
 			projectDirPath = "";
@@ -461,6 +479,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EB3C28F273B039500114EC6 /* LaunchScreen.storyboard in Resources */,
+				0DAEB59427ABFEBA00ED1130 /* favouriteIcon.json in Resources */,
 				4EB3C28C273B039500114EC6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -489,6 +508,7 @@
 				4EF619E7274D6FEF00928D41 /* FavoritesCocktailsViewController.swift in Sources */,
 				4E874EFA273DA99200C85E04 /* UIView+Extension.swift in Sources */,
 				4E6EF5EF274D6E39009EC3A3 /* CocktailsCollectionPresenter.swift in Sources */,
+				0D311BEE27A94A7C00669EDE /* RealmManager.swift in Sources */,
 				4EF619CD274D6F3D00928D41 /* TableViewFactory.swift in Sources */,
 				4E6EF5DA274D6CF7009EC3A3 /* Router.swift in Sources */,
 				4EF619E4274D6FD100928D41 /* TableCell.swift in Sources */,
@@ -714,6 +734,14 @@
 				minimumVersion = 10.22.0;
 			};
 		};
+		0D311BEF27A9503600669EDE /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.3.0;
+			};
+		};
 		0D373F7A27579CFB000B8F86 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -734,6 +762,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0D29D79D275A7F62006962D2 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
+		};
+		0D311BF027A9503600669EDE /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0D311BEF27A9503600669EDE /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 		0D373F7B27579CFB000B8F86 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

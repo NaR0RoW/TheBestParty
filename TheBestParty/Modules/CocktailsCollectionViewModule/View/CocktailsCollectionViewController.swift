@@ -42,7 +42,7 @@ final class CocktailsCollectionViewController: UIViewController {
         return imageView
     }()
     
-    private let headerLabel: UILabel = {
+    private let noResultsHeaderLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 30.0, weight: .bold)
         label.text = "No results found"
@@ -51,7 +51,7 @@ final class CocktailsCollectionViewController: UIViewController {
         return label
     }()
     
-    private let subLabel: UILabel = {
+    private let noResultsSubLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 22.0, weight: .semibold)
         label.numberOfLines = 0
@@ -74,6 +74,7 @@ final class CocktailsCollectionViewController: UIViewController {
 extension CocktailsCollectionViewController {
     private func setupView() {
         view.addSubview(cocktailsCollectionView)
+        view.backgroundColor = .systemBackground
         title = "Cocktails"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.searchController = searchController
@@ -106,17 +107,17 @@ extension CocktailsCollectionViewController {
             noResultsImage.heightAnchor.constraint(equalTo: noResultsView.widthAnchor)
         ])
         
-        noResultsView.addSubview(headerLabel)
+        noResultsView.addSubview(noResultsHeaderLabel)
         NSLayoutConstraint.activate([
-            headerLabel.topAnchor.constraint(equalTo: noResultsImage.bottomAnchor, constant: 25.0),
-            headerLabel.centerXAnchor.constraint(equalTo: noResultsView.centerXAnchor)
+            noResultsHeaderLabel.topAnchor.constraint(equalTo: noResultsImage.bottomAnchor, constant: 25.0),
+            noResultsHeaderLabel.centerXAnchor.constraint(equalTo: noResultsView.centerXAnchor)
         ])
         
-        noResultsView.addSubview(subLabel)
+        noResultsView.addSubview(noResultsSubLabel)
         NSLayoutConstraint.activate([
-            subLabel.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 25.0),
-            subLabel.leftAnchor.constraint(equalTo: noResultsView.leftAnchor, constant: 15.0),
-            subLabel.rightAnchor.constraint(equalTo: noResultsView.rightAnchor, constant: -15.0)
+            noResultsSubLabel.topAnchor.constraint(equalTo: noResultsHeaderLabel.bottomAnchor, constant: 25.0),
+            noResultsSubLabel.leftAnchor.constraint(equalTo: noResultsView.leftAnchor, constant: 15.0),
+            noResultsSubLabel.rightAnchor.constraint(equalTo: noResultsView.rightAnchor, constant: -15.0)
         ])
     }
 }

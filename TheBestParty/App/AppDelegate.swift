@@ -1,4 +1,5 @@
 import UIKit
+import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        UINavigationBar.appearance().tintColor = UIColor.label
         window.makeKeyAndVisible()
         self.window = window
+        
+        print(Realm.Configuration.defaultConfiguration.fileURL as Any)
         
         return true
     }

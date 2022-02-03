@@ -43,6 +43,8 @@ final class RandomCocktailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        
+        presenter?.highlightFavoriteCocktail()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -102,6 +104,11 @@ extension RandomCocktailViewController: RandomCocktailViewProtocol {
     }
     
     @objc private func addToFavorite() {
+        favoriteButton.tintColor = .systemOrange
         presenter?.addToFavorite()
+    }
+    
+    func highlightFavoriteCocktail() {
+        favoriteButton.tintColor = .systemOrange
     }
 }

@@ -20,7 +20,8 @@ final class AssemblyModuleBuilder: AssemblyModuleBuilderProtocol {
     public func createCocktailDetailsModule(cocktail: CocktailModel?, router: RouterProtocol) -> UIViewController {
         let view = CocktailDetailsViewController()
         let dataSource = TableViewDataSource()
-        let presenter = CocktailDetailsViewPresenter(view: view, cocktail: cocktail, router: router, dataSource: dataSource)
+        let realmManager = RealmManager()
+        let presenter = CocktailDetailsViewPresenter(view: view, cocktail: cocktail, router: router, dataSource: dataSource, realmManager: realmManager)
         view.presenter = presenter
 
         return view
@@ -30,7 +31,8 @@ final class AssemblyModuleBuilder: AssemblyModuleBuilderProtocol {
         let view = RandomCocktailViewController()
         let dataSource = TableViewDataSource()
         let networkService = NetworkService()
-        let presenter = RandomCocktailViewPresenter(view: view, networkService: networkService, dataSource: dataSource)
+        let realmManager = RealmManager()
+        let presenter = RandomCocktailViewPresenter(view: view, networkService: networkService, dataSource: dataSource, realmManager: realmManager)
         view.presenter = presenter
 
         return view
@@ -38,7 +40,8 @@ final class AssemblyModuleBuilder: AssemblyModuleBuilderProtocol {
     
     public func createFavoriteCocktailModule() -> UIViewController {
         let view = FavoritesCocktailsViewController()
-        let presenter = FavoriteCocktailViewPresenter(view: view)
+        let realmManager = RealmManager()
+        let presenter = FavoriteCocktailViewPresenter(view: view, realmManager: realmManager)
         view.presenter = presenter
         
         return view

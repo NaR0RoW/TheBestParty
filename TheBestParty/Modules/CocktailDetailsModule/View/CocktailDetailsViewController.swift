@@ -1,5 +1,4 @@
 import UIKit
-import RealmSwift
 
 final class CocktailDetailsViewController: UIViewController {
     private var factory: FactoryProtocol?
@@ -46,6 +45,8 @@ final class CocktailDetailsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        
+        presenter?.highlightFavoriteCocktail()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -83,6 +84,7 @@ extension CocktailDetailsViewController {
 
 extension CocktailDetailsViewController: CocktailDetailsViewProtocol {
     @objc private func addToFavorite() {
+        favoriteButton.tintColor = .systemOrange
         presenter?.addToFavorite()
     }
     
@@ -100,5 +102,9 @@ extension CocktailDetailsViewController: CocktailDetailsViewProtocol {
         if let sections = factory?.getSections() {
             dataSource?.sections = sections
         }
+    }
+    
+    func highlightFavoriteCocktail() {
+        favoriteButton.tintColor = .systemOrange
     }
 }

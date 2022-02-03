@@ -1,15 +1,16 @@
 import Foundation
-import RealmSwift
 
 protocol RandomCocktailViewProtocol: AnyObject {
     func success(with cocktail: CocktailModel?, with dataSource: TableViewDataSourceProtocol?)
     func failure(error: Error)
+    func highlightFavoriteCocktail()
 }
 
 protocol RandomCocktailViewPresenterProtocol: AnyObject {
-    init(view: RandomCocktailViewProtocol, networkService: NetworkProviderForRandomCocktail, dataSource: TableViewDataSourceProtocol)
+    init(view: RandomCocktailViewProtocol, networkService: NetworkProviderForRandomCocktail, dataSource: TableViewDataSourceProtocol, realmManager: RealmManagerProtocol?)
     func refresh()
     func addToFavorite()
+    func highlightFavoriteCocktail()
 }
 
 final class RandomCocktailViewPresenter: RandomCocktailViewPresenterProtocol {
@@ -17,11 +18,13 @@ final class RandomCocktailViewPresenter: RandomCocktailViewPresenterProtocol {
     let networkService: NetworkProviderForRandomCocktail?
     var dataSource: TableViewDataSourceProtocol?
     var cocktail: CocktailModel?
+    var realmManager: RealmManagerProtocol?
     
-    required init(view: RandomCocktailViewProtocol, networkService: NetworkProviderForRandomCocktail, dataSource: TableViewDataSourceProtocol) {
+    required init(view: RandomCocktailViewProtocol, networkService: NetworkProviderForRandomCocktail, dataSource: TableViewDataSourceProtocol, realmManager: RealmManagerProtocol?) {
         self.view = view
         self.networkService = networkService
         self.dataSource = dataSource
+        self.realmManager = realmManager
         
         getRandomCocktail()
     }
@@ -46,25 +49,12 @@ final class RandomCocktailViewPresenter: RandomCocktailViewPresenterProtocol {
     }
     
     public func addToFavorite() {
-        guard let realm = try? Realm() else { return }
-        
-        try? realm.write {
-            let realmModel = CocktailRealmModel()
-            realmModel.cocktailsRealm = cocktail
-
-            // TO THINK: - Think for better solution
-            var cocktailsInRealmNames = [String]()
-            guard let cocktailToAdd = cocktail?.drinks.first?.cocktailName else { return }
-            
-            for element in realm.objects(CocktailRealmModel.self) {
-                guard let cocktailInRealmName = element.cocktailsRealm?.drinks.first?.cocktailName else { return }
-                
-                cocktailsInRealmNames.append(cocktailInRealmName)
-            }
-            
-            if !cocktailsInRealmNames.contains(cocktailToAdd) {
-                realm.add(realmModel)
-            }
+        realmManager?.addToFavorite(cocktail: self.cocktail)
+    }
+    
+    public func highlightFavoriteCocktail() {
+        if realmManager?.checkIfCocktailIsFavorite(cocktail: self.cocktail) == true {
+            self.view?.highlightFavoriteCocktail()
         }
     }
 }
