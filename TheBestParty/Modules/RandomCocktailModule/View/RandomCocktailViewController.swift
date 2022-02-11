@@ -9,6 +9,7 @@ final class RandomCocktailViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.showsVerticalScrollIndicator = false
         tableView.allowsSelection = false
+        tableView.bounces = false
         tableView.separatorStyle = .none
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -86,7 +87,7 @@ extension RandomCocktailViewController: RandomCocktailViewProtocol {
         tableView.dataSource = dataSource
         
         guard let cocktail = cocktail else { return }
-
+    
         factory = TableViewFactory(model: cocktail, tableView: tableView)
         if let sections = factory?.getSections() {
             dataSource?.sections = sections

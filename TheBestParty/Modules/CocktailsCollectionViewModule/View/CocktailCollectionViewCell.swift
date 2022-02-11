@@ -59,6 +59,15 @@ final class CocktailCollectionViewCell: UICollectionViewCell {
         setupView()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        cocktailImageView.image = nil
+        cocktailNameLabel.text?.removeAll()
+        cocktailCategoryLabel.text?.removeAll()
+        cocktailTypeLabel.text?.removeAll()
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

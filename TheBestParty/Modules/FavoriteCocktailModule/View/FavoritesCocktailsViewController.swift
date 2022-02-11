@@ -61,6 +61,42 @@ final class FavoritesCocktailsViewController: UIViewController {
         setupView()
         setupCollectionView()
         setupNoResultsView()
+        
+        //handler to intercept event related to UIActions.
+        let handler: (_ action: UIAction) -> () = { action in
+            //          print(action.identifier)
+            switch action.identifier.rawValue {
+            case "Time added":
+//                self.presenter?.filterCocktails(searchType: .timeAdded)
+                print("Time added")
+            case "Name":
+//                self.presenter?.filterCocktails(searchType: .name)
+                print("Name")
+            case "Type":
+//                self.presenter?.filterCocktails(searchType: .type)
+                print("Type")
+            case "Alcohol type":
+//                self.presenter?.filterCocktails(searchType: .alcoholType)
+                print("Alcohol type")
+            default:
+                break
+            }
+        }
+        
+        //Initiate an array of UIAction.
+        let actions = [
+             UIAction(title: "Time added", identifier: UIAction.Identifier("Time added"), handler: handler),
+             UIAction(title: "Name", identifier: UIAction.Identifier("Name"), handler: handler),
+             UIAction(title: "Type", identifier: UIAction.Identifier("Type"), handler: handler),
+             UIAction(title: "Alcohol type", identifier: UIAction.Identifier("Alcohol type"), handler: handler)
+         ]
+
+        //Initiale UIMenu with the above array of actions.
+        let menu = UIMenu(children: actions)
+
+        //Create UIBarButtonItem with the initiated UIMenu and add it to the navigationItem.
+        let rightBarButton = UIBarButtonItem(title: "Sort", menu: menu)
+        navigationItem.rightBarButtonItem = rightBarButton
     }
     
     override func viewWillAppear(_ animated: Bool) {

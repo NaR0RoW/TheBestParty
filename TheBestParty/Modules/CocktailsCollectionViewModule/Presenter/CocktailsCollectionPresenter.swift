@@ -10,6 +10,7 @@ protocol CocktailsCollectionViewPresenterProtocol: AnyObject {
     var cocktails: [CocktailModel]? { get set }
     func goToDetails(cocktail: CocktailModel?)
     func searchForCocktail(searchTerm: String)
+    func refresh()
 }
 
 final class CocktailsCollectionViewPresenter: CocktailsCollectionViewPresenterProtocol {
@@ -96,5 +97,9 @@ final class CocktailsCollectionViewPresenter: CocktailsCollectionViewPresenterPr
                 self.getCocktails(searchTerm: trimmedText)
             })
         }
+    }
+    
+    public func refresh() {
+        getCocktails()
     }
 }

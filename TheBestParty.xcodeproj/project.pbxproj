@@ -51,7 +51,6 @@
 		4EF619E2274D6FB400928D41 /* TableViewDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF619E1274D6FB400928D41 /* TableViewDataSourceProtocol.swift */; };
 		4EF619E4274D6FD100928D41 /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF619E3274D6FD100928D41 /* TableCell.swift */; };
 		4EF619E7274D6FEF00928D41 /* FavoritesCocktailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF619E6274D6FEF00928D41 /* FavoritesCocktailsViewController.swift */; };
-		4EF619E9274D6FFB00928D41 /* IngredientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF619E8274D6FFB00928D41 /* IngredientsViewController.swift */; };
 		4EF619EB274D700600928D41 /* RandomCocktailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF619EA274D700600928D41 /* RandomCocktailViewController.swift */; };
 		4EF619ED274D73CF00928D41 /* TableCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF619EC274D73CF00928D41 /* TableCellBuilder.swift */; };
 /* End PBXBuildFile section */
@@ -99,7 +98,6 @@
 		4EF619E1274D6FB400928D41 /* TableViewDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSourceProtocol.swift; sourceTree = "<group>"; };
 		4EF619E3274D6FD100928D41 /* TableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
 		4EF619E6274D6FEF00928D41 /* FavoritesCocktailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCocktailsViewController.swift; sourceTree = "<group>"; };
-		4EF619E8274D6FFB00928D41 /* IngredientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsViewController.swift; sourceTree = "<group>"; };
 		4EF619EA274D700600928D41 /* RandomCocktailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomCocktailViewController.swift; sourceTree = "<group>"; };
 		4EF619EC274D73CF00928D41 /* TableCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -325,7 +323,6 @@
 				4EB3C298273B046B00114EC6 /* ServiceLayer */,
 				4E6EF5DB274D6D60009EC3A3 /* Modules */,
 				4EF619C2274D6EF200928D41 /* TableViewBuilder */,
-				4EF619E5274D6FDD00928D41 /* Other Modules */,
 			);
 			path = TheBestParty;
 			sourceTree = "<group>";
@@ -400,14 +397,6 @@
 				4EF619E1274D6FB400928D41 /* TableViewDataSourceProtocol.swift */,
 			);
 			path = Protocols;
-			sourceTree = "<group>";
-		};
-		4EF619E5274D6FDD00928D41 /* Other Modules */ = {
-			isa = PBXGroup;
-			children = (
-				4EF619E8274D6FFB00928D41 /* IngredientsViewController.swift */,
-			);
-			path = "Other Modules";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -517,7 +506,6 @@
 				4EF619CB274D6F2F00928D41 /* TableViewDataSource.swift in Sources */,
 				4EF619E2274D6FB400928D41 /* TableViewDataSourceProtocol.swift in Sources */,
 				4E6EF5D8274D6CE7009EC3A3 /* AssemblyModuleBuilder.swift in Sources */,
-				4EF619E9274D6FFB00928D41 /* IngredientsViewController.swift in Sources */,
 				0D0B4485275E825000A7BBDF /* CocktailRealmModel.swift in Sources */,
 				4E62BAB8273EBBBF006BA756 /* UICollectionView+Extension.swift in Sources */,
 				4EF619C4274D6F0400928D41 /* CocktailDetailsViewController.swift in Sources */,

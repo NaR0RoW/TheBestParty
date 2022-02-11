@@ -18,12 +18,19 @@ final class CocktailsCollectionViewController: UIViewController {
         layout.sectionInset = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.registerCell(CocktailCollectionViewCell.self)
+        collectionView.refreshControl = refreshControl
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.showsVerticalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         return collectionView
+    }()
+    
+    private let refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        
+        return refreshControl
     }()
     
     private let noResultsView: UIView = {
@@ -78,6 +85,7 @@ extension CocktailsCollectionViewController {
         title = "Cocktails"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.searchController = searchController
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
     private func setupCollectionView() {
@@ -119,6 +127,11 @@ extension CocktailsCollectionViewController {
             noResultsSubLabel.leftAnchor.constraint(equalTo: noResultsView.leftAnchor, constant: 15.0),
             noResultsSubLabel.rightAnchor.constraint(equalTo: noResultsView.rightAnchor, constant: -15.0)
         ])
+    }
+    
+    @objc private func refresh() {
+        presenter?.refresh()
+        refreshControl.endRefreshing()
     }
 }
 

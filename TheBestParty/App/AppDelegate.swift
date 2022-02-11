@@ -15,13 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let submodules = (
             cocktails: navigationController,
             favoritesCocktails: UINavigationController(rootViewController: assemblyBuilder.createFavoriteCocktailModule()),
-            ingredients: UINavigationController(rootViewController: IngredientsViewController()),
             randomCocktail: UINavigationController(rootViewController: assemblyBuilder.createRandomCocktailModule())
         )
         
         let tabBarController = TabBarModuleBuilder.build(usingSubmodules: submodules)
         window.rootViewController = tabBarController
-//        UINavigationBar.appearance().tintColor = UIColor.label
         window.makeKeyAndVisible()
         self.window = window
         

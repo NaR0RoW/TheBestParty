@@ -9,6 +9,7 @@ final class CocktailDetailsViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.showsVerticalScrollIndicator = false
         tableView.allowsSelection = false
+        tableView.bounces = false
         tableView.separatorStyle = .none
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.translatesAutoresizingMaskIntoConstraints = false
