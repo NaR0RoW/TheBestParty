@@ -1,11 +1,11 @@
 import RealmSwift
 
 protocol RealmManagerProtocol {
-    func addToFavorite(cocktail: CocktailModel?)
-    func checkIfThereAreAnyFavoritesCocktails() -> Bool
+    func addToFavorite(cocktail: CocktailObject?)
+    func checkIfThereAreAnyFavoritesCocktails(cocktail: CocktailObject?) -> Bool
     func configureNumberOfItemsInSection() -> Int
-    func configureCellForItemAt(index: Int) -> CocktailModel?
-    func checkIfCocktailIsFavorite(cocktail: CocktailModel?) -> Bool
+    func configureCellForItemAt(index: Int) -> CocktailObject?
+    func checkIfCocktailIsFavorite(cocktail: CocktailObject?) -> Bool
 //    func filterCocktails(cocktail: CocktailModel?, searchType: SearchType)
 //    func searchIn(cocktail: CocktailModel?, searchType: SearchType) -> [Cocktail]?
 }
@@ -19,14 +19,11 @@ protocol RealmManagerProtocol {
 
 final class RealmManager: RealmManagerProtocol {
     // TO THINK: - Think for better solution
-    public func addToFavorite(cocktail: CocktailModel?) {
+    public func addToFavorite(cocktail: CocktailObject?) {
         guard let realm = try? Realm() else { return }
-    
-        try? realm.write {
-            let realmModel = CocktailRealmModel()
-            realmModel.cocktailsRealm = cocktail
 
-            guard let cocktailToAdd = cocktail?.drinks.first?.cocktailName else { return }
+        try? realm.write {
+            guard let cocktailToAdd = cocktail?.cocktailName else { return }
             
             guard let cocktailsInRealmNames = cocktailsInRealmNames(cocktail: cocktail) else { return }
 
@@ -37,15 +34,14 @@ final class RealmManager: RealmManagerProtocol {
 //                try! realm.write {
 //                    realm.delete(Realm.objects(ChecklistDataModel.self).filter("name=%@",checklists[indexPath.row].name))
 //                }
-                
             } else {
-                realm.add(realmModel)
+                realm.add(cocktail!, update: .all)
             }
         }
     }
     
-    public func checkIfCocktailIsFavorite(cocktail: CocktailModel?) -> Bool {
-        guard let cocktailToCheck = cocktail?.drinks.first?.cocktailName else { return false }
+    public func checkIfCocktailIsFavorite(cocktail: CocktailObject?) -> Bool {
+        guard let cocktailToCheck = cocktail?.cocktailName else { return false }
         guard let cocktailsInRealmNames = cocktailsInRealmNames(cocktail: cocktail) else { return false }
         
         if cocktailsInRealmNames.contains(cocktailToCheck) {
@@ -55,13 +51,13 @@ final class RealmManager: RealmManagerProtocol {
         }
     }
     
-    private func cocktailsInRealmNames(cocktail: CocktailModel?) -> [String]? {
+    private func cocktailsInRealmNames(cocktail: CocktailObject?) -> [String]? {
         guard let realm = try? Realm() else { return nil }
         
         var cocktailsInRealmNames = [String]()
         
-        for element in realm.objects(CocktailRealmModel.self) {
-            guard let cocktailInRealmName = element.cocktailsRealm?.drinks.first?.cocktailName else { return nil }
+        for element in realm.objects(CocktailObject.self) {
+            guard let cocktailInRealmName = element.cocktailName else { return nil }
             
             cocktailsInRealmNames.append(cocktailInRealmName)
         }
@@ -69,23 +65,23 @@ final class RealmManager: RealmManagerProtocol {
         return cocktailsInRealmNames
     }
     
-    public func checkIfThereAreAnyFavoritesCocktails() -> Bool {
-        guard let realm = try? Realm() else { return false }
+    public func checkIfThereAreAnyFavoritesCocktails(cocktail: CocktailObject?) -> Bool {
+        guard let cocktailsInRealmNames = cocktailsInRealmNames(cocktail: cocktail) else { return false }
         
-        return realm.isEmpty
+        return cocktailsInRealmNames.count == 0 ? true : false
     }
     
     public func configureNumberOfItemsInSection() -> Int {
         guard let realm = try? Realm() else { return 0 }
-        let realmCocktails = realm.objects(CocktailRealmModel.self)
+        let realmCocktails = realm.objects(CocktailObject.self)
         
         return realmCocktails.count
     }
     
-    public func configureCellForItemAt(index: Int) -> CocktailModel? {
+    public func configureCellForItemAt(index: Int) -> CocktailObject? {
         guard let realm = try? Realm() else { return nil }
-        let cocktails = realm.objects(CocktailRealmModel.self)
-        let result = cocktails[index].cocktailsRealm
+        let cocktails = realm.objects(CocktailObject.self)
+        let result = cocktails[index]
 
         return result
     }

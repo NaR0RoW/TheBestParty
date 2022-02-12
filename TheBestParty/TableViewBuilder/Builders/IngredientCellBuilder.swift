@@ -1,9 +1,9 @@
 import UIKit
 
 final class IngredientCellBuilder: TableViewCellBuilder {
-    private let cocktail: CocktailModel
+    private let cocktail: CocktailObject
     
-    init(cocktail: CocktailModel) {
+    init(cocktail: CocktailObject) {
         self.cocktail = cocktail
     }
     

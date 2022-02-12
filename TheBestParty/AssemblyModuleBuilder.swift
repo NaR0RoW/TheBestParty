@@ -2,7 +2,7 @@ import UIKit
 
 protocol AssemblyModuleBuilderProtocol {
     func createCocktailsCollectionModule(router: RouterProtocol) -> UIViewController
-    func createCocktailDetailsModule(cocktail: CocktailModel?, router: RouterProtocol) -> UIViewController
+    func createCocktailDetailsModule(cocktail: CocktailObject?, router: RouterProtocol) -> UIViewController
     func createRandomCocktailModule() -> UIViewController
     func createFavoriteCocktailModule() -> UIViewController
 }
@@ -17,7 +17,7 @@ final class AssemblyModuleBuilder: AssemblyModuleBuilderProtocol {
         return view
     }
     
-    public func createCocktailDetailsModule(cocktail: CocktailModel?, router: RouterProtocol) -> UIViewController {
+    public func createCocktailDetailsModule(cocktail: CocktailObject?, router: RouterProtocol) -> UIViewController {
         let view = CocktailDetailsViewController()
         let dataSource = TableViewDataSource()
         let realmManager = RealmManager()

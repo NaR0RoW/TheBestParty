@@ -74,12 +74,12 @@ final class CocktailCollectionViewCell: UICollectionViewCell {
 }
 
 extension CocktailCollectionViewCell {
-    public func configureCell(with cocktail: CocktailModel) {
-        guard let url = URL(string: cocktail.drinks.first?.cocktailImage ?? "") else { return }
+    public func configureCell(with cocktail: CocktailObject) {
+        guard let url = URL(string: cocktail.cocktailImage ?? "") else { return }
         self.cocktailImageView.kf.setImage(with: url)
-        self.cocktailNameLabel.text = cocktail.drinks.first?.cocktailName
-        self.cocktailCategoryLabel.text = cocktail.drinks.first?.cocktailCategory
-        self.cocktailTypeLabel.text = cocktail.drinks.first?.cocktailType
+        self.cocktailNameLabel.text = cocktail.cocktailName
+        self.cocktailCategoryLabel.text = cocktail.cocktailCategory
+        self.cocktailTypeLabel.text = cocktail.cocktailType
     }
 
     private func setupView() {

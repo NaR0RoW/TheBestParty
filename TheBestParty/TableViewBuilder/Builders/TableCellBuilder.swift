@@ -1,10 +1,10 @@
 import UIKit
 
 final class TableCellBuilder: TableViewCellBuilder {
-    private let cocktail: CocktailModel
+    private let cocktail: CocktailObject
     private let cellType: CellType
     
-    init(cocktail: CocktailModel, cellType: CellType) {
+    init(cocktail: CocktailObject, cellType: CellType) {
         self.cocktail = cocktail
         self.cellType = cellType
     }

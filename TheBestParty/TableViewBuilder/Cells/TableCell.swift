@@ -10,16 +10,16 @@ final class TableCell: UITableViewCell {
         return label
     }()
     
-    public func configureCell(with cocktail: CocktailModel, type: CellType) {
+    public func configureCell(with cocktail: CocktailObject, type: CellType) {
         switch type {
         case .type:
-            self.descriptionLabel.text = cocktail.drinks.first?.cocktailType
+            self.descriptionLabel.text = cocktail.cocktailType
         case .instructions:
-            self.descriptionLabel.text = cocktail.drinks.first?.cocktailInstructions
+            self.descriptionLabel.text = cocktail.cocktailInstructions
         case .category:
-            self.descriptionLabel.text = cocktail.drinks.first?.cocktailCategory
+            self.descriptionLabel.text = cocktail.cocktailCategory
         case .glass:
-            self.descriptionLabel.text = cocktail.drinks.first?.cocktailGlass
+            self.descriptionLabel.text = cocktail.cocktailGlass
         case .ingredients:
             break
         }

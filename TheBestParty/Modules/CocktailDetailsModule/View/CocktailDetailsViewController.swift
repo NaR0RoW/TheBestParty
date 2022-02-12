@@ -93,7 +93,7 @@ extension CocktailDetailsViewController: CocktailDetailsViewProtocol {
         presenter?.popToRoot()
     }
     
-    func setupDetails(with cocktail: CocktailModel?, with dataSource: TableViewDataSourceProtocol?) {
+    func setupDetails(with cocktail: CocktailObject?, with dataSource: TableViewDataSourceProtocol?) {
         tableView.delegate = dataSource
         tableView.dataSource = dataSource
         

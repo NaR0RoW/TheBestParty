@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0D0B4485275E825000A7BBDF /* CocktailRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0B4484275E825000A7BBDF /* CocktailRealmModel.swift */; };
 		0D0B448A275E838800A7BBDF /* FavoriteCocktailViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0B4489275E838800A7BBDF /* FavoriteCocktailViewPresenter.swift */; };
 		0D29D79F275A7F62006962D2 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0D29D79E275A7F62006962D2 /* Realm */; };
 		0D29D7A1275A7F62006962D2 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0D29D7A0275A7F62006962D2 /* RealmSwift */; };
@@ -56,7 +55,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0D0B4484275E825000A7BBDF /* CocktailRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailRealmModel.swift; sourceTree = "<group>"; };
 		0D0B4489275E838800A7BBDF /* FavoriteCocktailViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCocktailViewPresenter.swift; sourceTree = "<group>"; };
 		0D311BED27A94A7C00669EDE /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		0D46975F275804D300D1B011 /* RandomCocktailViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomCocktailViewPresenter.swift; sourceTree = "<group>"; };
@@ -244,7 +242,6 @@
 			isa = PBXGroup;
 			children = (
 				4E6EF5E8274D6DF5009EC3A3 /* CocktailModel.swift */,
-				0D0B4484275E825000A7BBDF /* CocktailRealmModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -506,7 +503,6 @@
 				4EF619CB274D6F2F00928D41 /* TableViewDataSource.swift in Sources */,
 				4EF619E2274D6FB400928D41 /* TableViewDataSourceProtocol.swift in Sources */,
 				4E6EF5D8274D6CE7009EC3A3 /* AssemblyModuleBuilder.swift in Sources */,
-				0D0B4485275E825000A7BBDF /* CocktailRealmModel.swift in Sources */,
 				4E62BAB8273EBBBF006BA756 /* UICollectionView+Extension.swift in Sources */,
 				4EF619C4274D6F0400928D41 /* CocktailDetailsViewController.swift in Sources */,
 				4E62BAAC273E8A83006BA756 /* TabBarModuleBuilder.swift in Sources */,

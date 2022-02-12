@@ -1,7 +1,7 @@
 import Foundation
 
 protocol RandomCocktailViewProtocol: AnyObject {
-    func success(with cocktail: CocktailModel?, with dataSource: TableViewDataSourceProtocol?)
+    func success(with cocktail: CocktailObject?, with dataSource: TableViewDataSourceProtocol?)
     func failure(error: Error)
     func highlightFavoriteCocktail()
 }
@@ -17,7 +17,7 @@ final class RandomCocktailViewPresenter: RandomCocktailViewPresenterProtocol {
     weak var view: RandomCocktailViewProtocol?
     let networkService: NetworkProviderForRandomCocktail?
     var dataSource: TableViewDataSourceProtocol?
-    var cocktail: CocktailModel?
+    var cocktail: CocktailObject?
     var realmManager: RealmManagerProtocol?
     
     required init(view: RandomCocktailViewProtocol, networkService: NetworkProviderForRandomCocktail, dataSource: TableViewDataSourceProtocol, realmManager: RealmManagerProtocol?) {
@@ -35,8 +35,8 @@ final class RandomCocktailViewPresenter: RandomCocktailViewPresenterProtocol {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let cocktails):
-                    self.cocktail = cocktails
-                    self.view?.success(with: cocktails, with: self.dataSource)
+                    self.cocktail = Array(cocktails.drinks).first
+                    self.view?.success(with: Array(cocktails.drinks).first, with: self.dataSource)
                 case .failure(let error):
                     self.view?.failure(error: error)
                 }

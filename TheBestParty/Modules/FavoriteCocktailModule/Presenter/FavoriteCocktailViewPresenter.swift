@@ -8,16 +8,16 @@ protocol FavoriteCocktailViewProtocol: AnyObject {
 protocol FavoriteCocktailViewPresenterProtocol: AnyObject {
     init(view: FavoriteCocktailViewProtocol, realmManager: RealmManagerProtocol?)
     func configureNumberOfItemsInSection() -> Int
-    func configureCellForItemAt(index: Int) -> CocktailModel?
+    func configureCellForItemAt(index: Int) -> CocktailObject?
     func checkIfThereAreAnyFavoritesCocktails()
-    var cocktail: CocktailModel? { get set }
+    var cocktail: CocktailObject? { get set }
 //    func filterCocktails(searchType: SearchType)
 }
 
 final class FavoriteCocktailViewPresenter: FavoriteCocktailViewPresenterProtocol {
     weak var view: FavoriteCocktailViewProtocol?
     var realmManager: RealmManagerProtocol?
-    var cocktail: CocktailModel?
+    var cocktail: CocktailObject?
 
     required init(view: FavoriteCocktailViewProtocol, realmManager: RealmManagerProtocol?) {
         self.view = view
@@ -28,12 +28,12 @@ final class FavoriteCocktailViewPresenter: FavoriteCocktailViewPresenterProtocol
         realmManager?.configureNumberOfItemsInSection() ?? 0
     }
     
-    public func configureCellForItemAt(index: Int) -> CocktailModel? {
+    public func configureCellForItemAt(index: Int) -> CocktailObject? {
         realmManager?.configureCellForItemAt(index: index)
     }
     
     public func checkIfThereAreAnyFavoritesCocktails() {
-        guard let state = realmManager?.checkIfThereAreAnyFavoritesCocktails() else { return }
+        guard let state = realmManager?.checkIfThereAreAnyFavoritesCocktails(cocktail: cocktail) else { return }
         if state {
             self.view?.realmIsEmpty()
         } else {
