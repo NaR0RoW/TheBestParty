@@ -37,11 +37,11 @@ final class CocktailDetailsViewPresenter: CocktailDetailsViewPresenterProtocol {
     }
     
     public func addToFavorite() {
-        realmManager?.addToFavorite(cocktail: self.cocktail)
+        realmManager?.tapToFavorite(cocktail: self.cocktail)
     }
     
     public func highlightFavoriteCocktail() {
-        if realmManager?.checkIfCocktailIsFavorite(cocktail: self.cocktail) == true {
+        if realmManager?.isCocktailInRealm(cocktail: self.cocktail) == true {
             self.view?.highlightFavoriteCocktail()
         } 
     }

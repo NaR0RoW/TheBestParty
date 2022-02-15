@@ -39,7 +39,7 @@ final class FavoritesCocktailsViewController: UIViewController {
     private let noResultsHeaderLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 30.0, weight: .bold)
-        label.text = "The favorites are empty"
+        label.text = "Your favorites are empty"
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -50,7 +50,7 @@ final class FavoritesCocktailsViewController: UIViewController {
         label.font = .systemFont(ofSize: 22.0, weight: .semibold)
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.text = "Add cocktails to your favorites so that they are always at hand."
+        label.text = "Add some cocktails to your favorites to have them at hand"
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -61,47 +61,13 @@ final class FavoritesCocktailsViewController: UIViewController {
         setupView()
         setupCollectionView()
         setupNoResultsView()
-        
-        //handler to intercept event related to UIActions.
-        let handler: (_ action: UIAction) -> () = { action in
-            //          print(action.identifier)
-            switch action.identifier.rawValue {
-            case "Time added":
-//                self.presenter?.filterCocktails(searchType: .timeAdded)
-                print("Time added")
-            case "Name":
-//                self.presenter?.filterCocktails(searchType: .name)
-                print("Name")
-            case "Type":
-//                self.presenter?.filterCocktails(searchType: .type)
-                print("Type")
-            case "Alcohol type":
-//                self.presenter?.filterCocktails(searchType: .alcoholType)
-                print("Alcohol type")
-            default:
-                break
-            }
-        }
-        
-        //Initiate an array of UIAction.
-        let actions = [
-             UIAction(title: "Time added", identifier: UIAction.Identifier("Time added"), handler: handler),
-             UIAction(title: "Name", identifier: UIAction.Identifier("Name"), handler: handler),
-             UIAction(title: "Type", identifier: UIAction.Identifier("Type"), handler: handler),
-             UIAction(title: "Alcohol type", identifier: UIAction.Identifier("Alcohol type"), handler: handler)
-         ]
-
-        //Initiale UIMenu with the above array of actions.
-        let menu = UIMenu(children: actions)
-
-        //Create UIBarButtonItem with the initiated UIMenu and add it to the navigationItem.
-        let rightBarButton = UIBarButtonItem(title: "Sort", menu: menu)
-        navigationItem.rightBarButtonItem = rightBarButton
+        setupMenu()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter?.checkIfThereAreAnyFavoritesCocktails()
+        presenter?.fillCocktails()
     }
 }
 
@@ -153,16 +119,51 @@ extension FavoritesCocktailsViewController {
             noResultsSubLabel.rightAnchor.constraint(equalTo: noResultsView.rightAnchor, constant: -15.0)
         ])
     }
+    
+    // TODO: - Think for a better declaration
+    private func setupMenu() {
+        let handler: (_ action: UIAction) -> () = { action in
+            switch action.identifier.rawValue {
+            case "Time added":
+                self.presenter?.filterCocktails(sortType: .timeAdded)
+                
+            case "Name":
+                self.presenter?.filterCocktails(sortType: .name)
+                
+            case "Category":
+                self.presenter?.filterCocktails(sortType: .category)
+                
+            case "Type":
+                self.presenter?.filterCocktails(sortType: .type)
+                
+            default:
+                break
+            }
+        }
+        
+        let menuActions = [
+            UIAction(title: "Time added", identifier: UIAction.Identifier("Time added"), handler: handler),
+            UIAction(title: "Name", identifier: UIAction.Identifier("Name"), handler: handler),
+            UIAction(title: "Category", identifier: UIAction.Identifier("Category"), handler: handler),
+            UIAction(title: "Type", identifier: UIAction.Identifier("Type"), handler: handler)
+        ]
+        
+        let menu = UIMenu(children: menuActions)
+        
+        let rightBarButton = UIBarButtonItem(title: "Sort", menu: menu)
+        rightBarButton.tintColor = .label
+        navigationItem.rightBarButtonItem = rightBarButton
+    }
 }
 
 extension FavoritesCocktailsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter?.configureNumberOfItemsInSection() ?? 0
+        return presenter?.cocktailsInRealmCount() ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CocktailCollectionViewCell
-        cell.configureCell(with: (presenter?.configureCellForItemAt(index: indexPath.row))!)
+        cell.configureCell(with: (presenter?.configureCollectionView(index: indexPath.row))!)
         
         return cell
     }
@@ -173,6 +174,7 @@ extension FavoritesCocktailsViewController: UICollectionViewDelegate {
 }
 
 extension FavoritesCocktailsViewController: FavoriteCocktailViewProtocol {
+    // TODO: - Think for a better solution
     func realmIsEmpty() {
         cocktailsCollectionView.alpha = 0.0
         cocktailsCollectionView.reloadData()
@@ -183,6 +185,10 @@ extension FavoritesCocktailsViewController: FavoriteCocktailViewProtocol {
     func realmNotEmpty() {
         noResultsView.alpha = 0.0
         cocktailsCollectionView.alpha = 1.0
+        cocktailsCollectionView.reloadData()
+    }
+    
+    func filterCollectionView() {
         cocktailsCollectionView.reloadData()
     }
 }

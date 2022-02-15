@@ -37,12 +37,12 @@ final class ImageCell: UITableViewCell {
         return label
     }()
     
-    public func configureCell(with cocktail: CocktailObject) {
-        guard let url = URL(string: cocktail.cocktailImage ?? "") else { return }
+    public func configureCell(with cocktail: CocktailObject?) {
+        guard let url = URL(string: cocktail?.cocktailImage ?? "") else { return }
         
         self.cocktailImageView.kf.setImage(with: url)
-        self.cocktailNameLabel.text = cocktail.cocktailName
-        self.cocktailCategoryLabel.text = cocktail.cocktailCategory
+        self.cocktailNameLabel.text = cocktail?.cocktailName
+        self.cocktailCategoryLabel.text = cocktail?.cocktailCategory
         
         setupView()
     }

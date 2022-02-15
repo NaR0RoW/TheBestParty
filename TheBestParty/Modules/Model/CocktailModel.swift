@@ -6,8 +6,6 @@ import RealmSwift
 }
 
 @objcMembers class CocktailObject: Object, Codable {
-    dynamic var cocktailId: String = UUID().uuidString
-    
     dynamic var cocktailName: String? = ""
     dynamic var cocktailCategory: String? = ""
     dynamic var cocktailGlass: String? = ""
@@ -126,6 +124,6 @@ import RealmSwift
     }
     
     override class func primaryKey() -> String? {
-        return "cocktailId"
+        return "cocktailName"
     }
 }

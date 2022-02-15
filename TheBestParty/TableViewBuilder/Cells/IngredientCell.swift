@@ -228,37 +228,37 @@ final class IngredientCell: UITableViewCell {
         return stackView
     }()
     
-    public func configureCell(with cocktail: CocktailObject) {
-        self.firstIngredientLabel.text = cocktail.cocktailFirstIngredient
-        self.secondIngredientLabel.text = cocktail.cocktailSecondIngredient
-        self.thirdIngredientLabel.text = cocktail.cocktailThirdIngredient
-        self.fourthIngredientLabel.text = cocktail.cocktailFourthIngredient
-        self.fifthIngredientLabel.text = cocktail.cocktailFifthIngredient
-        self.sixthIngredientLabel.text = cocktail.cocktailSixthIngredient
-        self.seventhIngredientLabel.text = cocktail.cocktailSeventhIngredient
-        self.eighthIngredientLabel.text = cocktail.cocktailEighthIngredient
-        self.ninthIngredientLabel.text = cocktail.cocktailNinthIngredient
-        self.tenthIngredientLabel.text = cocktail.cocktailTenthIngredient
-        self.eleventhIngredientLabel.text = cocktail.cocktailEleventhIngredient
-        self.twelfthIngredientLabel.text = cocktail.cocktailTwelfthIngredient
-        self.thirteenthIngredientLabel.text = cocktail.cocktailThirteenthIngredient
-        self.fourteenthIngredientLabel.text = cocktail.cocktailFourteenthIngredient
-        self.fifteenthIngredientLabel.text = cocktail.cocktailFifteenthIngredient
-        self.firstIngredientMeasureLabel.text = cocktail.cocktailFirstIngredientMeasure
-        self.secondIngredientMeasureLabel.text = cocktail.cocktailSecondIngredientMeasure
-        self.thirdIngredientMeasureLabel.text = cocktail.cocktailThirdIngredientMeasure
-        self.fourthIngredientMeasureLabel.text = cocktail.cocktailFourthIngredientMeasure
-        self.fifthIngredientMeasureLabel.text = cocktail.cocktailFifthIngredientMeasure
-        self.sixthIngredientMeasureLabel.text = cocktail.cocktailSixthIngredientMeasure
-        self.seventhIngredientMeasureLabel.text = cocktail.cocktailSeventhIngredientMeasure
-        self.eighthIngredientMeasureLabel.text = cocktail.cocktailEighthIngredientMeasure
-        self.ninthIngredientMeasureLabel.text = cocktail.cocktailNinthIngredientMeasure
-        self.tenthIngredientMeasureLabel.text = cocktail.cocktailTenthIngredientMeasure
-        self.eleventhIngredientMeasureLabel.text = cocktail.cocktailEleventhIngredientMeasure
-        self.twelfthIngredientMeasureLabel.text = cocktail.cocktailTwelfthIngredientMeasure
-        self.thirteenthIngredientMeasureLabel.text = cocktail.cocktailThirteenthIngredientMeasure
-        self.fourteenthIngredientMeasureLabel.text = cocktail.cocktailFourteenthIngredientMeasure
-        self.fifteenthIngredientMeasureLabel.text = cocktail.cocktailFifteenthIngredientMeasure
+    public func configureCell(with cocktail: CocktailObject?) {
+        self.firstIngredientLabel.text = cocktail?.cocktailFirstIngredient
+        self.secondIngredientLabel.text = cocktail?.cocktailSecondIngredient
+        self.thirdIngredientLabel.text = cocktail?.cocktailThirdIngredient
+        self.fourthIngredientLabel.text = cocktail?.cocktailFourthIngredient
+        self.fifthIngredientLabel.text = cocktail?.cocktailFifthIngredient
+        self.sixthIngredientLabel.text = cocktail?.cocktailSixthIngredient
+        self.seventhIngredientLabel.text = cocktail?.cocktailSeventhIngredient
+        self.eighthIngredientLabel.text = cocktail?.cocktailEighthIngredient
+        self.ninthIngredientLabel.text = cocktail?.cocktailNinthIngredient
+        self.tenthIngredientLabel.text = cocktail?.cocktailTenthIngredient
+        self.eleventhIngredientLabel.text = cocktail?.cocktailEleventhIngredient
+        self.twelfthIngredientLabel.text = cocktail?.cocktailTwelfthIngredient
+        self.thirteenthIngredientLabel.text = cocktail?.cocktailThirteenthIngredient
+        self.fourteenthIngredientLabel.text = cocktail?.cocktailFourteenthIngredient
+        self.fifteenthIngredientLabel.text = cocktail?.cocktailFifteenthIngredient
+        self.firstIngredientMeasureLabel.text = cocktail?.cocktailFirstIngredientMeasure
+        self.secondIngredientMeasureLabel.text = cocktail?.cocktailSecondIngredientMeasure
+        self.thirdIngredientMeasureLabel.text = cocktail?.cocktailThirdIngredientMeasure
+        self.fourthIngredientMeasureLabel.text = cocktail?.cocktailFourthIngredientMeasure
+        self.fifthIngredientMeasureLabel.text = cocktail?.cocktailFifthIngredientMeasure
+        self.sixthIngredientMeasureLabel.text = cocktail?.cocktailSixthIngredientMeasure
+        self.seventhIngredientMeasureLabel.text = cocktail?.cocktailSeventhIngredientMeasure
+        self.eighthIngredientMeasureLabel.text = cocktail?.cocktailEighthIngredientMeasure
+        self.ninthIngredientMeasureLabel.text = cocktail?.cocktailNinthIngredientMeasure
+        self.tenthIngredientMeasureLabel.text = cocktail?.cocktailTenthIngredientMeasure
+        self.eleventhIngredientMeasureLabel.text = cocktail?.cocktailEleventhIngredientMeasure
+        self.twelfthIngredientMeasureLabel.text = cocktail?.cocktailTwelfthIngredientMeasure
+        self.thirteenthIngredientMeasureLabel.text = cocktail?.cocktailThirteenthIngredientMeasure
+        self.fourteenthIngredientMeasureLabel.text = cocktail?.cocktailFourteenthIngredientMeasure
+        self.fifteenthIngredientMeasureLabel.text = cocktail?.cocktailFifteenthIngredientMeasure
         
         setupView()
     }

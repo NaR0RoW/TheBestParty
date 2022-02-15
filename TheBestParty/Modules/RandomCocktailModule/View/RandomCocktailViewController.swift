@@ -28,7 +28,7 @@ final class RandomCocktailViewController: UIViewController {
     
     private let favoriteButton: UIButton = {
         let button = UIButton()
-        button.addTarget(self, action: #selector(addToFavorite), for: .touchUpInside)
+        button.addTarget(self, action: #selector(tapToFavorite), for: .touchUpInside)
         button.createShadowButtonWithSystemImage(with: "heart.circle.fill")
         button.translatesAutoresizingMaskIntoConstraints = false
         
@@ -104,7 +104,7 @@ extension RandomCocktailViewController: RandomCocktailViewProtocol {
         presenter?.refresh()
     }
     
-    @objc private func addToFavorite() {
+    @objc private func tapToFavorite() {
         favoriteButton.tintColor = .systemOrange
         presenter?.addToFavorite()
     }
