@@ -1,4 +1,3 @@
-import Kingfisher
 import UIKit
 
 final class CocktailCollectionViewCell: UICollectionViewCell {    
@@ -74,12 +73,15 @@ final class CocktailCollectionViewCell: UICollectionViewCell {
 }
 
 extension CocktailCollectionViewCell {
-    public func configureCell(with cocktail: CocktailObject) {
-        guard let url = URL(string: cocktail.cocktailImage ?? "") else { return }
-        self.cocktailImageView.kf.setImage(with: url)
-        self.cocktailNameLabel.text = cocktail.cocktailName
-        self.cocktailCategoryLabel.text = cocktail.cocktailCategory
-        self.cocktailTypeLabel.text = cocktail.cocktailType
+    public func configureCell(with cocktail: CocktailObject?) {
+        guard let imageURLString = cocktail?.cocktailImage else { return }
+        self.cocktailImageView.loadImageUsingCacheWithURLString(
+            with: imageURLString,
+            placeHolder: UIImage(systemName: "person.crop.circle.badge.exclamationmark.fill")
+        )
+        self.cocktailNameLabel.text = cocktail?.cocktailName
+        self.cocktailCategoryLabel.text = cocktail?.cocktailCategory
+        self.cocktailTypeLabel.text = cocktail?.cocktailType
     }
 
     private func setupView() {

@@ -29,7 +29,10 @@ final class Router: RouterProtocol {
 
     public func showDetails(cocktail: CocktailObject?) {
         if let navigationController = navigationController {
-            guard let cocktailDetailsViewController = assemblyModuleBuilder?.createCocktailDetailsModule(cocktail: cocktail, router: self) else { return }
+            guard let cocktailDetailsViewController = assemblyModuleBuilder?.createCocktailDetailsModule(
+                cocktail: cocktail,
+                router: self
+            ) else { return }
             navigationController.pushViewController(cocktailDetailsViewController, animated: true)
         }
     }

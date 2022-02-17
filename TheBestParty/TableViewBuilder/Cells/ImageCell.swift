@@ -1,4 +1,3 @@
-import Kingfisher
 import UIKit
 
 final class ImageCell: UITableViewCell {
@@ -38,9 +37,11 @@ final class ImageCell: UITableViewCell {
     }()
     
     public func configureCell(with cocktail: CocktailObject?) {
-        guard let url = URL(string: cocktail?.cocktailImage ?? "") else { return }
-        
-        self.cocktailImageView.kf.setImage(with: url)
+        guard let imageURLString = cocktail?.cocktailImage else { return }
+        self.cocktailImageView.loadImageUsingCacheWithURLString(
+            with: imageURLString,
+            placeHolder: UIImage(systemName: "person.crop.circle.badge.exclamationmark.fill")
+        )
         self.cocktailNameLabel.text = cocktail?.cocktailName
         self.cocktailCategoryLabel.text = cocktail?.cocktailCategory
         

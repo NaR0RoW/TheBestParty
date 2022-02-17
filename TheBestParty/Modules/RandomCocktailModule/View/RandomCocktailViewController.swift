@@ -17,7 +17,7 @@ final class RandomCocktailViewController: UIViewController {
         return tableView
     }()
     
-    private let refreshButton: UIButton = {
+    private lazy var refreshButton: UIButton = {
         let button = UIButton()
         button.addTarget(self, action: #selector(refresh), for: .touchUpInside)
         button.createShadowButtonWithSystemImage(with: "arrow.counterclockwise.circle")
@@ -26,7 +26,7 @@ final class RandomCocktailViewController: UIViewController {
         return button
     }()
     
-    private let favoriteButton: UIButton = {
+    private lazy var favoriteButton: UIButton = {
         let button = UIButton()
         button.addTarget(self, action: #selector(tapToFavorite), for: .touchUpInside)
         button.createShadowButtonWithSystemImage(with: "heart.circle.fill")
@@ -100,8 +100,11 @@ extension RandomCocktailViewController: RandomCocktailViewProtocol {
         print(error.localizedDescription)
     }
     
+    // TODO: - Think for a better solution
     @objc private func refresh() {
         presenter?.refresh()
+        favoriteButton.tintColor = .label
+//        presenter?.highlightFavoriteCocktail()
     }
     
     @objc private func tapToFavorite() {

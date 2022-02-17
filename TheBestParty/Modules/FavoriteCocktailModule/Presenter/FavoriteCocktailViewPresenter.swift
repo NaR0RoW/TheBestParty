@@ -10,7 +10,7 @@ protocol FavoriteCocktailViewPresenterProtocol: AnyObject {
     init(view: FavoriteCocktailViewProtocol, realmManager: RealmManagerProtocol?)
     func cocktailsInRealmCount() -> Int
     func checkIfThereAreAnyFavoritesCocktails()
-    func filterCocktails(sortType: SortType)
+    func sortCocktails(sortType: SortType)
     func configureCollectionView(index: Int) -> CocktailObject?
     func fillCocktails()
 }
@@ -39,16 +39,16 @@ final class FavoriteCocktailViewPresenter: FavoriteCocktailViewPresenterProtocol
         }
     }
 
-    public func filterCocktails(sortType: SortType) {
+    public func sortCocktails(sortType: SortType) {
         switch sortType {
         case .timeAdded:
-            self.sortedCocktails = (realmManager?.filterCocktails(cocktail: cocktail, sortType: .timeAdded))!
+            self.sortedCocktails = (realmManager?.sortCocktails(cocktail: cocktail, sortType: .timeAdded))!
         case .name:
-            self.sortedCocktails = (realmManager?.filterCocktails(cocktail: cocktail, sortType: .name))!
+            self.sortedCocktails = (realmManager?.sortCocktails(cocktail: cocktail, sortType: .name))!
         case .category:
-            self.sortedCocktails = (realmManager?.filterCocktails(cocktail: cocktail, sortType: .category))!
+            self.sortedCocktails = (realmManager?.sortCocktails(cocktail: cocktail, sortType: .category))!
         case .type:
-            self.sortedCocktails = (realmManager?.filterCocktails(cocktail: cocktail, sortType: .type))!
+            self.sortedCocktails = (realmManager?.sortCocktails(cocktail: cocktail, sortType: .type))!
         }
         
         self.view?.filterCollectionView()

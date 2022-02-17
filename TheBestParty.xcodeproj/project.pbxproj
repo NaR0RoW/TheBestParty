@@ -12,8 +12,8 @@
 		0D29D7A1275A7F62006962D2 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0D29D7A0275A7F62006962D2 /* RealmSwift */; };
 		0D311BEE27A94A7C00669EDE /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D311BED27A94A7C00669EDE /* RealmManager.swift */; };
 		0D311BF127A9503600669EDE /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 0D311BF027A9503600669EDE /* Lottie */; };
-		0D373F7C27579CFB000B8F86 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0D373F7B27579CFB000B8F86 /* Kingfisher */; };
 		0D469760275804D300D1B011 /* RandomCocktailViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D46975F275804D300D1B011 /* RandomCocktailViewPresenter.swift */; };
+		0D4BEFA427BE84B5004AE29D /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4BEFA327BE84B5004AE29D /* UIImageView+Extension.swift */; };
 		0DAEB59427ABFEBA00ED1130 /* favouriteIcon.json in Resources */ = {isa = PBXBuildFile; fileRef = 0DAEB59327ABFEBA00ED1130 /* favouriteIcon.json */; };
 		0DD9D5C3275A35FE00C75CD4 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD9D5C2275A35FE00C75CD4 /* UIButton+Extension.swift */; };
 		4E54AF3B274E53EC00C94F70 /* CellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E54AF3A274E53EC00C94F70 /* CellType.swift */; };
@@ -58,6 +58,7 @@
 		0D0B4489275E838800A7BBDF /* FavoriteCocktailViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCocktailViewPresenter.swift; sourceTree = "<group>"; };
 		0D311BED27A94A7C00669EDE /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		0D46975F275804D300D1B011 /* RandomCocktailViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomCocktailViewPresenter.swift; sourceTree = "<group>"; };
+		0D4BEFA327BE84B5004AE29D /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		0DAEB59327ABFEBA00ED1130 /* favouriteIcon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = favouriteIcon.json; sourceTree = "<group>"; };
 		0DD9D5C2275A35FE00C75CD4 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		4E54AF3A274E53EC00C94F70 /* CellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellType.swift; sourceTree = "<group>"; };
@@ -107,7 +108,6 @@
 			files = (
 				0D29D7A1275A7F62006962D2 /* RealmSwift in Frameworks */,
 				0D29D79F275A7F62006962D2 /* Realm in Frameworks */,
-				0D373F7C27579CFB000B8F86 /* Kingfisher in Frameworks */,
 				0D311BF127A9503600669EDE /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,6 +268,7 @@
 			children = (
 				0DD9D5C2275A35FE00C75CD4 /* UIButton+Extension.swift */,
 				4E62BAB7273EBBBF006BA756 /* UICollectionView+Extension.swift */,
+				0D4BEFA327BE84B5004AE29D /* UIImageView+Extension.swift */,
 				4E874EF4273D994C00C85E04 /* UIStackView+Extension.swift */,
 				4E84DCE1273C1CA4000CEB16 /* UITableView+Extension.swift */,
 				4E874EF9273DA99200C85E04 /* UIView+Extension.swift */,
@@ -406,6 +407,7 @@
 				4EB3C27B273B039200114EC6 /* Sources */,
 				4EB3C27C273B039200114EC6 /* Frameworks */,
 				4EB3C27D273B039200114EC6 /* Resources */,
+				0D31F83C27BD78CA00B526C9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -413,7 +415,6 @@
 			);
 			name = TheBestParty;
 			packageProductDependencies = (
-				0D373F7B27579CFB000B8F86 /* Kingfisher */,
 				0D29D79E275A7F62006962D2 /* Realm */,
 				0D29D7A0275A7F62006962D2 /* RealmSwift */,
 				0D311BF027A9503600669EDE /* Lottie */,
@@ -446,7 +447,6 @@
 			);
 			mainGroup = 4EB3C276273B039200114EC6;
 			packageReferences = (
-				0D373F7A27579CFB000B8F86 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				0D29D79D275A7F62006962D2 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 				0D311BEF27A9503600669EDE /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
@@ -472,11 +472,32 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0D31F83C27BD78CA00B526C9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# SwiftLint\nexport PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4EB3C27B273B039200114EC6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D4BEFA427BE84B5004AE29D /* UIImageView+Extension.swift in Sources */,
 				4EF619C7274D6F1900928D41 /* MockSection.swift in Sources */,
 				4E6EF5E9274D6DF5009EC3A3 /* CocktailModel.swift in Sources */,
 				4EF619D7274D6F7400928D41 /* IngredientCell.swift in Sources */,
@@ -726,14 +747,6 @@
 				minimumVersion = 3.3.0;
 			};
 		};
-		0D373F7A27579CFB000B8F86 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -751,11 +764,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0D311BEF27A9503600669EDE /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
-		};
-		0D373F7B27579CFB000B8F86 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0D373F7A27579CFB000B8F86 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

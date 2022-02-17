@@ -17,7 +17,7 @@ final class CocktailDetailsViewController: UIViewController {
         return tableView
     }()
     
-    private let backButton: UIButton = {
+    private lazy var backButton: UIButton = {
         let button = UIButton()
         button.addTarget(self, action: #selector(popToRoot), for: .touchUpInside)
         button.createShadowButtonWithSystemImage(with: "arrow.backward.circle.fill")
@@ -26,7 +26,7 @@ final class CocktailDetailsViewController: UIViewController {
         return button
     }()
     
-    private let favoriteButton: UIButton = {
+    private lazy var favoriteButton: UIButton = {
         let button = UIButton()
         button.addTarget(self, action: #selector(tapToFavorite), for: .touchUpInside)
         button.createShadowButtonWithSystemImage(with: "heart.circle.fill")

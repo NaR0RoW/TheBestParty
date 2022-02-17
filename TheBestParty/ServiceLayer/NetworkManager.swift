@@ -1,5 +1,4 @@
 import Foundation
-import RealmSwift
 
 protocol NetworkProviderForCocktails {
     func getCocktails(searchTerm: String, completion: @escaping((Result<CocktailModelObject, APIError>) -> Void))
@@ -9,7 +8,7 @@ protocol NetworkProviderForRandomCocktail {
     func getRandomCocktail(completion: @escaping((Result<CocktailModelObject, APIError>) -> Void))
 }
 
-fileprivate typealias NetworkServiceProtocol = NetworkProviderForCocktails & NetworkProviderForRandomCocktail
+private typealias NetworkServiceProtocol = NetworkProviderForCocktails & NetworkProviderForRandomCocktail
 
 public enum APIError: Error {
     case internalError
@@ -53,7 +52,7 @@ final class NetworkService: NetworkServiceProtocol {
     }
 
     private func call<T: Codable>(with request: URLRequest, completion: @escaping((Result<T, APIError>) -> Void)) {
-        let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        let dataTask = URLSession.shared.dataTask(with: request) { (data, _, error) in
             guard error == nil else {
                 completion(.failure(.serverError))
                 print("Server error")

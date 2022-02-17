@@ -260,12 +260,13 @@ final class IngredientCell: UITableViewCell {
         self.fourteenthIngredientMeasureLabel.text = cocktail?.cocktailFourteenthIngredientMeasure
         self.fifteenthIngredientMeasureLabel.text = cocktail?.cocktailFifteenthIngredientMeasure
         
-        setupView()
+        setupIngredientStackView()
+        setupIngredientMeasureStackView()
     }
 }
 
 extension IngredientCell {
-    private func setupView() {
+    private func setupIngredientStackView() {
         ingredientStackView.addArrangedSubviews(
             [firstIngredientLabel,
              secondIngredientLabel,
@@ -290,7 +291,9 @@ extension IngredientCell {
             ingredientStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20.0),
             ingredientStackView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20.0)
         ])
-        
+    }
+    
+    private func setupIngredientMeasureStackView() {
         ingredientMeasureStackView.addArrangedSubviews(
             [firstIngredientMeasureLabel,
              secondIngredientMeasureLabel,

@@ -122,19 +122,19 @@ extension FavoritesCocktailsViewController {
     
     // TODO: - Think for a better declaration
     private func setupMenu() {
-        let handler: (_ action: UIAction) -> () = { action in
+        let handler: (_ action: UIAction) -> Void = { action in
             switch action.identifier.rawValue {
             case "Time added":
-                self.presenter?.filterCocktails(sortType: .timeAdded)
+                self.presenter?.sortCocktails(sortType: .timeAdded)
                 
             case "Name":
-                self.presenter?.filterCocktails(sortType: .name)
+                self.presenter?.sortCocktails(sortType: .name)
                 
             case "Category":
-                self.presenter?.filterCocktails(sortType: .category)
+                self.presenter?.sortCocktails(sortType: .category)
                 
             case "Type":
-                self.presenter?.filterCocktails(sortType: .type)
+                self.presenter?.sortCocktails(sortType: .type)
                 
             default:
                 break

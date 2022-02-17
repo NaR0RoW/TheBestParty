@@ -21,7 +21,13 @@ final class AssemblyModuleBuilder: AssemblyModuleBuilderProtocol {
         let view = CocktailDetailsViewController()
         let dataSource = TableViewDataSource()
         let realmManager = RealmManager()
-        let presenter = CocktailDetailsViewPresenter(view: view, cocktail: cocktail, router: router, dataSource: dataSource, realmManager: realmManager)
+        let presenter = CocktailDetailsViewPresenter(
+            view: view,
+            cocktail: cocktail,
+            router: router,
+            dataSource: dataSource,
+            realmManager: realmManager
+        )
         view.presenter = presenter
 
         return view
@@ -32,7 +38,12 @@ final class AssemblyModuleBuilder: AssemblyModuleBuilderProtocol {
         let dataSource = TableViewDataSource()
         let networkService = NetworkService()
         let realmManager = RealmManager()
-        let presenter = RandomCocktailViewPresenter(view: view, networkService: networkService, dataSource: dataSource, realmManager: realmManager)
+        let presenter = RandomCocktailViewPresenter(
+            view: view,
+            networkService: networkService,
+            dataSource: dataSource,
+            realmManager: realmManager
+        )
         view.presenter = presenter
 
         return view

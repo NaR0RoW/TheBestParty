@@ -7,7 +7,12 @@ protocol RandomCocktailViewProtocol: AnyObject {
 }
 
 protocol RandomCocktailViewPresenterProtocol: AnyObject {
-    init(view: RandomCocktailViewProtocol, networkService: NetworkProviderForRandomCocktail, dataSource: TableViewDataSourceProtocol, realmManager: RealmManagerProtocol?)
+    init(
+        view: RandomCocktailViewProtocol, 
+        networkService: NetworkProviderForRandomCocktail, 
+        dataSource: TableViewDataSourceProtocol, 
+        realmManager: RealmManagerProtocol?
+    )
     func refresh()
     func addToFavorite()
     func highlightFavoriteCocktail()
@@ -20,7 +25,12 @@ final class RandomCocktailViewPresenter: RandomCocktailViewPresenterProtocol {
     var cocktail: CocktailObject?
     var realmManager: RealmManagerProtocol?
     
-    required init(view: RandomCocktailViewProtocol, networkService: NetworkProviderForRandomCocktail, dataSource: TableViewDataSourceProtocol, realmManager: RealmManagerProtocol?) {
+    required init(
+        view: RandomCocktailViewProtocol, 
+        networkService: NetworkProviderForRandomCocktail,
+        dataSource: TableViewDataSourceProtocol, 
+        realmManager: RealmManagerProtocol?
+    ) {
         self.view = view
         self.networkService = networkService
         self.dataSource = dataSource

@@ -6,7 +6,13 @@ protocol CocktailDetailsViewProtocol: AnyObject {
 }
 
 protocol CocktailDetailsViewPresenterProtocol: AnyObject {
-    init(view: CocktailDetailsViewProtocol, cocktail: CocktailObject?, router: RouterProtocol, dataSource: TableViewDataSourceProtocol, realmManager: RealmManagerProtocol?)
+    init(
+        view: CocktailDetailsViewProtocol,
+        cocktail: CocktailObject?,
+        router: RouterProtocol,
+        dataSource: TableViewDataSourceProtocol,
+        realmManager: RealmManagerProtocol?
+    )
     func setupDetails()
     func popToRoot()
     func addToFavorite()
@@ -20,7 +26,13 @@ final class CocktailDetailsViewPresenter: CocktailDetailsViewPresenterProtocol {
     var dataSource: TableViewDataSourceProtocol?
     var realmManager: RealmManagerProtocol?
     
-    required init(view: CocktailDetailsViewProtocol, cocktail: CocktailObject?, router: RouterProtocol, dataSource: TableViewDataSourceProtocol, realmManager: RealmManagerProtocol?) {
+    required init(
+        view: CocktailDetailsViewProtocol,
+        cocktail: CocktailObject?,
+        router: RouterProtocol,
+        dataSource: TableViewDataSourceProtocol,
+        realmManager: RealmManagerProtocol?
+    ) {
         self.view = view
         self.cocktail = cocktail
         self.router = router
