@@ -67,7 +67,8 @@ final class FavoritesCocktailsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter?.checkIfThereAreAnyFavoritesCocktails()
-        presenter?.fillCocktails()
+//        presenter?.fillSortedCocktails()
+        presenter?.fillFilteredCocktails()
     }
 }
 
@@ -124,33 +125,76 @@ extension FavoritesCocktailsViewController {
     private func setupMenu() {
         let handler: (_ action: UIAction) -> Void = { action in
             switch action.identifier.rawValue {
-            case "Time added":
-                self.presenter?.sortCocktails(sortType: .timeAdded)
+//            case "Time added":
+//                self.presenter?.sortCocktails(sortType: .timeAdded)
+//
+//            case "Name":
+//                self.presenter?.sortCocktails(sortType: .name)
+//
+//            case "Category":
+//                self.presenter?.sortCocktails(sortType: .category)
+//
+//            case "Type":
+//                self.presenter?.sortCocktails(sortType: .type)
+//
+//            default:
+//                break
+//            }
+            case "All":
+                self.presenter?.filterCocktails(cocktailType: .all)
                 
-            case "Name":
-                self.presenter?.sortCocktails(sortType: .name)
+            case "Ordinary drink":
+                self.presenter?.filterCocktails(cocktailType: .ordinaryDrink)
                 
-            case "Category":
-                self.presenter?.sortCocktails(sortType: .category)
+            case "Beer":
+                self.presenter?.filterCocktails(cocktailType: .beer)
                 
-            case "Type":
-                self.presenter?.sortCocktails(sortType: .type)
+            case "Cocktail":
+                self.presenter?.filterCocktails(cocktailType: .cocktail)
+                
+            case "Coffee/Tea":
+                self.presenter?.filterCocktails(cocktailType: .coffeeTea)
+                
+            case "Shot":
+                self.presenter?.filterCocktails(cocktailType: .shot)
+                
+            case "Punch/Party Drink":
+                self.presenter?.filterCocktails(cocktailType: .punchPartyDrink)
+                
+            case "Soft Drink":
+                self.presenter?.filterCocktails(cocktailType: .softDrink)
+                
+            case "Other/Unknown":
+                self.presenter?.filterCocktails(cocktailType: .otherUnknown)
                 
             default:
                 break
             }
         }
         
+//        let menuActions = [
+//            UIAction(title: "Time added", identifier: UIAction.Identifier("Time added"), handler: handler),
+//            UIAction(title: "Name", identifier: UIAction.Identifier("Name"), handler: handler),
+//            UIAction(title: "Category", identifier: UIAction.Identifier("Category"), handler: handler),
+//            UIAction(title: "Type", identifier: UIAction.Identifier("Type"), handler: handler)
+//        ]
+        
         let menuActions = [
-            UIAction(title: "Time added", identifier: UIAction.Identifier("Time added"), handler: handler),
-            UIAction(title: "Name", identifier: UIAction.Identifier("Name"), handler: handler),
-            UIAction(title: "Category", identifier: UIAction.Identifier("Category"), handler: handler),
-            UIAction(title: "Type", identifier: UIAction.Identifier("Type"), handler: handler)
+            UIAction(title: "All", identifier: UIAction.Identifier("All"), handler: handler),
+            UIAction(title: "Ordinary drink", identifier: UIAction.Identifier("Ordinary drink"), handler: handler),
+            UIAction(title: "Beer", identifier: UIAction.Identifier("Beer"), handler: handler),
+            UIAction(title: "Cocktail", identifier: UIAction.Identifier("Cocktail"), handler: handler),
+            UIAction(title: "Coffee/Tea", identifier: UIAction.Identifier("Coffee/Tea"), handler: handler),
+            UIAction(title: "Shot", identifier: UIAction.Identifier("Shot"), handler: handler),
+            UIAction(title: "Punch/Party Drink", identifier: UIAction.Identifier("Punch/Party Drink"), handler: handler),
+            UIAction(title: "Soft Drink", identifier: UIAction.Identifier("Soft Drink"), handler: handler),
+            UIAction(title: "Other/Unknown", identifier: UIAction.Identifier("Other/Unknown"), handler: handler)
         ]
         
         let menu = UIMenu(children: menuActions)
         
-        let rightBarButton = UIBarButtonItem(title: "Sort", menu: menu)
+//        let rightBarButton = UIBarButtonItem(title: "Sort", menu: menu)
+        let rightBarButton = UIBarButtonItem(title: "Filter", menu: menu)
         rightBarButton.tintColor = .label
         navigationItem.rightBarButtonItem = rightBarButton
     }
@@ -158,12 +202,14 @@ extension FavoritesCocktailsViewController {
 
 extension FavoritesCocktailsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter?.cocktailsInRealmCount() ?? 0
+//        return presenter?.sortedCocktailsInRealmCount() ?? 0
+        return presenter?.filteredCocktailsInRealmCount() ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CocktailCollectionViewCell
-        cell.configureCell(with: (presenter?.configureCollectionView(index: indexPath.row))!)
+//        cell.configureCell(with: (presenter?.configureSortedCollectionView(index: indexPath.row))!)
+        cell.configureCell(with: (presenter?.configureFilteredCollectionView(index: indexPath.row))!)
         
         return cell
     }
@@ -185,6 +231,10 @@ extension FavoritesCocktailsViewController: FavoriteCocktailViewProtocol {
     func realmNotEmpty() {
         noResultsView.alpha = 0.0
         cocktailsCollectionView.alpha = 1.0
+        cocktailsCollectionView.reloadData()
+    }
+    
+    func sortCollectionView() {
         cocktailsCollectionView.reloadData()
     }
     

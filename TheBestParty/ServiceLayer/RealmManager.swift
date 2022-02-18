@@ -6,6 +6,7 @@ protocol RealmManagerProtocol {
     func isThereAreAnyFavoriteCocktails(cocktail: CocktailObject?) -> Bool
     func cocktailsInRealm() -> [CocktailObject]?
     func sortCocktails(cocktail: CocktailObject?, sortType: SortType) -> [CocktailObject]?
+    func filterCocktails(cocktail: CocktailObject?, cocktailType: CocktailType) -> [CocktailObject]?
 }
 
 enum SortType {
@@ -21,6 +22,10 @@ enum CocktailType {
     case beer
     case cocktail
     case coffeeTea
+    case shot
+    case punchPartyDrink
+    case softDrink
+    case otherUnknown
 }
 
 final class RealmManager: RealmManagerProtocol {
@@ -28,13 +33,12 @@ final class RealmManager: RealmManagerProtocol {
     public func tapToFavorite(cocktail: CocktailObject?) {
         guard let cocktail = cocktail else { return }
         guard let realm = try? Realm() else { return }
-
+        
         try? realm.write {
             if isCocktailInRealm(cocktail: cocktail) == true {
-                // Fatal error
-//                realm.delete(realm.objects(CocktailObject.self).filter("cocktailName=%@", cocktail.cocktailName as Any))
+                realm.delete(realm.objects(CocktailObject.self).filter("cocktailName=%@", cocktail.cocktailName as Any))
             } else {
-                realm.add(cocktail, update: .all)
+                realm.create(CocktailObject.self, value: cocktail, update: .all)
             }
         }
     }
@@ -84,30 +88,34 @@ final class RealmManager: RealmManagerProtocol {
     public func filterCocktails(cocktail: CocktailObject?, cocktailType: CocktailType) -> [CocktailObject]? {
         guard let realm = try? Realm() else { return nil }
         let realmObjects = realm.objects(CocktailObject.self)
-        var filteredArray = [CocktailObject]()
         
         switch cocktailType {
         case .all:
             return Array(realmObjects)
             
         case .ordinaryDrink:
-            for cocktail in realmObjects.filter("cocktailCategory == 'Ordinary Drink'") {
-                filteredArray.append(cocktail)
-            }
+            return Array(realmObjects.filter("cocktailCategory CONTAINS 'Ordinary Drink'"))
+            
         case .beer:
-            for cocktail in realmObjects.filter("cocktailCategory == 'Beer'") {
-                filteredArray.append(cocktail)
-            }
+            return Array(realmObjects.filter("cocktailCategory CONTAINS 'Beer'"))
+            
         case .cocktail:
-            for cocktail in realmObjects.filter("cocktailCategory == 'Cocktail'") {
-                filteredArray.append(cocktail)
-            }
+            return Array(realmObjects.filter("cocktailCategory CONTAINS 'Cocktail'"))
+            
         case .coffeeTea:
-            for cocktail in realmObjects.filter("cocktailCategory == 'Coffee/Tea'") {
-                filteredArray.append(cocktail)
-            }
+            return Array(realmObjects.filter("cocktailCategory CONTAINS 'Coffee / Tea'"))
+            
+        case .shot:
+            return Array(realmObjects.filter("cocktailCategory CONTAINS 'Shot'"))
+            
+        case .punchPartyDrink:
+            return Array(realmObjects.filter("cocktailCategory CONTAINS 'Punch / Party Drink'"))
+            
+        case .softDrink:
+            return Array(realmObjects.filter("cocktailCategory CONTAINS 'Soft Drink'"))
+            
+        case .otherUnknown:
+            return Array(realmObjects.filter("cocktailCategory CONTAINS 'Other/Unknown'"))
         }
-        
-        return filteredArray
     }
 }
