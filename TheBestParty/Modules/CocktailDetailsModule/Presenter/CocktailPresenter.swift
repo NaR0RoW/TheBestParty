@@ -1,7 +1,7 @@
 import Foundation
 
 protocol CocktailDetailsViewProtocol: AnyObject {
-    func setupDetails(with cocktail: CocktailObject?, with dataSource: TableViewDataSourceProtocol?)
+    func setupDetails(with dataSource: TableViewDataSourceProtocol?)
     func highlightFavoriteCocktail()
 }
 
@@ -14,9 +14,10 @@ protocol CocktailDetailsViewPresenterProtocol: AnyObject {
         realmManager: RealmManagerProtocol?
     )
     func setupDetails()
-    func popToRoot()
+    func popViewController()
     func addToFavorite()
     func highlightFavoriteCocktail()
+    var cocktail: CocktailObject? { get set }
 }
 
 final class CocktailDetailsViewPresenter: CocktailDetailsViewPresenterProtocol {
@@ -40,19 +41,19 @@ final class CocktailDetailsViewPresenter: CocktailDetailsViewPresenterProtocol {
         self.realmManager = realmManager
     }
     
-    public func setupDetails() {
-        self.view?.setupDetails(with: cocktail, with: dataSource)
+    func setupDetails() {
+        self.view?.setupDetails(with: dataSource)
     }
     
-    public func popToRoot() {
-        router?.popToRoot()
+    func popViewController() {
+        router?.popViewController()
     }
     
-    public func addToFavorite() {
+    func addToFavorite() {
         realmManager?.tapToFavorite(cocktail: self.cocktail)
     }
     
-    public func highlightFavoriteCocktail() {
+    func highlightFavoriteCocktail() {
         if realmManager?.isCocktailInRealm(cocktail: self.cocktail) == true {
             self.view?.highlightFavoriteCocktail()
         } 

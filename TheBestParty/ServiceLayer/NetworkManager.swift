@@ -1,22 +1,22 @@
 import Foundation
 
 protocol NetworkProviderForCocktails {
-    func getCocktails(searchTerm: String, completion: @escaping((Result<CocktailModelObject, APIError>) -> Void))
+    func getCocktails(searchTerm: String, completion: @escaping(Result<CocktailModelObject, APIError>) -> Void)
 }
 
 protocol NetworkProviderForRandomCocktail {
-    func getRandomCocktail(completion: @escaping((Result<CocktailModelObject, APIError>) -> Void))
+    func getRandomCocktail(completion: @escaping(Result<CocktailModelObject, APIError>) -> Void)
 }
 
-private typealias NetworkServiceProtocol = NetworkProviderForCocktails & NetworkProviderForRandomCocktail
+private typealias NetworkManagerProtocol = NetworkProviderForCocktails & NetworkProviderForRandomCocktail
 
-public enum APIError: Error {
+enum APIError: Error {
     case internalError
     case serverError
     case parsingError
 }
 
-final class NetworkService: NetworkServiceProtocol {
+final class NetworkManager: NetworkManagerProtocol {
     private enum Constants: String {
         case searchForCocktail = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s="
         case randomCocktail = "https://www.thecocktaildb.com/api/json/v1/1/random.php"
@@ -26,15 +26,15 @@ final class NetworkService: NetworkServiceProtocol {
         case GET
     }
 
-    public func getCocktails(searchTerm: String, completion: @escaping((Result<CocktailModelObject, APIError>) -> Void)) {
+    func getCocktails(searchTerm: String, completion: @escaping(Result<CocktailModelObject, APIError>) -> Void) {
         request(with: Constants.searchForCocktail.rawValue, searchTerm: searchTerm, method: .GET, completion: completion)
     }
     
-    public func getRandomCocktail(completion: @escaping((Result<CocktailModelObject, APIError>) -> Void)) {
+    func getRandomCocktail(completion: @escaping(Result<CocktailModelObject, APIError>) -> Void) {
         request(with: Constants.randomCocktail.rawValue, searchTerm: "", method: .GET, completion: completion)
     }
 
-    private func request<T: Codable>(with url: String, searchTerm: String, method: Method, completion: @escaping((Result<T, APIError>) -> Void)) {
+    private func request<T: Codable>(with url: String, searchTerm: String, method: Method, completion: @escaping(Result<T, APIError>) -> Void) {
         let path = url + searchTerm
 
         guard let url = URL(string: path) else {
@@ -51,20 +51,18 @@ final class NetworkService: NetworkServiceProtocol {
         call(with: request, completion: completion)
     }
 
-    private func call<T: Codable>(with request: URLRequest, completion: @escaping((Result<T, APIError>) -> Void)) {
+    private func call<T: Codable>(with request: URLRequest, completion: @escaping(Result<T, APIError>) -> Void) {
         let dataTask = URLSession.shared.dataTask(with: request) { (data, _, error) in
             guard error == nil else {
                 completion(.failure(.serverError))
-                print("Server error")
-                print(String(describing: error))
+                print("Server error: ", String(describing: error))
 
                 return
             }
             do {
                 guard let data = data else {
                     completion(.failure(.serverError))
-                    print("Server error")
-                    print(String(describing: error))
+                    print("Server error: ", String(describing: error))
 
                     return
                 }
@@ -74,7 +72,7 @@ final class NetworkService: NetworkServiceProtocol {
                 completion(Result.success(object))
             } catch {
                 completion(Result.failure(.parsingError))
-                print(String(describing: error))
+                print("Parsing error: ", String(describing: error))
             }
         }
 

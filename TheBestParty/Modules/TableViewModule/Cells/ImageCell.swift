@@ -36,7 +36,7 @@ final class ImageCell: UITableViewCell {
         return label
     }()
     
-    public func configureCell(with cocktail: CocktailObject?) {
+    func configureCell(with cocktail: CocktailObject?) {
         guard let imageURLString = cocktail?.cocktailImage else { return }
         self.cocktailImageView.loadImageUsingCacheWithURLString(
             with: imageURLString,

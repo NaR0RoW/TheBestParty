@@ -1,11 +1,11 @@
 import Foundation
 import RealmSwift
 
-@objcMembers class CocktailModelObject: Object, Codable {
+@objcMembers final class CocktailModelObject: Object, Codable {
     var drinks = List<CocktailObject>()
 }
 
-@objcMembers class CocktailObject: Object, Codable {
+@objcMembers final class CocktailObject: Object, Codable {
     dynamic var cocktailName: String? = ""
     dynamic var cocktailCategory: String? = ""
     dynamic var cocktailGlass: String? = ""

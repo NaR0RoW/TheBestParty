@@ -228,7 +228,7 @@ final class IngredientCell: UITableViewCell {
         return stackView
     }()
     
-    public func configureCell(with cocktail: CocktailObject?) {
+    func configureCell(with cocktail: CocktailObject?) {
         self.firstIngredientLabel.text = cocktail?.cocktailFirstIngredient
         self.secondIngredientLabel.text = cocktail?.cocktailSecondIngredient
         self.thirdIngredientLabel.text = cocktail?.cocktailThirdIngredient

@@ -20,7 +20,7 @@ final class CocktailCollectionViewCell: UICollectionViewCell {
         label.layer.shadowRadius = 10.0
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
-
+        
         return label
     }()
 
@@ -73,7 +73,7 @@ final class CocktailCollectionViewCell: UICollectionViewCell {
 }
 
 extension CocktailCollectionViewCell {
-    public func configureCell(with cocktail: CocktailObject?) {
+    func configureCell(with cocktail: CocktailObject?) {
         guard let imageURLString = cocktail?.cocktailImage else { return }
         self.cocktailImageView.loadImageUsingCacheWithURLString(
             with: imageURLString,

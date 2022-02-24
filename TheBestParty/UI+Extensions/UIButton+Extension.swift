@@ -1,7 +1,7 @@
 import UIKit.UIButton
 
 extension UIButton {
-    public func createShadowButtonWithSystemImage(with image: String) {
+    func createShadowButtonWithSystemImage(with image: String) {
         let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 25.0, weight: .bold, scale: .large)
         let image = UIImage(systemName: image, withConfiguration: imageConfiguration)
         tintColor = .white

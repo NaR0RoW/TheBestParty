@@ -1,6 +1,6 @@
 import UIKit.UIImageView
 
-let imageCache = NSCache<NSString, UIImage>()
+ private let imageCache = NSCache<NSString, UIImage>()
 
 extension UIImageView {
     func loadImageUsingCacheWithURLString(with URLString: String, placeHolder: UIImage?) {

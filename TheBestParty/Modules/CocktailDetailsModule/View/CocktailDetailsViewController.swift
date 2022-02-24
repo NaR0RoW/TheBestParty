@@ -19,7 +19,7 @@ final class CocktailDetailsViewController: UIViewController {
     
     private lazy var backButton: UIButton = {
         let button = UIButton()
-        button.addTarget(self, action: #selector(popToRoot), for: .touchUpInside)
+        button.addTarget(self, action: #selector(popViewController), for: .touchUpInside)
         button.createShadowButtonWithSystemImage(with: "arrow.backward.circle.fill")
         button.translatesAutoresizingMaskIntoConstraints = false
         
@@ -89,15 +89,15 @@ extension CocktailDetailsViewController: CocktailDetailsViewProtocol {
         presenter?.addToFavorite()
     }
     
-    @objc private func popToRoot() {
-        presenter?.popToRoot()
+    @objc private func popViewController() {
+        presenter?.popViewController()
     }
     
-    func setupDetails(with cocktail: CocktailObject?, with dataSource: TableViewDataSourceProtocol?) {
+    func setupDetails(with dataSource: TableViewDataSourceProtocol?) {
         tableView.delegate = dataSource
         tableView.dataSource = dataSource
         
-        guard let cocktail = cocktail else { return }
+        guard let cocktail = presenter?.cocktail else { return }
         
         factory = TableViewFactory(model: cocktail, tableView: tableView)
         if let sections = factory?.getSections() {

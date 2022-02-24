@@ -6,7 +6,6 @@ final class TabBarModuleBuilder {
         let tabBarController = TabBarController(tabs: tabs)
         tabBarController.tabBar.tintColor = .systemOrange
         
-        // TO DO: Understand it 
         if #available(iOS 13.0, *) {
             let tabBarAppearance = UITabBarAppearance()
             tabBarAppearance.configureWithDefaultBackground()

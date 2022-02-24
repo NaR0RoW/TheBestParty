@@ -10,7 +10,7 @@ final class TableCell: UITableViewCell {
         return label
     }()
     
-    public func configureCell(with cocktail: CocktailObject?, type: CellType) {
+    func configureCell(with cocktail: CocktailObject?, type: CellType) {
         switch type {
         case .type:
             self.descriptionLabel.text = cocktail?.cocktailType

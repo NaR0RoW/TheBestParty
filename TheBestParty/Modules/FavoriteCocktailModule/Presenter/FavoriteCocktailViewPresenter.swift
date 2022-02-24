@@ -34,7 +34,7 @@ final class FavoriteCocktailViewPresenter: FavoriteCocktailViewPresenterProtocol
         self.realmManager = realmManager
     }
     
-    public func checkIfThereAreAnyFavoritesCocktails() {
+    func checkIfThereAreAnyFavoritesCocktails() {
         guard let state = realmManager?.isThereAreAnyFavoriteCocktails(cocktail: cocktail) else { return }
         if state {
             self.view?.realmIsEmpty()
@@ -45,7 +45,7 @@ final class FavoriteCocktailViewPresenter: FavoriteCocktailViewPresenterProtocol
     
     // MARK: - Sorting cocktails
 
-    public func sortCocktails(sortType: SortType) {
+    func sortCocktails(sortType: SortType) {
         switch sortType {
         case .timeAdded:
             self.sortedCocktails = (realmManager?.sortCocktails(cocktail: cocktail, sortType: .timeAdded))!
@@ -60,21 +60,21 @@ final class FavoriteCocktailViewPresenter: FavoriteCocktailViewPresenterProtocol
         self.view?.sortCollectionView()
     }
     
-    public func configureSortedCollectionView(index: Int) -> CocktailObject? {
+    func configureSortedCollectionView(index: Int) -> CocktailObject? {
         return sortedCocktails?[index]
     }
     
-    public func sortedCocktailsInRealmCount() -> Int {
+    func sortedCocktailsInRealmCount() -> Int {
         return sortedCocktails?.count ?? 0
     }
     
-    public func fillSortedCocktails() {
+    func fillSortedCocktails() {
         self.sortedCocktails = realmManager?.cocktailsInRealm()
     }
     
     // MARK: - Filtering cocktails
     
-    public func filterCocktails(cocktailType: CocktailType) {
+    func filterCocktails(cocktailType: CocktailType) {
         switch cocktailType {
         case .all:
             self.filteredCocktails = realmManager?.filterCocktails(cocktail: cocktail, cocktailType: .all)
@@ -107,15 +107,15 @@ final class FavoriteCocktailViewPresenter: FavoriteCocktailViewPresenterProtocol
         self.view?.filterCollectionView()
     }
     
-    public func configureFilteredCollectionView(index: Int) -> CocktailObject? {
+    func configureFilteredCollectionView(index: Int) -> CocktailObject? {
         return filteredCocktails?[index]
     }
     
-    public func filteredCocktailsInRealmCount() -> Int {
+    func filteredCocktailsInRealmCount() -> Int {
         return filteredCocktails?.count ?? 0
     }
     
-    public func fillFilteredCocktails() {
+    func fillFilteredCocktails() {
         self.filteredCocktails = realmManager?.cocktailsInRealm()
     }
 }

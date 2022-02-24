@@ -82,11 +82,11 @@ extension RandomCocktailViewController {
 }
 
 extension RandomCocktailViewController: RandomCocktailViewProtocol {
-    func success(with cocktail: CocktailObject?, with dataSource: TableViewDataSourceProtocol?) {
+    func success(with dataSource: TableViewDataSourceProtocol?) {
         tableView.delegate = dataSource
         tableView.dataSource = dataSource
         
-        guard let cocktail = cocktail else { return }
+        guard let cocktail = presenter?.cocktail else { return }
     
         factory = TableViewFactory(model: cocktail, tableView: tableView)
         if let sections = factory?.getSections() {
