@@ -1,13 +1,13 @@
 import Foundation
 
-protocol CocktailDetailsViewProtocol: AnyObject {
+protocol DetailsViewProtocol: AnyObject {
     func setupDetails(with dataSource: TableViewDataSourceProtocol?)
     func highlightFavoriteCocktail()
 }
 
-protocol CocktailDetailsViewPresenterProtocol: AnyObject {
+protocol DetailsPresenterProtocol: AnyObject {
     init(
-        view: CocktailDetailsViewProtocol,
+        view: DetailsViewProtocol,
         cocktail: CocktailObject?,
         router: RouterProtocol,
         dataSource: TableViewDataSourceProtocol,
@@ -20,15 +20,15 @@ protocol CocktailDetailsViewPresenterProtocol: AnyObject {
     var cocktail: CocktailObject? { get set }
 }
 
-final class CocktailDetailsViewPresenter: CocktailDetailsViewPresenterProtocol {
-    weak var view: CocktailDetailsViewProtocol?
+final class DetailsPresenter: DetailsPresenterProtocol {
+    weak var view: DetailsViewProtocol?
     var cocktail: CocktailObject?
     var router: RouterProtocol?
     var dataSource: TableViewDataSourceProtocol?
     var realmManager: RealmManagerProtocol?
     
     required init(
-        view: CocktailDetailsViewProtocol,
+        view: DetailsViewProtocol,
         cocktail: CocktailObject?,
         router: RouterProtocol,
         dataSource: TableViewDataSourceProtocol,

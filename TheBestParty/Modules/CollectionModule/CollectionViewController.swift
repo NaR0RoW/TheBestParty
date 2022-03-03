@@ -1,7 +1,7 @@
 import UIKit
 
-final class CocktailsCollectionViewController: UIViewController {
-    var presenter: CocktailsCollectionViewPresenterProtocol?
+final class CollectionViewController: UIViewController {
+    var presenter: CollectionPresenterProtocol?
     
     lazy var searchController: UISearchController = {
         let searchController = UISearchController()
@@ -17,7 +17,7 @@ final class CocktailsCollectionViewController: UIViewController {
         layout.itemSize = CGSize(width: view.width / 2 - 15.0, height: view.width / 2 - 15.0)
         layout.sectionInset = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.registerCell(CocktailCollectionViewCell.self)
+        collectionView.registerCell(CollectionViewCell.self)
         collectionView.refreshControl = refreshControl
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -78,7 +78,7 @@ final class CocktailsCollectionViewController: UIViewController {
     }
 }
 
-extension CocktailsCollectionViewController {
+extension CollectionViewController {
     private func setupView() {
         view.addSubview(cocktailsCollectionView)
         view.backgroundColor = .systemBackground
@@ -135,7 +135,7 @@ extension CocktailsCollectionViewController {
     }
 }
 
-extension CocktailsCollectionViewController: CocktailsCollectionViewProtocol {
+extension CollectionViewController: CollectionViewProtocol {
     func success() {
         noResultsView.alpha = 0.0
         cocktailsCollectionView.alpha = 1.0
@@ -150,7 +150,7 @@ extension CocktailsCollectionViewController: CocktailsCollectionViewProtocol {
     }
 }
 
-extension CocktailsCollectionViewController: UICollectionViewDataSource {
+extension CollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return presenter?.cocktails?.count ?? 0
     }
@@ -159,7 +159,7 @@ extension CocktailsCollectionViewController: UICollectionViewDataSource {
         guard let cocktail = presenter?.cocktails?[indexPath.row] else {
             return UICollectionViewCell()
         }
-        let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CocktailCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CollectionViewCell
         cell.configureCell(with: cocktail)
 
         return cell
@@ -167,7 +167,7 @@ extension CocktailsCollectionViewController: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegate
-extension CocktailsCollectionViewController: UICollectionViewDelegate {
+extension CollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cocktail = presenter?.cocktails?[indexPath.row]
         presenter?.goToDetails(cocktail: cocktail)
@@ -175,12 +175,12 @@ extension CocktailsCollectionViewController: UICollectionViewDelegate {
 }
 
 // MARK: - UIScrollViewDelegate
-extension CocktailsCollectionViewController: UIScrollViewDelegate {
+extension CollectionViewController: UIScrollViewDelegate {
 
 }
 
 // MARK: - UISearchBarDelegate
-extension CocktailsCollectionViewController: UISearchBarDelegate {
+extension CollectionViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         presenter?.searchForCocktail(searchTerm: searchText)
     }

@@ -1,7 +1,7 @@
 @testable import TheBestParty
 import XCTest
 
-final class MockNavigationController: UINavigationController {
+final private class MockNavigationController: UINavigationController {
     var presentedVC: UIViewController?
     var isViewControllerDismissed = false
     
@@ -17,7 +17,7 @@ final class MockNavigationController: UINavigationController {
     }
 }
 
-final class RouterTest: XCTestCase {
+final private class RouterTest: XCTestCase {
     var router: RouterProtocol!
     var navigationController = MockNavigationController()
     let assemblyModuleBuilder = AssemblyModuleBuilder()
@@ -34,13 +34,13 @@ final class RouterTest: XCTestCase {
         router.showDetails(cocktail: nil)
         let detailViewController = navigationController.presentedVC
         
-        XCTAssertTrue(detailViewController is CocktailDetailsViewController)
+        XCTAssertTrue(detailViewController is DetailsViewController)
     }
     
     func testRouterPopViewController() {
         router.popViewController()
         let isViewControllerDismissed = navigationController.isViewControllerDismissed
         
-        XCTAssertEqual(isViewControllerDismissed, true)
+        XCTAssertTrue(isViewControllerDismissed)
     }
 }

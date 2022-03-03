@@ -1,15 +1,15 @@
 import UIKit
 import Lottie
 
-final class FavoritesCocktailsViewController: UIViewController {
-    var presenter: FavoriteCocktailViewPresenterProtocol?
+final class FavoritesViewController: UIViewController {
+    var presenter: FavoritesPresenterProtocol?
     
     lazy var cocktailsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: view.width / 2 - 15.0, height: view.width / 2 - 15.0)
         layout.sectionInset = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.registerCell(CocktailCollectionViewCell.self)
+        collectionView.registerCell(CollectionViewCell.self)
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.showsVerticalScrollIndicator = false
@@ -72,7 +72,7 @@ final class FavoritesCocktailsViewController: UIViewController {
     }
 }
 
-extension FavoritesCocktailsViewController {
+extension FavoritesViewController {
     private func setupView() {
         view.backgroundColor = .systemBackground
         view.addSubview(cocktailsCollectionView)
@@ -200,14 +200,14 @@ extension FavoritesCocktailsViewController {
     }
 }
 
-extension FavoritesCocktailsViewController: UICollectionViewDataSource {
+extension FavoritesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 //        return presenter?.sortedCocktailsInRealmCount() ?? 0
         return presenter?.filteredCocktailsInRealmCount() ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CocktailCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CollectionViewCell
 //        cell.configureCell(with: (presenter?.configureSortedCollectionView(index: indexPath.row))!)
         cell.configureCell(with: (presenter?.configureFilteredCollectionView(index: indexPath.row))!)
         
@@ -215,11 +215,11 @@ extension FavoritesCocktailsViewController: UICollectionViewDataSource {
     }
 }
 
-extension FavoritesCocktailsViewController: UICollectionViewDelegate {
+extension FavoritesViewController: UICollectionViewDelegate {
     
 }
 
-extension FavoritesCocktailsViewController: FavoriteCocktailViewProtocol {
+extension FavoritesViewController: FavoritesViewProtocol {
     // TODO: - Think for a better solution
     func realmIsEmpty() {
         cocktailsCollectionView.alpha = 0.0

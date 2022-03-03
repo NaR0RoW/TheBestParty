@@ -9,19 +9,19 @@ protocol AssemblyModuleBuilderProtocol {
 
 final class AssemblyModuleBuilder: AssemblyModuleBuilderProtocol {
     func createCocktailsCollectionModule(router: RouterProtocol) -> UIViewController {
-        let view = CocktailsCollectionViewController()
+        let view = CollectionViewController()
         let networkManager = NetworkManager()
-        let presenter = CocktailsCollectionViewPresenter(view: view, networkManager: networkManager, router: router)
+        let presenter = CollectionPresenter(view: view, networkManager: networkManager, router: router)
         view.presenter = presenter
         
         return view
     }
     
     func createCocktailDetailsModule(cocktail: CocktailObject?, router: RouterProtocol) -> UIViewController {
-        let view = CocktailDetailsViewController()
+        let view = DetailsViewController()
         let dataSource = TableViewDataSource()
         let realmManager = RealmManager()
-        let presenter = CocktailDetailsViewPresenter(
+        let presenter = DetailsPresenter(
             view: view,
             cocktail: cocktail,
             router: router,
@@ -34,11 +34,11 @@ final class AssemblyModuleBuilder: AssemblyModuleBuilderProtocol {
     }
     
     func createRandomCocktailModule() -> UIViewController {
-        let view = RandomCocktailViewController()
+        let view = RandomViewController()
         let dataSource = TableViewDataSource()
         let networkManager = NetworkManager()
         let realmManager = RealmManager()
-        let presenter = RandomCocktailViewPresenter(
+        let presenter = RandomPresenter(
             view: view,
             networkManager: networkManager,
             dataSource: dataSource,
@@ -50,9 +50,9 @@ final class AssemblyModuleBuilder: AssemblyModuleBuilderProtocol {
     }
     
     func createFavoriteCocktailModule() -> UIViewController {
-        let view = FavoritesCocktailsViewController()
+        let view = FavoritesViewController()
         let realmManager = RealmManager()
-        let presenter = FavoriteCocktailViewPresenter(view: view, realmManager: realmManager)
+        let presenter = FavoritesPresenter(view: view, realmManager: realmManager)
         view.presenter = presenter
         
         return view

@@ -3,10 +3,10 @@ import RealmSwift
 protocol RealmManagerProtocol {
     func tapToFavorite(cocktail: CocktailObject?)
     func isCocktailInRealm(cocktail: CocktailObject?) -> Bool
-    func isThereAreAnyFavoriteCocktails(cocktail: CocktailObject?) -> Bool
+    func isThereAreAnyFavoriteCocktails() -> Bool
     func cocktailsInRealm() -> [CocktailObject]?
-    func sortCocktails(cocktail: CocktailObject?, sortType: SortType) -> [CocktailObject]?
-    func filterCocktails(cocktail: CocktailObject?, cocktailType: CocktailType) -> [CocktailObject]?
+    func sortCocktails(sortType: SortType) -> [CocktailObject]?
+    func filterCocktails(cocktailType: CocktailType) -> [CocktailObject]?
 }
 
 enum SortType {
@@ -51,15 +51,11 @@ final class RealmManager: RealmManagerProtocol {
         return cocktail?.cocktailName == object?.cocktailName ? true : false
     }
     
-    func isThereAreAnyFavoriteCocktails(cocktail: CocktailObject?) -> Bool {
-        return cocktailsInRealmCount() == 0 ? true : false
-    }
-    
-    private func cocktailsInRealmCount() -> Int {
-        guard let realm = try? Realm() else { return 0 }
+    func isThereAreAnyFavoriteCocktails() -> Bool {
+        guard let realm = try? Realm() else { return false }
         let cocktailsInRealm = realm.objects(CocktailObject.self)
         
-        return cocktailsInRealm.count
+        return cocktailsInRealm.count == 0 ? false : true
     }
     
     func cocktailsInRealm() -> [CocktailObject]? {
@@ -69,7 +65,7 @@ final class RealmManager: RealmManagerProtocol {
         return cocktails
     }
     
-    func sortCocktails(cocktail: CocktailObject?, sortType: SortType) -> [CocktailObject]? {
+    func sortCocktails(sortType: SortType) -> [CocktailObject]? {
         guard let realm = try? Realm() else { return nil }
         let realmObjects = realm.objects(CocktailObject.self)
         
@@ -85,7 +81,7 @@ final class RealmManager: RealmManagerProtocol {
         }
     }
     
-    func filterCocktails(cocktail: CocktailObject?, cocktailType: CocktailType) -> [CocktailObject]? {
+    func filterCocktails(cocktailType: CocktailType) -> [CocktailObject]? {
         guard let realm = try? Realm() else { return nil }
         let realmObjects = realm.objects(CocktailObject.self)
         

@@ -1,9 +1,9 @@
 import UIKit
 
-final class CocktailDetailsViewController: UIViewController {
+final class RandomViewController: UIViewController {
     private var factory: FactoryProtocol?
     
-    var presenter: CocktailDetailsViewPresenterProtocol?
+    var presenter: RandomPresenterProtocol?
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -17,12 +17,12 @@ final class CocktailDetailsViewController: UIViewController {
         return tableView
     }()
     
-    private lazy var backButton: UIButton = {
+    private lazy var refreshButton: UIButton = {
         let button = UIButton()
-        button.addTarget(self, action: #selector(popViewController), for: .touchUpInside)
-        button.createShadowButtonWithSystemImage(with: "arrow.backward.circle.fill")
+        button.addTarget(self, action: #selector(refresh), for: .touchUpInside)
+        button.createShadowButtonWithSystemImage(with: "arrow.counterclockwise.circle")
         button.translatesAutoresizingMaskIntoConstraints = false
-        
+
         return button
     }()
     
@@ -39,8 +39,6 @@ final class CocktailDetailsViewController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         setupTopItems()
-        presenter?.setupDetails()
-        tableView.reloadData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -56,7 +54,7 @@ final class CocktailDetailsViewController: UIViewController {
     }
 }
 
-extension CocktailDetailsViewController {
+extension RandomViewController {
     private func setupTableView() {
         view.addSubview(tableView)
         tableView.backgroundColor = .systemBackground
@@ -69,40 +67,49 @@ extension CocktailDetailsViewController {
     }
     
     private func setupTopItems() {
-        view.addSubview(backButton)
-        NSLayoutConstraint.activate([
-            backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10.0),
-            backButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15.0)
-        ])
-        
         view.addSubview(favoriteButton)
         NSLayoutConstraint.activate([
             favoriteButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10.0),
-            favoriteButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15.0)
+            favoriteButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15.0)
+        ])
+        
+        view.addSubview(refreshButton)
+        NSLayoutConstraint.activate([
+            refreshButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10.0),
+            refreshButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15.0)
         ])
     }
 }
 
-extension CocktailDetailsViewController: CocktailDetailsViewProtocol {
-    @objc private func tapToFavorite() {
-        favoriteButton.tintColor = .systemOrange
-        presenter?.addToFavorite()
-    }
-    
-    @objc private func popViewController() {
-        presenter?.popViewController()
-    }
-    
-    func setupDetails(with dataSource: TableViewDataSourceProtocol?) {
+extension RandomViewController: RandomViewProtocol {
+    func success(with dataSource: TableViewDataSourceProtocol?) {
         tableView.delegate = dataSource
         tableView.dataSource = dataSource
         
         guard let cocktail = presenter?.cocktail else { return }
-        
+    
         factory = TableViewFactory(model: cocktail, tableView: tableView)
         if let sections = factory?.getSections() {
             dataSource?.sections = sections
         }
+        
+        tableView.reloadData()
+    }
+    
+    func failure(error: Error) {
+        print(error.localizedDescription)
+    }
+    
+    // TODO: - Think for a better solution
+    @objc private func refresh() {
+        presenter?.refresh()
+        favoriteButton.tintColor = .label
+//        presenter?.highlightFavoriteCocktail()
+    }
+    
+    @objc private func tapToFavorite() {
+        favoriteButton.tintColor = .systemOrange
+        presenter?.addToFavorite()
     }
     
     func highlightFavoriteCocktail() {

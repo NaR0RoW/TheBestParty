@@ -1,14 +1,14 @@
 import Foundation
 
-protocol RandomCocktailViewProtocol: AnyObject {
+protocol RandomViewProtocol: AnyObject {
     func success(with dataSource: TableViewDataSourceProtocol?)
     func failure(error: Error)
     func highlightFavoriteCocktail()
 }
 
-protocol RandomCocktailViewPresenterProtocol: AnyObject {
+protocol RandomPresenterProtocol: AnyObject {
     init(
-        view: RandomCocktailViewProtocol, 
+        view: RandomViewProtocol, 
         networkManager: NetworkProviderForRandomCocktail, 
         dataSource: TableViewDataSourceProtocol, 
         realmManager: RealmManagerProtocol?
@@ -19,15 +19,15 @@ protocol RandomCocktailViewPresenterProtocol: AnyObject {
     var cocktail: CocktailObject? { get set }
 }
 
-final class RandomCocktailViewPresenter: RandomCocktailViewPresenterProtocol {
-    weak var view: RandomCocktailViewProtocol?
+final class RandomPresenter: RandomPresenterProtocol {
+    weak var view: RandomViewProtocol?
     let networkManager: NetworkProviderForRandomCocktail?
     var dataSource: TableViewDataSourceProtocol?
     var cocktail: CocktailObject?
     var realmManager: RealmManagerProtocol?
     
     required init(
-        view: RandomCocktailViewProtocol, 
+        view: RandomViewProtocol, 
         networkManager: NetworkProviderForRandomCocktail,
         dataSource: TableViewDataSourceProtocol, 
         realmManager: RealmManagerProtocol?

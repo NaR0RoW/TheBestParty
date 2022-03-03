@@ -1,6 +1,6 @@
 import UIKit
 
-final class CocktailCollectionViewCell: UICollectionViewCell {    
+final class CollectionViewCell: UICollectionViewCell {    
     private let cocktailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 15.0
@@ -72,7 +72,7 @@ final class CocktailCollectionViewCell: UICollectionViewCell {
     }
 }
 
-extension CocktailCollectionViewCell {
+extension CollectionViewCell {
     func configureCell(with cocktail: CocktailObject?) {
         guard let imageURLString = cocktail?.cocktailImage else { return }
         self.cocktailImageView.loadImageUsingCacheWithURLString(

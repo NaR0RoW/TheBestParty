@@ -2,12 +2,12 @@
 import RealmSwift
 import XCTest
 
-final class MockCocktailsCollectionView: CocktailsCollectionViewProtocol {
+final private class MockCollectionView: CollectionViewProtocol {
     func success() {}
     func failure(error: Error) {}
 }
 
-final class MockNetworkManager: NetworkProviderForCocktails {
+final private class MockNetworkManager: NetworkProviderForCocktails {
     var cocktails: CocktailModelObject!
     
     init() {}
@@ -27,21 +27,16 @@ final class MockNetworkManager: NetworkProviderForCocktails {
     }
 }
 
-class XCRealmTestCase: XCTestCase {
-    override func setUp() {
-        super.setUp()
-        Realm.Configuration.defaultConfiguration.inMemoryIdentifier = self.name
-    }
-}
-
-final class CocktailsCollectionViewPresenterTests: XCRealmTestCase {
-    var view: MockCocktailsCollectionView!
-    var presenter: CocktailsCollectionViewPresenter!
+final private class CollectionPresenterTests: XCTestCase {
+    var view: MockCollectionView!
+    var sut: CollectionPresenter!
     var networkManager: NetworkProviderForCocktails!
     var router: RouterProtocol!
     var cocktails = [CocktailModelObject]()
 
     override func setUpWithError() throws {
+        Realm.Configuration.defaultConfiguration.inMemoryIdentifier = self.name
+        
         let navigationController = UINavigationController()
         let assemblyModuleBuilder = AssemblyModuleBuilder()
         
@@ -50,27 +45,28 @@ final class CocktailsCollectionViewPresenterTests: XCRealmTestCase {
     
     override func tearDownWithError() throws {
         self.view = nil
+        self.sut = nil
         self.networkManager = nil
-        self.presenter = nil
     }
     
-    func testGetSuccessCocktails() {
-        let realm = try? Realm()
+    func createCocktail() -> CocktailModelObject {
+        let realm = try! Realm()
         
         let cocktail = CocktailModelObject()
         cocktail.drinks.first?.cocktailName = "Foo"
-        cocktail.drinks.first?.cocktailType = "Baz"
-        cocktail.drinks.first?.cocktailCategory = "Bar"
         
-        try? realm?.write {
-            realm!.add(cocktail)
+        try? realm.write {
+            realm.add(cocktail)
         }
         
-        self.cocktails = [cocktail]
-        
-        self.view = MockCocktailsCollectionView()
+        return cocktail
+    }
+    
+    func testGetCocktailsSuccessfully() {
+        self.cocktails = [createCocktail()]
+        self.view = MockCollectionView()
         self.networkManager = MockNetworkManager(cocktails: cocktails.first)
-        self.presenter = CocktailsCollectionViewPresenter(view: view, networkManager: networkManager, router: router)
+        self.sut = CollectionPresenter(view: view, networkManager: networkManager, router: router)
         
         var catchCocktails: [CocktailModelObject]!
         
@@ -87,22 +83,11 @@ final class CocktailsCollectionViewPresenterTests: XCRealmTestCase {
         XCTAssertEqual(catchCocktails?.count, cocktails.count)
     }
     
-    func testGetFailureCocktails() {
-        let realm = try? Realm()
-        
-        let cocktail = CocktailModelObject()
-        cocktail.drinks.first?.cocktailName = "Foo"
-        cocktail.drinks.first?.cocktailType = "Baz"
-        cocktail.drinks.first?.cocktailCategory = "Bar"
-        
-        try? realm?.write {
-            realm!.add(cocktail)
-        }
-        
-        self.cocktails = [cocktail]
-        self.view = MockCocktailsCollectionView()
+    func testGetCocktailsFailure() {
+        self.cocktails = [createCocktail()]
+        self.view = MockCollectionView()
         self.networkManager = MockNetworkManager()
-        self.presenter = CocktailsCollectionViewPresenter(view: view, networkManager: networkManager, router: router)
+        self.sut = CollectionPresenter(view: view, networkManager: networkManager, router: router)
         
         var catchError: Error!
         

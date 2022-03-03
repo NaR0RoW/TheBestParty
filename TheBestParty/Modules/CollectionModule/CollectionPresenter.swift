@@ -1,25 +1,25 @@
 import Foundation
 
-protocol CocktailsCollectionViewProtocol: AnyObject {
+protocol CollectionViewProtocol: AnyObject {
     func success()
     func failure(error: Error)
 }
 
-protocol CocktailsCollectionViewPresenterProtocol: AnyObject {
-    init(view: CocktailsCollectionViewProtocol, networkManager: NetworkProviderForCocktails, router: RouterProtocol)
+protocol CollectionPresenterProtocol: AnyObject {
+    init(view: CollectionViewProtocol, networkManager: NetworkProviderForCocktails, router: RouterProtocol)
     var cocktails: [CocktailObject]? { get set }
     func goToDetails(cocktail: CocktailObject?)
     func searchForCocktail(searchTerm: String)
     func refresh()
 }
 
-final class CocktailsCollectionViewPresenter: CocktailsCollectionViewPresenterProtocol {
-    weak var view: CocktailsCollectionViewProtocol?
+final class CollectionPresenter: CollectionPresenterProtocol {
+    weak var view: CollectionViewProtocol?
     let networkManager: NetworkProviderForCocktails?
     var router: RouterProtocol?
     var cocktails: [CocktailObject]?
 
-    required init(view: CocktailsCollectionViewProtocol, networkManager: NetworkProviderForCocktails, router: RouterProtocol) {
+    required init(view: CollectionViewProtocol, networkManager: NetworkProviderForCocktails, router: RouterProtocol) {
         self.view = view
         self.networkManager = networkManager
         self.router = router
