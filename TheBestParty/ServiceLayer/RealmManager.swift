@@ -7,6 +7,7 @@ protocol RealmManagerProtocol {
     func cocktailsInRealm() -> [CocktailObject]?
     func sortCocktails(sortType: SortType) -> [CocktailObject]?
     func filterCocktails(cocktailType: CocktailType) -> [CocktailObject]?
+    var isItNecessaryToPopViewController: Bool { get set }
 }
 
 enum SortType {
@@ -29,6 +30,8 @@ enum CocktailType {
 }
 
 final class RealmManager: RealmManagerProtocol {
+    var isItNecessaryToPopViewController = false
+    
     // TODO: - Think for better solution
     func tapToFavorite(cocktail: CocktailObject?) {
         guard let cocktail = cocktail else { return }
@@ -37,6 +40,7 @@ final class RealmManager: RealmManagerProtocol {
         try? realm.write {
             if isCocktailInRealm(cocktail: cocktail) == true {
                 realm.delete(realm.objects(CocktailObject.self).filter("cocktailName=%@", cocktail.cocktailName as Any))
+                self.isItNecessaryToPopViewController = true
             } else {
                 realm.create(CocktailObject.self, value: cocktail, update: .all)
             }

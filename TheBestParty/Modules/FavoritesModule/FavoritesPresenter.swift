@@ -8,8 +8,11 @@ protocol FavoritesViewProtocol: AnyObject {
 }
 
 protocol FavoritesPresenterProtocol: AnyObject {
-    init(view: FavoritesViewProtocol, realmManager: RealmManagerProtocol?)
+    init(view: FavoritesViewProtocol, realmManager: RealmManagerProtocol?, router: RouterProtocol)
     func checkIfThereAreAnyFavoritesCocktails()
+    func goToDetails(cocktail: CocktailObject?)
+    var cocktails: [CocktailObject]? { get set }
+    func cocktailsInRealm()
     
     func sortCocktails(sortType: SortType)
     func configureSortedCollectionView(index: Int) -> CocktailObject?
@@ -28,10 +31,13 @@ final class FavoritesPresenter: FavoritesPresenterProtocol {
     var cocktail: CocktailObject?
     var sortedCocktails: [CocktailObject]?
     var filteredCocktails: [CocktailObject]?
+    var router: RouterProtocol?
+    var cocktails: [CocktailObject]?
 
-    required init(view: FavoritesViewProtocol, realmManager: RealmManagerProtocol?) {
+    required init(view: FavoritesViewProtocol, realmManager: RealmManagerProtocol?, router: RouterProtocol) {
         self.view = view
         self.realmManager = realmManager
+        self.router = router
     }
     
     func checkIfThereAreAnyFavoritesCocktails() {
@@ -44,8 +50,15 @@ final class FavoritesPresenter: FavoritesPresenterProtocol {
         }
     }
     
+    func goToDetails(cocktail: CocktailObject?) {
+        router?.showDetails(cocktail: cocktail)
+    }
+    
+    func cocktailsInRealm() {
+        self.cocktails = realmManager?.cocktailsInRealm()
+    }
+    
     // MARK: - Sorting cocktails
-
     func sortCocktails(sortType: SortType) {
         switch sortType {
         case .timeAdded:
@@ -74,7 +87,6 @@ final class FavoritesPresenter: FavoritesPresenterProtocol {
     }
     
     // MARK: - Filtering cocktails
-    
     func filterCocktails(cocktailType: CocktailType) {
         switch cocktailType {
         case .all:

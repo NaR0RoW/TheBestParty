@@ -108,4 +108,8 @@ extension DetailsViewController: DetailsViewProtocol {
     func highlightFavoriteCocktail() {
         favoriteButton.tintColor = .systemOrange
     }
+    
+    func discardViewController() {
+        presenter?.popViewController()
+    }
 }

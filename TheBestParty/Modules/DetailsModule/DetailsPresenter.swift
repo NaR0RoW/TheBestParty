@@ -3,6 +3,7 @@ import Foundation
 protocol DetailsViewProtocol: AnyObject {
     func setupDetails(with dataSource: TableViewDataSourceProtocol?)
     func highlightFavoriteCocktail()
+    func discardViewController()
 }
 
 protocol DetailsPresenterProtocol: AnyObject {
@@ -46,11 +47,15 @@ final class DetailsPresenter: DetailsPresenterProtocol {
     }
     
     func popViewController() {
-        router?.popViewController()
+        self.router?.popViewController()
     }
     
     func addToFavorite() {
-        realmManager?.tapToFavorite(cocktail: self.cocktail)
+        self.realmManager?.tapToFavorite(cocktail: self.cocktail)
+        guard let needToPop = realmManager?.isItNecessaryToPopViewController else { return }
+        if needToPop {
+            self.view?.discardViewController()
+        }
     }
     
     func highlightFavoriteCocktail() {

@@ -67,6 +67,7 @@ final class FavoritesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter?.checkIfThereAreAnyFavoritesCocktails()
+        presenter?.cocktailsInRealm()
 //        presenter?.fillSortedCocktails()
         presenter?.fillFilteredCocktails()
     }
@@ -216,7 +217,10 @@ extension FavoritesViewController: UICollectionViewDataSource {
 }
 
 extension FavoritesViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cocktail = presenter?.cocktails?[indexPath.row]
+        presenter?.goToDetails(cocktail: cocktail)
+    }
 }
 
 extension FavoritesViewController: FavoritesViewProtocol {
