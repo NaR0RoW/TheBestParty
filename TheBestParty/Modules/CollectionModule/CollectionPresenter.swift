@@ -9,8 +9,8 @@ protocol CollectionPresenterProtocol: AnyObject {
     init(view: CollectionViewProtocol, networkManager: NetworkProviderForCocktails, router: RouterProtocol)
     var cocktails: [CocktailObject]? { get set }
     func goToDetails(cocktail: CocktailObject?)
-    func searchForCocktail(searchTerm: String)
     func refresh()
+    func getCocktails(searchTerm: String) 
 }
 
 final class CollectionPresenter: CollectionPresenterProtocol {
@@ -32,30 +32,20 @@ final class CollectionPresenter: CollectionPresenterProtocol {
             guard let self = self else { return }
             switch result {
             case .success(let cocktails):
-                self.cocktails = Array(cocktails.drinks)
                 DispatchQueue.main.async {
+                    self.cocktails = Array(cocktails.drinks)
                     self.view?.success()
                 }
             case .failure(let error):
-                self.view?.failure(error: error)
+                DispatchQueue.main.async {
+                    self.view?.failure(error: error)
+                }
             }
         }
     }
     
     func goToDetails(cocktail: CocktailObject?) {
         router?.showDetails(cocktail: cocktail)
-    }
-    
-    func searchForCocktail(searchTerm: String) {
-        var timer: Timer?
-        let trimmedText = searchTerm.trimmingCharacters(in: .whitespaces)
-        if trimmedText != "" {
-            timer?.invalidate()
-            timer = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { [weak self] _ in
-                guard let self = self else { return }
-                self.getCocktails(searchTerm: trimmedText)
-            })
-        }
     }
     
     func refresh() {

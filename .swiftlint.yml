@@ -1,7 +1,0 @@
-disabled_rules:
-    - trailing_whitespace
-    - force_try
-
-line_length:
-    warning: 150
-    error: 200

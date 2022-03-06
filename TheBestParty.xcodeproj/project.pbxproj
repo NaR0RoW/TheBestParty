@@ -13,7 +13,7 @@
 		0D311BEE27A94A7C00669EDE /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D311BED27A94A7C00669EDE /* RealmManager.swift */; };
 		0D311BF127A9503600669EDE /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 0D311BF027A9503600669EDE /* Lottie */; };
 		0D469760275804D300D1B011 /* RandomPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D46975F275804D300D1B011 /* RandomPresenter.swift */; };
-		0D4BEFA427BE84B5004AE29D /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4BEFA327BE84B5004AE29D /* UIImageView+Extension.swift */; };
+		0D4BEFA427BE84B5004AE29D /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4BEFA327BE84B5004AE29D /* CustomImageView.swift */; };
 		0D5BC77C27C650BF006452D5 /* CollectionPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5BC77B27C650BF006452D5 /* CollectionPresenterTests.swift */; };
 		0D5BC78327C6755A006452D5 /* RouterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5BC78227C6755A006452D5 /* RouterTest.swift */; };
 		0D804CF627CE8173008FE503 /* RealmManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D804CF527CE8173008FE503 /* RealmManagerTests.swift */; };
@@ -71,7 +71,7 @@
 		0D0B4489275E838800A7BBDF /* FavoritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesPresenter.swift; sourceTree = "<group>"; };
 		0D311BED27A94A7C00669EDE /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		0D46975F275804D300D1B011 /* RandomPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomPresenter.swift; sourceTree = "<group>"; };
-		0D4BEFA327BE84B5004AE29D /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		0D4BEFA327BE84B5004AE29D /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		0D5BC77927C650BF006452D5 /* TheBestPartyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheBestPartyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D5BC77B27C650BF006452D5 /* CollectionPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionPresenterTests.swift; sourceTree = "<group>"; };
 		0D5BC78227C6755A006452D5 /* RouterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterTest.swift; sourceTree = "<group>"; };
@@ -230,7 +230,7 @@
 			children = (
 				0DD9D5C2275A35FE00C75CD4 /* UIButton+Extension.swift */,
 				4E62BAB7273EBBBF006BA756 /* UICollectionView+Extension.swift */,
-				0D4BEFA327BE84B5004AE29D /* UIImageView+Extension.swift */,
+				0D4BEFA327BE84B5004AE29D /* CustomImageView.swift */,
 				4E874EF4273D994C00C85E04 /* UIStackView+Extension.swift */,
 				4E84DCE1273C1CA4000CEB16 /* UITableView+Extension.swift */,
 				4E874EF9273DA99200C85E04 /* UIView+Extension.swift */,
@@ -486,7 +486,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D4BEFA427BE84B5004AE29D /* UIImageView+Extension.swift in Sources */,
+				0D4BEFA427BE84B5004AE29D /* CustomImageView.swift in Sources */,
 				4EF619C7274D6F1900928D41 /* MockSection.swift in Sources */,
 				4E6EF5E9274D6DF5009EC3A3 /* CocktailModel.swift in Sources */,
 				4EF619D7274D6F7400928D41 /* IngredientCell.swift in Sources */,

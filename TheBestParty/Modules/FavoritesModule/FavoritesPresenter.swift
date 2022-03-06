@@ -3,7 +3,6 @@ import Foundation
 protocol FavoritesViewProtocol: AnyObject {
     func realmIsEmpty()
     func realmNotEmpty()
-    func sortCollectionView()
     func filterCollectionView()
 }
 
@@ -13,11 +12,6 @@ protocol FavoritesPresenterProtocol: AnyObject {
     func goToDetails(cocktail: CocktailObject?)
     var cocktails: [CocktailObject]? { get set }
     func cocktailsInRealm()
-    
-    func sortCocktails(sortType: SortType)
-    func configureSortedCollectionView(index: Int) -> CocktailObject?
-    func sortedCocktailsInRealmCount() -> Int
-    func fillSortedCocktails()
     
     func filterCocktails(cocktailType: CocktailType)
     func configureFilteredCollectionView(index: Int) -> CocktailObject?
@@ -58,35 +52,6 @@ final class FavoritesPresenter: FavoritesPresenterProtocol {
         self.cocktails = realmManager?.cocktailsInRealm()
     }
     
-    // MARK: - Sorting cocktails
-    func sortCocktails(sortType: SortType) {
-        switch sortType {
-        case .timeAdded:
-            self.sortedCocktails = (realmManager?.sortCocktails(sortType: .timeAdded))!
-        case .name:
-            self.sortedCocktails = (realmManager?.sortCocktails(sortType: .name))!
-        case .category:
-            self.sortedCocktails = (realmManager?.sortCocktails(sortType: .category))!
-        case .type:
-            self.sortedCocktails = (realmManager?.sortCocktails(sortType: .type))!
-        }
-        
-        self.view?.sortCollectionView()
-    }
-    
-    func configureSortedCollectionView(index: Int) -> CocktailObject? {
-        return sortedCocktails?[index]
-    }
-    
-    func sortedCocktailsInRealmCount() -> Int {
-        return sortedCocktails?.count ?? 0
-    }
-    
-    func fillSortedCocktails() {
-        self.sortedCocktails = realmManager?.cocktailsInRealm()
-    }
-    
-    // MARK: - Filtering cocktails
     func filterCocktails(cocktailType: CocktailType) {
         switch cocktailType {
         case .all:

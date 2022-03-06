@@ -103,8 +103,7 @@ extension RandomViewController: RandomViewProtocol {
     // TODO: - Think for a better solution
     @objc private func refresh() {
         presenter?.refresh()
-        favoriteButton.tintColor = .label
-//        presenter?.highlightFavoriteCocktail()
+        favoriteButton.tintColor = .white
     }
     
     @objc private func tapToFavorite() {

@@ -87,35 +87,6 @@ final private class RealmManagerTests: XCTestCase {
         XCTAssertEqual(cocktails?.count, 0)
     }
     
-    func testSortCocktails() {
-        let firstCocktail = CocktailObject()
-        firstCocktail.cocktailName = "Foo"
-        firstCocktail.cocktailCategory = "Baz"
-        firstCocktail.cocktailType = "Bar"
-        
-        let secondCocktail = CocktailObject()
-        secondCocktail.cocktailName = "Bar"
-        secondCocktail.cocktailCategory = "Foo"
-        secondCocktail.cocktailType = "Baz"
-        
-        try! realm.write {
-            realm.add(firstCocktail, update: .all)
-            realm.add(secondCocktail, update: .all)
-        }
-        
-        let timeAddedSorted = sut.sortCocktails(sortType: .timeAdded)
-        XCTAssertEqual(timeAddedSorted, [firstCocktail, secondCocktail])
-        
-        let nameSorted = sut.sortCocktails(sortType: .name)
-        XCTAssertEqual(nameSorted, [secondCocktail, firstCocktail])
-
-        let categorySorted = sut.sortCocktails(sortType: .category)
-        XCTAssertEqual(categorySorted, [firstCocktail, secondCocktail])
-
-        let typeSorted = sut.sortCocktails(sortType: .type)
-        XCTAssertEqual(typeSorted, [firstCocktail, secondCocktail])
-    }
-    
     func testFilterCocktails() {
         let ordinaryDrink = CocktailObject()
         ordinaryDrink.cocktailName = "Bar"

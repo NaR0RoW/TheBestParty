@@ -2,6 +2,7 @@ import UIKit
 
 final class CollectionViewController: UIViewController {
     var presenter: CollectionPresenterProtocol?
+    var lastPerformArgument: NSString? = nil
     
     lazy var searchController: UISearchController = {
         let searchController = UISearchController()
@@ -27,11 +28,7 @@ final class CollectionViewController: UIViewController {
         return collectionView
     }()
     
-    private let refreshControl: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        
-        return refreshControl
-    }()
+    private let refreshControl = UIRefreshControl()
     
     private let noResultsView: UIView = {
         let view = UIView()
@@ -166,7 +163,6 @@ extension CollectionViewController: UICollectionViewDataSource {
     }
 }
 
-// MARK: - UICollectionViewDelegate
 extension CollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cocktail = presenter?.cocktails?[indexPath.row]
@@ -174,14 +170,22 @@ extension CollectionViewController: UICollectionViewDelegate {
     }
 }
 
-// MARK: - UIScrollViewDelegate
 extension CollectionViewController: UIScrollViewDelegate {
 
 }
 
-// MARK: - UISearchBarDelegate
 extension CollectionViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        presenter?.searchForCocktail(searchTerm: searchText)
+        if searchText != "" {
+            NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(searchForCocktail(searchTerm:)), object: lastPerformArgument)
+            
+            lastPerformArgument = searchText as NSString
+            
+            self.perform(#selector(searchForCocktail(searchTerm:)), with: lastPerformArgument, afterDelay: 0.5)
+        }
+    }
+    
+    @objc func searchForCocktail(searchTerm: String) {
+        presenter?.getCocktails(searchTerm: searchTerm)
     }
 }

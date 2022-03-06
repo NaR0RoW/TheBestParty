@@ -5,7 +5,6 @@ protocol RealmManagerProtocol {
     func isCocktailInRealm(cocktail: CocktailObject?) -> Bool
     func isThereAreAnyFavoriteCocktails() -> Bool
     func cocktailsInRealm() -> [CocktailObject]?
-    func sortCocktails(sortType: SortType) -> [CocktailObject]?
     func filterCocktails(cocktailType: CocktailType) -> [CocktailObject]?
     var isItNecessaryToPopViewController: Bool { get set }
 }
@@ -67,22 +66,6 @@ final class RealmManager: RealmManagerProtocol {
         let cocktails = Array(realm.objects(CocktailObject.self))
         
         return cocktails
-    }
-    
-    func sortCocktails(sortType: SortType) -> [CocktailObject]? {
-        guard let realm = try? Realm() else { return nil }
-        let realmObjects = realm.objects(CocktailObject.self)
-        
-        switch sortType {
-        case .timeAdded:
-            return Array(realmObjects)
-        case .name:
-            return Array(realmObjects.sorted(byKeyPath: "cocktailName"))
-        case .category:
-            return Array(realmObjects.sorted(byKeyPath: "cocktailCategory"))
-        case .type:
-            return Array(realmObjects.sorted(byKeyPath: "cocktailType"))
-        }
     }
     
     func filterCocktails(cocktailType: CocktailType) -> [CocktailObject]? {

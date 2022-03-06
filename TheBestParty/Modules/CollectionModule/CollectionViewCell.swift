@@ -1,8 +1,8 @@
 import UIKit
 
 final class CollectionViewCell: UICollectionViewCell {    
-    private let cocktailImageView: UIImageView = {
-        let imageView = UIImageView()
+    private let cocktailImageView: CustomImageView = {
+        let imageView = CustomImageView()
         imageView.layer.cornerRadius = 15.0
         imageView.layer.masksToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -75,10 +75,7 @@ final class CollectionViewCell: UICollectionViewCell {
 extension CollectionViewCell {
     func configureCell(with cocktail: CocktailObject?) {
         guard let imageURLString = cocktail?.cocktailImage else { return }
-        self.cocktailImageView.loadImageUsingCacheWithURLString(
-            with: imageURLString,
-            placeHolder: UIImage(systemName: "person.crop.circle.badge.exclamationmark.fill")
-        )
+        self.cocktailImageView.loadImageFromStringAndCacheIt(from: imageURLString)
         self.cocktailNameLabel.text = cocktail?.cocktailName
         self.cocktailCategoryLabel.text = cocktail?.cocktailCategory
         self.cocktailTypeLabel.text = cocktail?.cocktailType

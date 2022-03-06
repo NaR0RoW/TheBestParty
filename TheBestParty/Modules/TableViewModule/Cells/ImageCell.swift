@@ -1,8 +1,8 @@
 import UIKit
 
 final class ImageCell: UITableViewCell {
-    private let cocktailImageView: UIImageView = {
-        let imageView = UIImageView()
+    private let cocktailImageView: CustomImageView = {
+        let imageView = CustomImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
         return imageView
@@ -38,10 +38,7 @@ final class ImageCell: UITableViewCell {
     
     func configureCell(with cocktail: CocktailObject?) {
         guard let imageURLString = cocktail?.cocktailImage else { return }
-        self.cocktailImageView.loadImageUsingCacheWithURLString(
-            with: imageURLString,
-            placeHolder: UIImage(systemName: "person.crop.circle.badge.exclamationmark.fill")
-        )
+        self.cocktailImageView.loadImageFromStringAndCacheIt(from: imageURLString)
         self.cocktailNameLabel.text = cocktail?.cocktailName
         self.cocktailCategoryLabel.text = cocktail?.cocktailCategory
         

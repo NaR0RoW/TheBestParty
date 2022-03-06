@@ -68,7 +68,6 @@ final class FavoritesViewController: UIViewController {
         super.viewWillAppear(animated)
         presenter?.checkIfThereAreAnyFavoritesCocktails()
         presenter?.cocktailsInRealm()
-//        presenter?.fillSortedCocktails()
         presenter?.fillFilteredCocktails()
     }
 }
@@ -126,21 +125,6 @@ extension FavoritesViewController {
     private func setupMenu() {
         let handler: (_ action: UIAction) -> Void = { action in
             switch action.identifier.rawValue {
-//            case "Time added":
-//                self.presenter?.sortCocktails(sortType: .timeAdded)
-//
-//            case "Name":
-//                self.presenter?.sortCocktails(sortType: .name)
-//
-//            case "Category":
-//                self.presenter?.sortCocktails(sortType: .category)
-//
-//            case "Type":
-//                self.presenter?.sortCocktails(sortType: .type)
-//
-//            default:
-//                break
-//            }
             case "All":
                 self.presenter?.filterCocktails(cocktailType: .all)
                 
@@ -173,13 +157,6 @@ extension FavoritesViewController {
             }
         }
         
-//        let menuActions = [
-//            UIAction(title: "Time added", identifier: UIAction.Identifier("Time added"), handler: handler),
-//            UIAction(title: "Name", identifier: UIAction.Identifier("Name"), handler: handler),
-//            UIAction(title: "Category", identifier: UIAction.Identifier("Category"), handler: handler),
-//            UIAction(title: "Type", identifier: UIAction.Identifier("Type"), handler: handler)
-//        ]
-        
         let menuActions = [
             UIAction(title: "All", identifier: UIAction.Identifier("All"), handler: handler),
             UIAction(title: "Ordinary drink", identifier: UIAction.Identifier("Ordinary drink"), handler: handler),
@@ -194,7 +171,6 @@ extension FavoritesViewController {
         
         let menu = UIMenu(children: menuActions)
         
-//        let rightBarButton = UIBarButtonItem(title: "Sort", menu: menu)
         let rightBarButton = UIBarButtonItem(title: "Filter", menu: menu)
         rightBarButton.tintColor = .label
         navigationItem.rightBarButtonItem = rightBarButton
@@ -203,13 +179,11 @@ extension FavoritesViewController {
 
 extension FavoritesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return presenter?.sortedCocktailsInRealmCount() ?? 0
         return presenter?.filteredCocktailsInRealmCount() ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CollectionViewCell
-//        cell.configureCell(with: (presenter?.configureSortedCollectionView(index: indexPath.row))!)
         cell.configureCell(with: (presenter?.configureFilteredCollectionView(index: indexPath.row))!)
         
         return cell
@@ -235,10 +209,6 @@ extension FavoritesViewController: FavoritesViewProtocol {
     func realmNotEmpty() {
         noResultsView.alpha = 0.0
         cocktailsCollectionView.alpha = 1.0
-        cocktailsCollectionView.reloadData()
-    }
-    
-    func sortCollectionView() {
         cocktailsCollectionView.reloadData()
     }
     
