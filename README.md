@@ -25,11 +25,11 @@ Such a simple and necessary party app
 - RealmDatabase  - version 11.9.0
 
 ### Preview
-![TheBestPartyPreview!](/Users/narrow/Desktop/TheBestParty/TheBestPartyPreview/TheBestPartyPreview.mp4)
+![TheBestPartyPreview!](./TheBestPartyPreview/TheBestPartyPreview.mp4)
 ### Screenshots
-![TheBestPartyPreview1!](/Users/narrow/Desktop/TheBestParty/TheBestPartyPreview/TheBestPartyPreview1.png)
-![TheBestPartyPreview2!](/Users/narrow/Desktop/TheBestParty/TheBestPartyPreview/TheBestPartyPreview2.png)
-![TheBestPartyPreview3!](/Users/narrow/Desktop/TheBestParty/TheBestPartyPreview/TheBestPartyPreview3.png)
-![TheBestPartyPreview4!](/Users/narrow/Desktop/TheBestParty/TheBestPartyPreview/TheBestPartyPreview4.png)
-![TheBestPartyPreview5!](/Users/narrow/Desktop/TheBestParty/TheBestPartyPreview/TheBestPartyPreview5.png)
-![TheBestPartyPreview6!](/Users/narrow/Desktop/TheBestParty/TheBestPartyPreview/TheBestPartyPreview6.png)
+![TheBestPartyPreview1!](./TheBestPartyPreview/TheBestPartyPreview1.png)
+![TheBestPartyPreview2!](./TheBestPartyPreview/TheBestPartyPreview2.png)
+![TheBestPartyPreview3!](./TheBestPartyPreview/TheBestPartyPreview3.png)
+![TheBestPartyPreview4!](./TheBestPartyPreview/TheBestPartyPreview4.png)
+![TheBestPartyPreview5!](./TheBestPartyPreview/TheBestPartyPreview5.png)
+![TheBestPartyPreview6!](./TheBestPartyPreview/TheBestPartyPreview6.png)
