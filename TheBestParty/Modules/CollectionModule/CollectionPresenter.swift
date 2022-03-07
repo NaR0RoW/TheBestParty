@@ -9,7 +9,6 @@ protocol CollectionPresenterProtocol: AnyObject {
     init(view: CollectionViewProtocol, networkManager: NetworkProviderForCocktails, router: RouterProtocol)
     var cocktails: [CocktailObject]? { get set }
     func goToDetails(cocktail: CocktailObject?)
-    func refresh()
     func getCocktails(searchTerm: String) 
 }
 
@@ -46,9 +45,5 @@ final class CollectionPresenter: CollectionPresenterProtocol {
     
     func goToDetails(cocktail: CocktailObject?) {
         router?.showDetails(cocktail: cocktail)
-    }
-    
-    func refresh() {
-        getCocktails()
     }
 }

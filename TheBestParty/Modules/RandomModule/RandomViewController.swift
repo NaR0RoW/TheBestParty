@@ -100,7 +100,6 @@ extension RandomViewController: RandomViewProtocol {
         print(error.localizedDescription)
     }
     
-    // TODO: - Think for a better solution
     @objc private func refresh() {
         presenter?.refresh()
         favoriteButton.tintColor = .white

@@ -19,7 +19,6 @@ final class CollectionViewController: UIViewController {
         layout.sectionInset = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.registerCell(CollectionViewCell.self)
-        collectionView.refreshControl = refreshControl
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.showsVerticalScrollIndicator = false
@@ -27,8 +26,6 @@ final class CollectionViewController: UIViewController {
         
         return collectionView
     }()
-    
-    private let refreshControl = UIRefreshControl()
     
     private let noResultsView: UIView = {
         let view = UIView()
@@ -82,7 +79,6 @@ extension CollectionViewController {
         title = "Cocktails"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.searchController = searchController
-        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
     private func setupCollectionView() {
@@ -124,11 +120,6 @@ extension CollectionViewController {
             noResultsSubLabel.leftAnchor.constraint(equalTo: noResultsView.leftAnchor, constant: 15.0),
             noResultsSubLabel.rightAnchor.constraint(equalTo: noResultsView.rightAnchor, constant: -15.0)
         ])
-    }
-    
-    @objc private func refresh() {
-        presenter?.refresh()
-        refreshControl.endRefreshing()
     }
 }
 
@@ -185,7 +176,7 @@ extension CollectionViewController: UISearchBarDelegate {
         }
     }
     
-    @objc func searchForCocktail(searchTerm: String) {
+    @objc private func searchForCocktail(searchTerm: String) {
         presenter?.getCocktails(searchTerm: searchTerm)
     }
 }

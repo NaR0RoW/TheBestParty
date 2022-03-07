@@ -31,7 +31,6 @@ enum CocktailType {
 final class RealmManager: RealmManagerProtocol {
     var isItNecessaryToPopViewController = false
     
-    // TODO: - Think for better solution
     func tapToFavorite(cocktail: CocktailObject?) {
         guard let cocktail = cocktail else { return }
         guard let realm = try? Realm() else { return }

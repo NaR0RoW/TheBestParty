@@ -121,7 +121,6 @@ extension FavoritesViewController {
         ])
     }
     
-    // TODO: - Think for a better declaration
     private func setupMenu() {
         let handler: (_ action: UIAction) -> Void = { action in
             switch action.identifier.rawValue {
@@ -198,7 +197,6 @@ extension FavoritesViewController: UICollectionViewDelegate {
 }
 
 extension FavoritesViewController: FavoritesViewProtocol {
-    // TODO: - Think for a better solution
     func realmIsEmpty() {
         cocktailsCollectionView.alpha = 0.0
         cocktailsCollectionView.reloadData()
