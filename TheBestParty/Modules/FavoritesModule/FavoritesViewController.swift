@@ -122,34 +122,39 @@ extension FavoritesViewController {
     }
     
     private func setupMenu() {
-        let handler: (_ action: UIAction) -> Void = { action in
+        let handler: (_ action: UIAction) -> Void = { [weak self] action in
+            guard let newSelf = self else { return }
+            
             switch action.identifier.rawValue {
             case "All":
-                self.presenter?.filterCocktails(cocktailType: .all)
+                newSelf.presenter?.filterCocktails(cocktailType: .all)
                 
             case "Ordinary drink":
-                self.presenter?.filterCocktails(cocktailType: .ordinaryDrink)
+                newSelf.presenter?.filterCocktails(cocktailType: .ordinaryDrink)
                 
             case "Beer":
-                self.presenter?.filterCocktails(cocktailType: .beer)
+                newSelf.presenter?.filterCocktails(cocktailType: .beer)
                 
             case "Cocktail":
-                self.presenter?.filterCocktails(cocktailType: .cocktail)
+                newSelf.presenter?.filterCocktails(cocktailType: .cocktail)
                 
             case "Coffee/Tea":
-                self.presenter?.filterCocktails(cocktailType: .coffeeTea)
+                newSelf.presenter?.filterCocktails(cocktailType: .coffeeTea)
                 
             case "Shot":
-                self.presenter?.filterCocktails(cocktailType: .shot)
+                newSelf.presenter?.filterCocktails(cocktailType: .shot)
                 
             case "Punch/Party Drink":
-                self.presenter?.filterCocktails(cocktailType: .punchPartyDrink)
+                newSelf.presenter?.filterCocktails(cocktailType: .punchPartyDrink)
                 
             case "Soft Drink":
-                self.presenter?.filterCocktails(cocktailType: .softDrink)
+                newSelf.presenter?.filterCocktails(cocktailType: .softDrink)
+                
+            case "Homemade Liqueur":
+                newSelf.presenter?.filterCocktails(cocktailType: .homemadeLiqueur)
                 
             case "Other/Unknown":
-                self.presenter?.filterCocktails(cocktailType: .otherUnknown)
+                newSelf.presenter?.filterCocktails(cocktailType: .otherUnknown)
                 
             default:
                 break
@@ -165,6 +170,7 @@ extension FavoritesViewController {
             UIAction(title: "Shot", identifier: UIAction.Identifier("Shot"), handler: handler),
             UIAction(title: "Punch/Party Drink", identifier: UIAction.Identifier("Punch/Party Drink"), handler: handler),
             UIAction(title: "Soft Drink", identifier: UIAction.Identifier("Soft Drink"), handler: handler),
+            UIAction(title: "Homemade Liqueur", identifier: UIAction.Identifier("Homemade Liqueur"), handler: handler),
             UIAction(title: "Other/Unknown", identifier: UIAction.Identifier("Other/Unknown"), handler: handler)
         ]
         

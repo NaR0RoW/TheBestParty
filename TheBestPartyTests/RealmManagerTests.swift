@@ -7,15 +7,15 @@ final private class RealmManagerTests: XCTestCase {
     var realm: Realm!
     
     override func setUpWithError() throws {
-        Realm.Configuration.defaultConfiguration.inMemoryIdentifier = self.name
+        Realm.Configuration.defaultConfiguration.inMemoryIdentifier = name
         
-        self.sut = RealmManager()
-        self.realm = try! Realm()
+        sut = RealmManager()
+        realm = try! Realm()
     }
     
     override func tearDownWithError() throws {
-        self.sut = nil
-        self.realm = nil
+        sut = nil
+        realm = nil
     }
     
     enum ActionWithCocktail {

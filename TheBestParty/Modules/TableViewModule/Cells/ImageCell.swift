@@ -13,9 +13,9 @@ final class ImageCell: UITableViewCell {
         label.font = .systemFont(ofSize: 30.0, weight: .black)
         label.textColor = .white
         label.layer.shadowColor = UIColor.black.cgColor
-        label.layer.shadowOpacity = 1
+        label.layer.shadowOpacity = 1.0
         label.layer.shadowOffset = .zero
-        label.layer.shadowRadius = 10
+        label.layer.shadowRadius = 10.0
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         
@@ -27,9 +27,9 @@ final class ImageCell: UITableViewCell {
         label.font = .systemFont(ofSize: 22.0, weight: .bold)
         label.textColor = .white
         label.layer.shadowColor = UIColor.black.cgColor
-        label.layer.shadowOpacity = 1
+        label.layer.shadowOpacity = 1.0
         label.layer.shadowOffset = .zero
-        label.layer.shadowRadius = 10
+        label.layer.shadowRadius = 10.0
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         
@@ -38,9 +38,9 @@ final class ImageCell: UITableViewCell {
     
     func configureCell(with cocktail: CocktailObject?) {
         guard let imageURLString = cocktail?.cocktailImage else { return }
-        self.cocktailImageView.loadImageFromStringAndCacheIt(from: imageURLString)
-        self.cocktailNameLabel.text = cocktail?.cocktailName
-        self.cocktailCategoryLabel.text = cocktail?.cocktailCategory
+        cocktailImageView.loadImageFromStringAndCacheIt(from: imageURLString)
+        cocktailNameLabel.text = cocktail?.cocktailName
+        cocktailCategoryLabel.text = cocktail?.cocktailCategory
         
         setupView()
     }

@@ -53,21 +53,21 @@ final class NetworkManager: NetworkManagerProtocol {
 
     private func call<T: Codable>(with request: URLRequest, completion: @escaping(Result<T, APIError>) -> Void) {
         let dataTask = URLSession.shared.dataTask(with: request) { (data, _, error) in
-            guard error == nil else {
+            if let newError = error {
                 completion(.failure(.serverError))
-                print("Server error: ", String(describing: error))
+                print("Server error: ", String(describing: newError))
 
                 return
             }
             do {
-                guard let data = data else {
+                guard let newData = data else {
                     completion(.failure(.serverError))
                     print("Server error: ", String(describing: error))
 
                     return
                 }
 
-                let object = try JSONDecoder().decode(T.self, from: data)
+                let object = try JSONDecoder().decode(T.self, from: newData)
                 
                 completion(Result.success(object))
             } catch {

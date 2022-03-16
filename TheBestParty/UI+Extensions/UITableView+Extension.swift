@@ -8,7 +8,7 @@ extension UITableView {
     func dequeueReusableCell<Cell: UITableViewCell>(forIndexPath indexPath: IndexPath) -> Cell {
         let identifier = String(describing: Cell.self)
         
-        guard let cell = self.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? Cell else {
+        guard let cell = dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? Cell else {
             fatalError("Error for cell id: \(identifier) at \(indexPath))")
         }
         

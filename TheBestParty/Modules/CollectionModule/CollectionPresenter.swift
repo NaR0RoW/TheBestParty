@@ -28,16 +28,16 @@ final class CollectionPresenter: CollectionPresenterProtocol {
     
     func getCocktails(searchTerm: String = "") {
         networkManager?.getCocktails(searchTerm: searchTerm) { [weak self] result in
-            guard let self = self else { return }
+            guard let newSelf = self else { return }
             switch result {
             case .success(let cocktails):
                 DispatchQueue.main.async {
-                    self.cocktails = Array(cocktails.drinks)
-                    self.view?.success()
+                    newSelf.cocktails = Array(cocktails.drinks)
+                    newSelf.view?.success()
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
-                    self.view?.failure(error: error)
+                    newSelf.view?.failure(error: error)
                 }
             }
         }

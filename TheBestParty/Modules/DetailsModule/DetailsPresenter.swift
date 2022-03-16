@@ -43,24 +43,24 @@ final class DetailsPresenter: DetailsPresenterProtocol {
     }
     
     func setupDetails() {
-        self.view?.setupDetails(with: dataSource)
+        view?.setupDetails(with: dataSource)
     }
     
     func popViewController() {
-        self.router?.popViewController()
+        router?.popViewController()
     }
     
     func addToFavorite() {
-        self.realmManager?.tapToFavorite(cocktail: self.cocktail)
+        realmManager?.tapToFavorite(cocktail: cocktail)
         guard let needToPop = realmManager?.isItNecessaryToPopViewController else { return }
         if needToPop {
-            self.view?.discardViewController()
+            view?.discardViewController()
         }
     }
     
     func highlightFavoriteCocktail() {
-        if realmManager?.isCocktailInRealm(cocktail: self.cocktail) == true {
-            self.view?.highlightFavoriteCocktail()
+        if realmManager?.isCocktailInRealm(cocktail: cocktail) == true {
+            view?.highlightFavoriteCocktail()
         } 
     }
 }

@@ -13,8 +13,8 @@ final class CustomImageView: UIImageView {
         
         addSpinner()
         
-        if let task = task {
-            task.cancel()
+        if let newTask = task {
+            newTask.cancel()
         }
         
         if let imageFromCache = imageCache.object(forKey: url.absoluteURL as AnyObject) as? UIImage {
@@ -23,9 +23,9 @@ final class CustomImageView: UIImageView {
             
             return
         }
-        
+
         task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data, let newImage = UIImage(data: data) else {
+            guard let newData = data, let newImage = UIImage(data: newData) else {
                 print("Could not load image from url: \(url)")
                 
                 return
@@ -33,9 +33,9 @@ final class CustomImageView: UIImageView {
             
             imageCache.setObject(newImage, forKey: url.absoluteURL as AnyObject)
             
-            DispatchQueue.main.async {
-                self.image = newImage
-                self.removeSpinner()
+            DispatchQueue.main.async { [weak self] in
+                self?.image = newImage
+                self?.removeSpinner()
             }
         }
         

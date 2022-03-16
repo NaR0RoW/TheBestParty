@@ -229,36 +229,36 @@ final class IngredientCell: UITableViewCell {
     }()
     
     func configureCell(with cocktail: CocktailObject?) {
-        self.firstIngredientLabel.text = cocktail?.cocktailFirstIngredient
-        self.secondIngredientLabel.text = cocktail?.cocktailSecondIngredient
-        self.thirdIngredientLabel.text = cocktail?.cocktailThirdIngredient
-        self.fourthIngredientLabel.text = cocktail?.cocktailFourthIngredient
-        self.fifthIngredientLabel.text = cocktail?.cocktailFifthIngredient
-        self.sixthIngredientLabel.text = cocktail?.cocktailSixthIngredient
-        self.seventhIngredientLabel.text = cocktail?.cocktailSeventhIngredient
-        self.eighthIngredientLabel.text = cocktail?.cocktailEighthIngredient
-        self.ninthIngredientLabel.text = cocktail?.cocktailNinthIngredient
-        self.tenthIngredientLabel.text = cocktail?.cocktailTenthIngredient
-        self.eleventhIngredientLabel.text = cocktail?.cocktailEleventhIngredient
-        self.twelfthIngredientLabel.text = cocktail?.cocktailTwelfthIngredient
-        self.thirteenthIngredientLabel.text = cocktail?.cocktailThirteenthIngredient
-        self.fourteenthIngredientLabel.text = cocktail?.cocktailFourteenthIngredient
-        self.fifteenthIngredientLabel.text = cocktail?.cocktailFifteenthIngredient
-        self.firstIngredientMeasureLabel.text = cocktail?.cocktailFirstIngredientMeasure
-        self.secondIngredientMeasureLabel.text = cocktail?.cocktailSecondIngredientMeasure
-        self.thirdIngredientMeasureLabel.text = cocktail?.cocktailThirdIngredientMeasure
-        self.fourthIngredientMeasureLabel.text = cocktail?.cocktailFourthIngredientMeasure
-        self.fifthIngredientMeasureLabel.text = cocktail?.cocktailFifthIngredientMeasure
-        self.sixthIngredientMeasureLabel.text = cocktail?.cocktailSixthIngredientMeasure
-        self.seventhIngredientMeasureLabel.text = cocktail?.cocktailSeventhIngredientMeasure
-        self.eighthIngredientMeasureLabel.text = cocktail?.cocktailEighthIngredientMeasure
-        self.ninthIngredientMeasureLabel.text = cocktail?.cocktailNinthIngredientMeasure
-        self.tenthIngredientMeasureLabel.text = cocktail?.cocktailTenthIngredientMeasure
-        self.eleventhIngredientMeasureLabel.text = cocktail?.cocktailEleventhIngredientMeasure
-        self.twelfthIngredientMeasureLabel.text = cocktail?.cocktailTwelfthIngredientMeasure
-        self.thirteenthIngredientMeasureLabel.text = cocktail?.cocktailThirteenthIngredientMeasure
-        self.fourteenthIngredientMeasureLabel.text = cocktail?.cocktailFourteenthIngredientMeasure
-        self.fifteenthIngredientMeasureLabel.text = cocktail?.cocktailFifteenthIngredientMeasure
+        firstIngredientLabel.text = cocktail?.cocktailFirstIngredient
+        secondIngredientLabel.text = cocktail?.cocktailSecondIngredient
+        thirdIngredientLabel.text = cocktail?.cocktailThirdIngredient
+        fourthIngredientLabel.text = cocktail?.cocktailFourthIngredient
+        fifthIngredientLabel.text = cocktail?.cocktailFifthIngredient
+        sixthIngredientLabel.text = cocktail?.cocktailSixthIngredient
+        seventhIngredientLabel.text = cocktail?.cocktailSeventhIngredient
+        eighthIngredientLabel.text = cocktail?.cocktailEighthIngredient
+        ninthIngredientLabel.text = cocktail?.cocktailNinthIngredient
+        tenthIngredientLabel.text = cocktail?.cocktailTenthIngredient
+        eleventhIngredientLabel.text = cocktail?.cocktailEleventhIngredient
+        twelfthIngredientLabel.text = cocktail?.cocktailTwelfthIngredient
+        thirteenthIngredientLabel.text = cocktail?.cocktailThirteenthIngredient
+        fourteenthIngredientLabel.text = cocktail?.cocktailFourteenthIngredient
+        fifteenthIngredientLabel.text = cocktail?.cocktailFifteenthIngredient
+        firstIngredientMeasureLabel.text = cocktail?.cocktailFirstIngredientMeasure
+        secondIngredientMeasureLabel.text = cocktail?.cocktailSecondIngredientMeasure
+        thirdIngredientMeasureLabel.text = cocktail?.cocktailThirdIngredientMeasure
+        fourthIngredientMeasureLabel.text = cocktail?.cocktailFourthIngredientMeasure
+        fifthIngredientMeasureLabel.text = cocktail?.cocktailFifthIngredientMeasure
+        sixthIngredientMeasureLabel.text = cocktail?.cocktailSixthIngredientMeasure
+        seventhIngredientMeasureLabel.text = cocktail?.cocktailSeventhIngredientMeasure
+        eighthIngredientMeasureLabel.text = cocktail?.cocktailEighthIngredientMeasure
+        ninthIngredientMeasureLabel.text = cocktail?.cocktailNinthIngredientMeasure
+        tenthIngredientMeasureLabel.text = cocktail?.cocktailTenthIngredientMeasure
+        eleventhIngredientMeasureLabel.text = cocktail?.cocktailEleventhIngredientMeasure
+        twelfthIngredientMeasureLabel.text = cocktail?.cocktailTwelfthIngredientMeasure
+        thirteenthIngredientMeasureLabel.text = cocktail?.cocktailThirteenthIngredientMeasure
+        fourteenthIngredientMeasureLabel.text = cocktail?.cocktailFourteenthIngredientMeasure
+        fifteenthIngredientMeasureLabel.text = cocktail?.cocktailFifteenthIngredientMeasure
         
         setupIngredientStackView()
         setupIngredientMeasureStackView()
@@ -267,8 +267,8 @@ final class IngredientCell: UITableViewCell {
 
 extension IngredientCell {
     private func setupIngredientStackView() {
-        ingredientStackView.addArrangedSubviews(
-            [firstIngredientLabel,
+        ingredientStackView.addArrangedSubviews([
+            firstIngredientLabel,
              secondIngredientLabel,
              thirdIngredientLabel,
              fourthIngredientLabel,
@@ -282,8 +282,8 @@ extension IngredientCell {
              twelfthIngredientLabel,
              thirteenthIngredientLabel,
              fourteenthIngredientLabel,
-             fifteenthIngredientLabel]
-        )
+             fifteenthIngredientLabel
+        ])
         contentView.addSubview(ingredientStackView)
         NSLayoutConstraint.activate([
             ingredientStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10.0),
@@ -294,8 +294,8 @@ extension IngredientCell {
     }
     
     private func setupIngredientMeasureStackView() {
-        ingredientMeasureStackView.addArrangedSubviews(
-            [firstIngredientMeasureLabel,
+        ingredientMeasureStackView.addArrangedSubviews([
+            firstIngredientMeasureLabel,
              secondIngredientMeasureLabel,
              thirdIngredientMeasureLabel,
              fourthIngredientMeasureLabel,
@@ -309,8 +309,8 @@ extension IngredientCell {
              twelfthIngredientMeasureLabel,
              thirteenthIngredientMeasureLabel,
              fourteenthIngredientMeasureLabel,
-             fifteenthIngredientMeasureLabel]
-        )
+             fifteenthIngredientMeasureLabel
+        ])
         contentView.addSubview(ingredientMeasureStackView)
         NSLayoutConstraint.activate([
             ingredientMeasureStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10.0),

@@ -13,13 +13,13 @@ final class TableCell: UITableViewCell {
     func configureCell(with cocktail: CocktailObject?, type: CellType) {
         switch type {
         case .type:
-            self.descriptionLabel.text = cocktail?.cocktailType
+            descriptionLabel.text = cocktail?.cocktailType
         case .instructions:
-            self.descriptionLabel.text = cocktail?.cocktailInstructions
+            descriptionLabel.text = cocktail?.cocktailInstructions
         case .category:
-            self.descriptionLabel.text = cocktail?.cocktailCategory
+            descriptionLabel.text = cocktail?.cocktailCategory
         case .glass:
-            self.descriptionLabel.text = cocktail?.cocktailGlass
+            descriptionLabel.text = cocktail?.cocktailGlass
         case .ingredients:
             break
         }

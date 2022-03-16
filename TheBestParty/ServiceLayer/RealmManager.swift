@@ -9,13 +9,6 @@ protocol RealmManagerProtocol {
     var isItNecessaryToPopViewController: Bool { get set }
 }
 
-enum SortType {
-    case timeAdded
-    case name
-    case category
-    case type
-}
-
 enum CocktailType {
     case all
     case ordinaryDrink
@@ -25,6 +18,7 @@ enum CocktailType {
     case shot
     case punchPartyDrink
     case softDrink
+    case homemadeLiqueur
     case otherUnknown
 }
 
@@ -32,15 +26,15 @@ final class RealmManager: RealmManagerProtocol {
     var isItNecessaryToPopViewController = false
     
     func tapToFavorite(cocktail: CocktailObject?) {
-        guard let cocktail = cocktail else { return }
+        guard let newCocktail = cocktail else { return }
         guard let realm = try? Realm() else { return }
         
         try? realm.write {
-            if isCocktailInRealm(cocktail: cocktail) == true {
-                realm.delete(realm.objects(CocktailObject.self).filter("cocktailName=%@", cocktail.cocktailName as Any))
-                self.isItNecessaryToPopViewController = true
+            if isCocktailInRealm(cocktail: newCocktail) == true {
+                realm.delete(realm.objects(CocktailObject.self).filter("cocktailName=%@", newCocktail.cocktailName as Any))
+                isItNecessaryToPopViewController = true
             } else {
-                realm.create(CocktailObject.self, value: cocktail, update: .all)
+                realm.create(CocktailObject.self, value: newCocktail, update: .all)
             }
         }
     }
@@ -95,6 +89,9 @@ final class RealmManager: RealmManagerProtocol {
             
         case .softDrink:
             return Array(realmObjects.filter("cocktailCategory CONTAINS 'Soft Drink'"))
+            
+        case .homemadeLiqueur:
+            return Array(realmObjects.filter("cocktailCategory CONTAINS 'Homemade Liqueur'"))
             
         case .otherUnknown:
             return Array(realmObjects.filter("cocktailCategory CONTAINS 'Other/Unknown'"))

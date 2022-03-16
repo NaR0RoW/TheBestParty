@@ -1,5 +1,7 @@
 import UIKit
+#if targetEnvironment(simulator)
 import RealmSwift
+#endif
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,7 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.makeKeyAndVisible()
         self.window = window
         
+        #if targetEnvironment(simulator)
         print(Realm.Configuration.defaultConfiguration.fileURL as Any)
+        #endif
         
         return true
     }

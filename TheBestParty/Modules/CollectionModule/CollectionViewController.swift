@@ -161,10 +161,6 @@ extension CollectionViewController: UICollectionViewDelegate {
     }
 }
 
-extension CollectionViewController: UIScrollViewDelegate {
-
-}
-
 extension CollectionViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText != "" {
@@ -172,7 +168,7 @@ extension CollectionViewController: UISearchBarDelegate {
             
             lastPerformArgument = searchText as NSString
             
-            self.perform(#selector(searchForCocktail(searchTerm:)), with: lastPerformArgument, afterDelay: 0.5)
+            perform(#selector(searchForCocktail(searchTerm:)), with: lastPerformArgument, afterDelay: 0.5)
         }
     }
     

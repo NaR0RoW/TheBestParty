@@ -15,7 +15,7 @@ class MockSection: TableViewSectionBuilder {
     }
     
     func heightForHeader() -> CGFloat {
-        return 0
+        return 0.0
     }
     
     func viewForFooter() -> UIView? {
@@ -23,6 +23,6 @@ class MockSection: TableViewSectionBuilder {
     }
     
     func heightForFooter() -> CGFloat {
-        return 0
+        return 0.0
     }
 }

@@ -42,14 +42,14 @@ final class RandomPresenter: RandomPresenterProtocol {
     
     func getRandomCocktail() {
         networkManager?.getRandomCocktail { [weak self] result in
-            guard let self = self else { return }
+            guard let newSelf = self else { return }
             DispatchQueue.main.async {
                 switch result {
                 case .success(let cocktails):
-                    self.cocktail = Array(cocktails.drinks).first
-                    self.view?.success(with: self.dataSource)
+                    newSelf.cocktail = Array(cocktails.drinks).first
+                    newSelf.view?.success(with: newSelf.dataSource)
                 case .failure(let error):
-                    self.view?.failure(error: error)
+                    newSelf.view?.failure(error: error)
                 }
             }
         }
@@ -60,12 +60,12 @@ final class RandomPresenter: RandomPresenterProtocol {
     }
     
     func addToFavorite() {
-        realmManager?.tapToFavorite(cocktail: self.cocktail)
+        realmManager?.tapToFavorite(cocktail: cocktail)
     }
     
     func highlightFavoriteCocktail() {
-        if realmManager?.isCocktailInRealm(cocktail: self.cocktail) == true {
-            self.view?.highlightFavoriteCocktail()
+        if realmManager?.isCocktailInRealm(cocktail: cocktail) == true {
+            view?.highlightFavoriteCocktail()
         }
     }
 }

@@ -6,14 +6,14 @@ final private class MockNavigationController: UINavigationController {
     var isViewControllerDismissed = false
     
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
-        self.presentedVC = viewController
+        presentedVC = viewController
         super.pushViewController(viewController, animated: animated)
     }
     
     override func popViewController(animated: Bool) -> UIViewController? {
-        self.isViewControllerDismissed = true
+        isViewControllerDismissed = true
         
-        return self.viewControllers.first
+        return viewControllers.first
     }
 }
 

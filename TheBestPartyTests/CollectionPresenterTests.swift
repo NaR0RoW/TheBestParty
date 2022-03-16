@@ -18,7 +18,7 @@ final private class MockNetworkManager: NetworkProviderForCocktails {
     }
     
     func getCocktails(searchTerm: String, completion: @escaping (Result<CocktailModelObject, APIError>) -> Void) {
-        if let cocktails = cocktails {
+        if let newCocktails = cocktails {
             completion(.success(cocktails))
         } else {
             let error = APIError.internalError
@@ -35,18 +35,18 @@ final private class CollectionPresenterTests: XCTestCase {
     var cocktails = [CocktailModelObject]()
 
     override func setUpWithError() throws {
-        Realm.Configuration.defaultConfiguration.inMemoryIdentifier = self.name
+        Realm.Configuration.defaultConfiguration.inMemoryIdentifier = name
         
         let navigationController = UINavigationController()
         let assemblyModuleBuilder = AssemblyModuleBuilder()
         
-        self.router = Router(navigationController: navigationController, assemblyBuilder: assemblyModuleBuilder)
+        router = Router(navigationController: navigationController, assemblyBuilder: assemblyModuleBuilder)
     }
     
     override func tearDownWithError() throws {
-        self.view = nil
-        self.sut = nil
-        self.networkManager = nil
+        view = nil
+        sut = nil
+        networkManager = nil
     }
     
     func createCocktail() -> CocktailModelObject {
@@ -63,10 +63,10 @@ final private class CollectionPresenterTests: XCTestCase {
     }
     
     func testGetCocktailsSuccessfully() {
-        self.cocktails = [createCocktail()]
-        self.view = MockCollectionView()
-        self.networkManager = MockNetworkManager(cocktails: cocktails.first)
-        self.sut = CollectionPresenter(view: view, networkManager: networkManager, router: router)
+        cocktails = [createCocktail()]
+        view = MockCollectionView()
+        networkManager = MockNetworkManager(cocktails: cocktails.first)
+        sut = CollectionPresenter(view: view, networkManager: networkManager, router: router)
         
         var catchCocktails: [CocktailModelObject]!
         
@@ -84,10 +84,10 @@ final private class CollectionPresenterTests: XCTestCase {
     }
     
     func testGetCocktailsFailure() {
-        self.cocktails = [createCocktail()]
-        self.view = MockCollectionView()
-        self.networkManager = MockNetworkManager()
-        self.sut = CollectionPresenter(view: view, networkManager: networkManager, router: router)
+        cocktails = [createCocktail()]
+        view = MockCollectionView()
+        networkManager = MockNetworkManager()
+        sut = CollectionPresenter(view: view, networkManager: networkManager, router: router)
         
         var catchError: Error!
         

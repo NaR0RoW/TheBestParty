@@ -26,31 +26,31 @@ final class Router: RouterProtocol {
     }
     
     func initialViewController(for viewController: ForViewController) {
-        if let navigationController = navigationController {
+        if let newNavigationController = navigationController {
             switch viewController {
             case .collection:
                 guard let collectionViewController = assemblyModuleBuilder?.createCocktailsCollectionModule(router: self) else { return }
-                navigationController.viewControllers = [collectionViewController]
+                newNavigationController.viewControllers = [collectionViewController]
             case .favorites:
                 guard let favoritesViewController = assemblyModuleBuilder?.createFavoriteCocktailModule(router: self) else { return }
-                navigationController.viewControllers = [favoritesViewController]
+                newNavigationController.viewControllers = [favoritesViewController]
             }
         }
     }
 
     func showDetails(cocktail: CocktailObject?) {
-        if let navigationController = navigationController {
+        if let newNavigationController = navigationController {
             guard let cocktailDetailsViewController = assemblyModuleBuilder?.createCocktailDetailsModule(
                 cocktail: cocktail,
                 router: self
             ) else { return }
-            navigationController.pushViewController(cocktailDetailsViewController, animated: true)
+            newNavigationController.pushViewController(cocktailDetailsViewController, animated: true)
         }
     }
     
     func popViewController() {
-        if let navigationController = navigationController {
-            navigationController.popViewController(animated: true)
+        if let newNavigationController = navigationController {
+            newNavigationController.popViewController(animated: true)
         }
     }
 }

@@ -38,9 +38,9 @@ final class FavoritesPresenter: FavoritesPresenterProtocol {
         guard let condition = realmManager?.isThereAreAnyFavoriteCocktails() else { return }
         
         if condition {
-            self.view?.realmNotEmpty()
+            view?.realmNotEmpty()
         } else {
-            self.view?.realmIsEmpty()
+            view?.realmIsEmpty()
         }
     }
     
@@ -49,40 +49,43 @@ final class FavoritesPresenter: FavoritesPresenterProtocol {
     }
     
     func cocktailsInRealm() {
-        self.cocktails = realmManager?.cocktailsInRealm()
+        cocktails = realmManager?.cocktailsInRealm()
     }
     
     func filterCocktails(cocktailType: CocktailType) {
         switch cocktailType {
         case .all:
-            self.filteredCocktails = realmManager?.filterCocktails(cocktailType: .all)
+            filteredCocktails = realmManager?.filterCocktails(cocktailType: .all)
             
         case .ordinaryDrink:
-            self.filteredCocktails = realmManager?.filterCocktails(cocktailType: .ordinaryDrink)
+            filteredCocktails = realmManager?.filterCocktails(cocktailType: .ordinaryDrink)
             
         case .beer:
-            self.filteredCocktails = realmManager?.filterCocktails(cocktailType: .beer)
+            filteredCocktails = realmManager?.filterCocktails(cocktailType: .beer)
             
         case .cocktail:
-            self.filteredCocktails = realmManager?.filterCocktails(cocktailType: .cocktail)
+            filteredCocktails = realmManager?.filterCocktails(cocktailType: .cocktail)
             
         case .coffeeTea:
-            self.filteredCocktails = realmManager?.filterCocktails(cocktailType: .coffeeTea)
+            filteredCocktails = realmManager?.filterCocktails(cocktailType: .coffeeTea)
             
         case .shot:
-            self.filteredCocktails = realmManager?.filterCocktails(cocktailType: .shot)
+            filteredCocktails = realmManager?.filterCocktails(cocktailType: .shot)
             
         case .punchPartyDrink:
-            self.filteredCocktails = realmManager?.filterCocktails(cocktailType: .punchPartyDrink)
+            filteredCocktails = realmManager?.filterCocktails(cocktailType: .punchPartyDrink)
             
         case .softDrink:
-            self.filteredCocktails = realmManager?.filterCocktails(cocktailType: .softDrink)
+            filteredCocktails = realmManager?.filterCocktails(cocktailType: .softDrink)
+            
+        case .homemadeLiqueur:
+            filteredCocktails = realmManager?.filterCocktails(cocktailType: .homemadeLiqueur)
             
         case .otherUnknown:
-            self.filteredCocktails = realmManager?.filterCocktails(cocktailType: .otherUnknown)
+            filteredCocktails = realmManager?.filterCocktails(cocktailType: .otherUnknown)
         }
         
-        self.view?.filterCollectionView()
+        view?.filterCollectionView()
     }
     
     func configureFilteredCollectionView(index: Int) -> CocktailObject? {
@@ -94,6 +97,6 @@ final class FavoritesPresenter: FavoritesPresenterProtocol {
     }
     
     func fillFilteredCocktails() {
-        self.filteredCocktails = realmManager?.cocktailsInRealm()
+        filteredCocktails = realmManager?.cocktailsInRealm()
     }
 }
