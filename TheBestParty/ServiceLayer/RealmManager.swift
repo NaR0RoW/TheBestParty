@@ -6,7 +6,7 @@ protocol RealmManagerProtocol {
     func isThereAreAnyFavoriteCocktails() -> Bool
     func cocktailsInRealm() -> [CocktailObject]?
     func filterCocktails(cocktailType: CocktailType) -> [CocktailObject]?
-    var isItNecessaryToPopViewController: Bool { get set }
+    var isItNecessaryToPopViewController: Bool { get }
 }
 
 enum CocktailType {

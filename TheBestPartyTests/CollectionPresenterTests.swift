@@ -19,7 +19,7 @@ final private class MockNetworkManager: NetworkProviderForCocktails {
     
     func getCocktails(searchTerm: String, completion: @escaping (Result<CocktailModelObject, APIError>) -> Void) {
         if let newCocktails = cocktails {
-            completion(.success(cocktails))
+            completion(.success(newCocktails))
         } else {
             let error = APIError.internalError
             completion(.failure(error))

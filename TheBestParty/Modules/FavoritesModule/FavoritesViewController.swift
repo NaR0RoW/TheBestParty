@@ -4,14 +4,12 @@ import Lottie
 final class FavoritesViewController: UIViewController {
     var presenter: FavoritesPresenterProtocol?
     
-    lazy var cocktailsCollectionView: UICollectionView = {
+    private let cocktailsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: view.width / 2 - 15.0, height: view.width / 2 - 15.0)
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width / 2 - 15.0, height: UIScreen.main.bounds.width / 2 - 15.0)
         layout.sectionInset = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.registerCell(CollectionViewCell.self)
-        collectionView.delegate = self
-        collectionView.dataSource = self
         collectionView.showsVerticalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -82,6 +80,8 @@ extension FavoritesViewController {
     
     private func setupCollectionView() {
         view.addSubview(cocktailsCollectionView)
+        cocktailsCollectionView.delegate = self
+        cocktailsCollectionView.dataSource = self
         NSLayoutConstraint.activate([
             cocktailsCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
             cocktailsCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor),

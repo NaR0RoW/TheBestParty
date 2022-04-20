@@ -4,23 +4,20 @@ final class CollectionViewController: UIViewController {
     var presenter: CollectionPresenterProtocol?
     var lastPerformArgument: NSString? = nil
     
-    lazy var searchController: UISearchController = {
+    private let searchController: UISearchController = {
         let searchController = UISearchController()
         searchController.searchBar.placeholder = "Yummy"
-        searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
         
         return searchController
     }()
     
-    lazy var cocktailsCollectionView: UICollectionView = {
+    private let cocktailsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: view.width / 2 - 15.0, height: view.width / 2 - 15.0)
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width / 2 - 15.0, height: UIScreen.main.bounds.width / 2 - 15.0)
         layout.sectionInset = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.registerCell(CollectionViewCell.self)
-        collectionView.delegate = self
-        collectionView.dataSource = self
         collectionView.showsVerticalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -75,6 +72,7 @@ final class CollectionViewController: UIViewController {
 extension CollectionViewController {
     private func setupView() {
         view.addSubview(cocktailsCollectionView)
+        searchController.searchBar.delegate = self
         view.backgroundColor = .systemBackground
         title = "Cocktails"
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -83,6 +81,8 @@ extension CollectionViewController {
     
     private func setupCollectionView() {
         view.addSubview(cocktailsCollectionView)
+        cocktailsCollectionView.delegate = self
+        cocktailsCollectionView.dataSource = self
         NSLayoutConstraint.activate([
             cocktailsCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
             cocktailsCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor),

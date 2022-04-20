@@ -5,7 +5,7 @@ final class DetailsViewController: UIViewController {
     
     var presenter: DetailsPresenterProtocol?
     
-    private lazy var tableView: UITableView = {
+    private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.showsVerticalScrollIndicator = false
         tableView.allowsSelection = false
@@ -17,18 +17,16 @@ final class DetailsViewController: UIViewController {
         return tableView
     }()
     
-    private lazy var backButton: UIButton = {
+    private let backButton: UIButton = {
         let button = UIButton()
-        button.addTarget(self, action: #selector(popViewController), for: .touchUpInside)
         button.createShadowButtonWithSystemImage(with: "arrow.backward.circle.fill")
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
     }()
     
-    private lazy var favoriteButton: UIButton = {
+    private let favoriteButton: UIButton = {
         let button = UIButton()
-        button.addTarget(self, action: #selector(tapToFavorite), for: .touchUpInside)
         button.createShadowButtonWithSystemImage(with: "heart.circle.fill")
         button.translatesAutoresizingMaskIntoConstraints = false
         
@@ -70,12 +68,14 @@ extension DetailsViewController {
     
     private func setupTopItems() {
         view.addSubview(backButton)
+        backButton.addTarget(self, action: #selector(popViewController), for: .touchUpInside)
         NSLayoutConstraint.activate([
             backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10.0),
             backButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15.0)
         ])
         
         view.addSubview(favoriteButton)
+        favoriteButton.addTarget(self, action: #selector(tapToFavorite), for: .touchUpInside)
         NSLayoutConstraint.activate([
             favoriteButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10.0),
             favoriteButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15.0)
